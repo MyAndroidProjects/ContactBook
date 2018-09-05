@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#ff0000"
+    android:weightSum="100"
+    >
+
+
+        <FrameLayout android:id="@+id/contact_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="40"
+            android:layout_gravity="center_horizontal"
+            />
+        <FrameLayout android:id="@+id/contact_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="45"
+            android:layout_gravity="center_horizontal"
+            />
+        <FrameLayout android:id="@+id/button_panel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+</LinearLayout>

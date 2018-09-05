@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="horizontal"
+    android:background="#ff0000"
+    android:weightSum="100"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <fragment
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_withButton"
+        android:layout_weight="@integer/fragment_seek_bar_horizontal_weight"
+        android:layout_gravity="center_horizontal"
+        android:name="com.study.riseof.contactbook.SeekBarFragment"
+        />
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="95"
+        android:weightSum="100">
+        <FrameLayout android:id="@+id/contact_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/fragment_contact_list_vertical_weight"
+            android:layout_gravity="center_horizontal"
+            />
+        <FrameLayout android:id="@+id/contact_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/fragment_contact_info_vertical_weight"
+            android:layout_gravity="center_horizontal"
+            />
+        <FrameLayout android:id="@+id/button_panel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/fragment_button_panel_vertical_weight"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

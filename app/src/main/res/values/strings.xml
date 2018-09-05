@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ContactBook</string>
+    <string name="app_name">My Contacts</string>
+
+    <string name="button_panel_call">Call</string>
+    <string name="button_panel_sms">SMS</string>
+    <string name="button_panel_edit">Edit</string>
+    <string name="button_panel_expand">Expand</string>
 </resources>
