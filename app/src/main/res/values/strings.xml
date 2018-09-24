@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">ContactBook</string>
+    <string name="app_name">My Contacts</string>
+    <!-- Button Panel -->
+    <string name="button_panel_call">Call</string>
+    <string name="button_panel_sms">SMS</string>
+    <string name="button_panel_edit">Edit</string>
+    <string name="button_panel_expand">Expand</string>
+
+    <!-- contact info -->
+    <string name="label_first_name">first name:</string>
+    <string name="label_second_name">second name:</string>
+    <string name="label_patronymic">patronymic:</string>
+    <string name="label_last_name">last name:</string>
+    <string name="label_mobile_phone">mobile phone:</string>
+    <string name="label_home_phone">home phone:</string>
+    <string name="label_personal_website">personal website:</string>
+    <string name="label_e_mail">e mail:</string>
+    <string name="title_address">---Address---</string>
+    <string name="label_flat">flat:</string>
+    <string name="label_house">house:</string>
+    <string name="label_street">street:</string>
+    <string name="label_city">city:</string>
+    <string name="label_state">state:</string>
+    <string name="label_country">country:</string>
+    <string name="label_post_code">post code:</string>
+
+
 </resources>

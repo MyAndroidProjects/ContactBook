@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff00ff"
+    android:weightSum="100">
+    <Button android:id="@+id/button_call"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/button_panel_button_weight"
+        android:text="@string/button_panel_call"/>
+    <Button android:id="@+id/button_sms"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/button_panel_button_weight"
+        android:text="@string/button_panel_sms"/>
+    <Button android:id="@+id/button_edit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/button_panel_button_weight"
+        android:text="@string/button_panel_edit"/>
+    <Button android:id="@+id/button_expand"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/button_panel_button_weight"
+        android:text="@string/button_panel_expand"
+        android:textSize="11sp"/>
+</LinearLayout>
