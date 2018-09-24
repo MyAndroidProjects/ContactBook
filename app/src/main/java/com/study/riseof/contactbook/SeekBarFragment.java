@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class SeekBarFragment extends Fragment {
+
     private final float PADDING_PART_OF_FRAGMENT=0.1f;
 
     private View view;
@@ -55,7 +56,7 @@ public class SeekBarFragment extends Fragment {
         try {
             seekBarListener = (SeekBarProgressListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement onSomeEventListener");
+            throw new ClassCastException(context.toString() + " must implement SeekBarProgressListener");
         }
     }
 
@@ -64,6 +65,8 @@ public class SeekBarFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_seek_bar, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+
 
         windowHeightBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -82,6 +85,7 @@ public class SeekBarFragment extends Fragment {
             }
         });
 
+
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -90,6 +94,7 @@ public class SeekBarFragment extends Fragment {
                 ViewGroup.LayoutParams lp = windowHeightBar.getLayoutParams();
                 lp.width = fragmentHeight; //public LayoutParams(int width, int height)
                 windowHeightBar.setPadding((int)(fragmentHeight*PADDING_PART_OF_FRAGMENT),0,(int)(fragmentHeight*PADDING_PART_OF_FRAGMENT),0);
+                seekBarListener.changeSeekBarProgress(windowHeightBar.getProgress());
             }
         });
         return view;
@@ -101,9 +106,6 @@ public class SeekBarFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
-
-
 
 
     public interface SeekBarProgressListener {

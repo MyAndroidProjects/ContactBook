@@ -19,10 +19,11 @@ import butterknife.Unbinder;
 
 public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRecyclerViewAdapter.Holder> {
 
-
     private LayoutInflater inflater;
     private List<String> letters;
     private AdapterLetterClickListener adapterLetterClickListener;
+
+
 
     public AlphabetRecyclerViewAdapter(Context context, List<String> letters) {
         this.letters=letters;
@@ -43,8 +44,10 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                adapterLetterClickListener.adapterLetterClick(((TextView)view.findViewById(R.id.letter)).getText().toString());
+                TextView clickedLetter = ButterKnife.findById(view, R.id.letter);
+                adapterLetterClickListener.adapterLetterClick(clickedLetter.getText().toString());
+             /*   TextView clickedLetter = view.findViewById(R.id.letter);
+                adapterLetterClickListener.adapterLetterClick(clickedLetter.getText().toString());*/
             }
         });
 
@@ -54,7 +57,7 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
     @Override
     public void onBindViewHolder(@NonNull Holder viewHolder, int i) {
         String curLetter = letters.get(i);
-        viewHolder.letter.setText(curLetter);
+        viewHolder.letterItem.setText(curLetter);
     }
 
     @Override
@@ -64,15 +67,14 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
 
     class Holder extends RecyclerView.ViewHolder {
         @BindView(R.id.letter)
-        TextView letter;
+        TextView letterItem;
 
         public Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
     }
-
-
     public interface AdapterLetterClickListener {
         public void adapterLetterClick(String letter);
     }

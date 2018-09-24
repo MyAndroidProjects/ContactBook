@@ -21,7 +21,7 @@ public class RandomContact {
     private final int HOUSES_MAX_QUANTITY=150;
     private final int STRINGS_MIN_LENGTH=3;
     private final int STRINGS_MAX_LENGTH=10;
-    private final int PHONE_NUMBER_MIN_LENGTH=5;
+    private final int PHONE_NUMBER_MIN_LENGTH=7;
     private final int PHONE_NUMBER_MAX_LENGTH=11;
 
     private final String EMPTY_STRING = "";
