@@ -10,6 +10,6 @@
         android:max="@integer/seek_bar_maximum"
         android:min="@integer/seek_bar_minimum"
         android:progress="@integer/seek_bar_default_progress"
-        android:background="#ffff00"
+        android:background="#ecc8a7"
         />
 </FrameLayout>

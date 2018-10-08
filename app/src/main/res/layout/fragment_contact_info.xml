@@ -49,7 +49,7 @@
             style="@style/style_contact_info_text"/>
 
         <TextView
-            style="@style/style_contact_info_text"
+            style="@style/style_contact_info_label"
             android:text=" "/>
         <TextView android:id="@+id/title_address"
             style="@style/style_contact_info_label"

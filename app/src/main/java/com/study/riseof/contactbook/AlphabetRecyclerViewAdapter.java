@@ -1,6 +1,9 @@
 package com.study.riseof.contactbook;
 
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -21,19 +24,26 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
 
     private LayoutInflater inflater;
     private List<String> letters;
+    private AnimatorSet[] animatorSets;
     private AdapterLetterClickListener adapterLetterClickListener;
 
-
+    private View currentView=null;
+    private int selectedPosition=-1;
 
     public AlphabetRecyclerViewAdapter(Context context, List<String> letters) {
         this.letters=letters;
         this.inflater = LayoutInflater.from(context);
+        int lettersSize = letters.size();
+        animatorSets = new AnimatorSet[lettersSize];
+        for (int i=0;i<lettersSize;i++){
+            animatorSets[i] = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.animator_pressed_letter);
+        }
 
-     try {
+        try {
             adapterLetterClickListener = (AdapterLetterClickListener) context;
         } catch (ClassCastException e) {
-            Log.d("mylog",context.toString() + " must implement onSomeEventListener");
-            throw new ClassCastException(context.toString() + " must implement onSomeEventListener");
+            Log.d("mylog",context.toString() + " must implement AdapterLetterClickListener");
+            throw new ClassCastException(context.toString() + " must implement AdapterLetterClickListener");
         }
     }
 
@@ -41,23 +51,45 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = inflater.inflate(R.layout.recycler_view_alphabet_item, viewGroup, false);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView clickedLetter = ButterKnife.findById(view, R.id.letter);
-                adapterLetterClickListener.adapterLetterClick(clickedLetter.getText().toString());
-             /*   TextView clickedLetter = view.findViewById(R.id.letter);
-                adapterLetterClickListener.adapterLetterClick(clickedLetter.getText().toString());*/
-            }
-        });
-
         return new Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder viewHolder, int i) {
-        String curLetter = letters.get(i);
+    public void onBindViewHolder(@NonNull Holder viewHolder, final int position) {
+        final String curLetter = letters.get(position);
         viewHolder.letterItem.setText(curLetter);
+        // Log.d("myLog"," 1 position = " + position + " selectedPosition = "+selectedPosition);
+        if(selectedPosition >= 0){
+            animatorSets[selectedPosition].cancel();
+            animatorSets[selectedPosition].end();
+        }
+        viewHolder.itemView.setScaleX(1f);
+        viewHolder.itemView.setScaleY(1f);
+        if(selectedPosition == position){
+            //   Log.d("myLog"," 2 position = " + position + " selectedPosition = "+selectedPosition);
+            animatorSets[selectedPosition].start();
+        }
+        viewHolder.letterItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapterLetterClickListener.adapterLetterClick(curLetter);
+                //   Log.d("myLog"," 3 position = " + position + " selectedPosition = "+selectedPosition);
+                if(selectedPosition >= 0 && animatorSets[selectedPosition].isRunning()){
+                    //       Log.d("myLog"," 4 position = " + position + " selectedPosition = "+selectedPosition);
+                    //   animatorSet.end();
+                    animatorSets[selectedPosition].cancel();
+                    animatorSets[selectedPosition].end();
+                    // animatorSet.end(); не возвращает значение scale в исходное, поэтому добавил
+                    currentView.setScaleX(1f);
+                    currentView.setScaleY(1f);
+                }
+                selectedPosition = position;
+                currentView = view;
+                //     Log.d("myLog"," 5 position = " + position + " selectedPosition = "+selectedPosition);
+                animatorSets[selectedPosition].setTarget(currentView);
+                animatorSets[selectedPosition].start();
+            }
+        });
     }
 
     @Override
@@ -78,5 +110,4 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
     public interface AdapterLetterClickListener {
         public void adapterLetterClick(String letter);
     }
-
 }

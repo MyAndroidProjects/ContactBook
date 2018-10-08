@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">My Contacts</string>
-    <!-- Button Panel -->
-    <string name="button_panel_call">Call</string>
-    <string name="button_panel_sms">SMS</string>
-    <string name="button_panel_edit">Edit</string>
-    <string name="button_panel_expand">Expand</string>
+    <!-- My Contacts menu -->
+    <string name="menu_item_contacts_add_contact_title">Add new contact</string>
+    <string name="menu_item_contacts_back_to_main_activity_title">Back to start</string>
+    <string name="menu_item_contacts_quit_title">Quit</string>
 
-    <!-- contact info -->
+    <!-- Button Panel -->
+    <string name="button_panel_edit">edit</string>
+    <string name="button_panel_delete">del</string>
+    <string name="button_panel_add">add</string>
+    <string name="button_panel_call">call</string>
+
+    <!-- contact info, edit contact -->
     <string name="label_first_name">first name:</string>
     <string name="label_second_name">second name:</string>
     <string name="label_patronymic">patronymic:</string>
@@ -24,5 +29,16 @@
     <string name="label_country">country:</string>
     <string name="label_post_code">post code:</string>
 
+    <!-- edit contact -->
+    <string name="edit_button_clear_text">clear</string>
+    <string name="edit_button_close_text">close</string>
+    <string name="edit_button_save_contact_text">save</string>
+    <string name="edit_button_ok_text">ok</string>
+
+    <!-- dialog delete contact -->
+    <string name="dialog_delete_text">Delete contact?</string>
+    <string name="dialog_delete_button_positive">yes</string>
+    <string name="dialog_delete_button_negative">no</string>
+    <string name="dialog_delete_button_neutral">cancel</string>
 
 </resources>

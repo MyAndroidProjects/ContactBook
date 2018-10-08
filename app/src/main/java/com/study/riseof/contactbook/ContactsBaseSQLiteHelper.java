@@ -11,7 +11,9 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "database_contacts.db"; // название бд
     public static final int VERSION = 1; // версия базы данных
     public static final String TABLE_CONTACTS = "table_contacts"; // название таблицы в бд
-    // названия столбцов
+
+    // названия столбцов ??? или их лучше в enum объединить?
+
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_FIRST_NAME = "first_name";
     public static final String COLUMN_FIRST_NAME_INITIAL_LETTER = "first_name_initial_letter";
@@ -33,7 +35,7 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COUNTRY = "country";
     public static final String COLUMN_POST_CODE = "post_code";
 
-    private static final int INITIAL_NUMBER_OF_CONTACTS = 150;
+    private static final int INITIAL_NUMBER_OF_CONTACTS = 300;
 
     public ContactsBaseSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -42,11 +44,9 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // создание таблицы
-        db.execSQL("CREATE TABLE " + TABLE_CONTACTS + "(" + columnsNameAndType() + ");");
-        // добавление начальных данных
-        // заполняем ее
-        ContentValues contentValues = new ContentValues();
-        contentValues = testContentValues();
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_CONTACTS + "(" + columnsNameAndType() + ");");
+        // добавление начальных данных и заполние базы
+        ContentValues contentValues = testContentValues();
         Log.d("myLog", "Тестовая фамилия: "+contentValues.get(COLUMN_LAST_NAME).toString());
         db.insert(TABLE_CONTACTS, null, contentValues);
         for (int i = 0; i < INITIAL_NUMBER_OF_CONTACTS; i++) {
@@ -119,9 +119,9 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
         cv.put( COLUMN_SECOND_NAME_INITIAL_LETTER, "S.");
         cv.put( COLUMN_PATRONYMIC, "Patronymic");
         cv.put( COLUMN_PATRONYMIC_INITIAL_LETTER, "P.");
-        cv.put( COLUMN_LAST_NAME, "lastName");
+        cv.put( COLUMN_LAST_NAME, "LastName");
         cv.put( COLUMN_LAST_NAME_INITIAL_LETTER, "L.");
-        cv.put( COLUMN_MOBILE_PHONE, "mob 999-888-77-66");
+        cv.put( COLUMN_MOBILE_PHONE, "+79139533750");
         cv.put( COLUMN_HOME_PHONE, " home 555-333");
         cv.put( COLUMN_PERSONAL_WEBSITE, "www.test.ru");
         cv.put( COLUMN_E_MAIL, "test@test.ru");
