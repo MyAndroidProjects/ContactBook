@@ -1,57 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:App="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="#ff0000"
-    android:weightSum="100"
-    >
-
-    <fragment
-        android:layout_width="0dp"
+    android:weightSum="@integer/weight_sum_100">
+    <!--    App:theme="@style/ToolbarColoredBackArrow"-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#5e0f0f" >
+        <TextView android:id="@+id/lbl_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Title"
+            android:textColor="#35c67b"
+            android:layout_gravity="center" />
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout android:id="@+id/frame_link_to_contacts_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/frame_link_to_contacts_main_vertical_weight"
+        android:layout_gravity="center"
+        android:background="#3CA0D0">
+    <ImageView android:id="@+id/image_contact_book"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_withButton"
-        android:layout_weight="@integer/fragment_seek_bar_horizontal_weight"
-        android:layout_gravity="center_horizontal"
-        android:name="com.study.riseof.contactbook.SeekBarFragment"
+        android:scaleType="centerInside"/>
+    </FrameLayout>
+    <FrameLayout android:id="@+id/frame_link_to_weather_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/frame_link_to_weather_main_vertical_weight"
+        android:layout_gravity="center"
+        android:background="#7247D7"
         />
 
-
-    <LinearLayout android:id="@+id/container"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="95"
-        android:weightSum="100">
-        <FrameLayout android:id="@+id/frame_alphabet_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="@integer/fragment_alphabet_list_vertical_weight"
-            android:layout_gravity="center_horizontal"
-            android:background="#006600"
-            />
-        <FrameLayout android:id="@+id/frame_contact_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="@integer/fragment_contact_list_vertical_weight"
-            android:layout_gravity="center_horizontal"
-            />
-        <FrameLayout android:id="@+id/frame_contact_info"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="@integer/fragment_contact_info_vertical_weight"
-            android:layout_gravity="center_horizontal"
-            />
-        <FrameLayout android:id="@+id/frame_button_panel"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="@integer/fragment_button_panel_vertical_weight"
-            android:layout_gravity="center_horizontal"
-            />
-
-    </LinearLayout>
-
-
-
-
 </LinearLayout>
+

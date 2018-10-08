@@ -7,9 +7,9 @@
         android:id="@+id/letter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#e3b778"
+        android:background="#ecc8a7"
         android:layout_gravity="center"
-android:textSize="20sp"
+        android:textSize="20sp"
 
         android:rotation="90"
         >

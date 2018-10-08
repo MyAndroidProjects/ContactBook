@@ -37,16 +37,30 @@ public class ContactInfoFragment extends Fragment {
     @BindView(R.id.text_country) TextView countryText;
     @BindView(R.id.text_post_code) TextView postCodeText;
 
-    ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
-    SQLiteDatabase database;
+    private final String EMPTY_STRING="";
+    private final int EMPTY_INDEX = -1;
+    ContactBaseManager contactBaseManager;
+
+    private int selectedContactId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact_info, container, false);
         unbinder = ButterKnife.bind(this, view);
-        contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(getContext());
+        contactBaseManager = new ContactBaseManager(getContext());
+        Bundle args = getArguments();
+        selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
+        Log.d("myLog", "ContactInfoFragment selectedContactId "+selectedContactId);
         return view;
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+       if(selectedContactId != EMPTY_INDEX){
+           setContactInfoById(selectedContactId);
+       }
+  }
 
     @Override
     public void onDestroyView() {
@@ -55,41 +69,43 @@ public class ContactInfoFragment extends Fragment {
     }
 
     public void setContactInfoById(int id) {
-
-        database = contactsBaseSQLiteHelper.getReadableDatabase();
-        Cursor cursorQuery;
-        // как лучше делать запросы: передавать аргументы прямо в строку запроса, а в selectionArg ставить null
-        // или ставить вопросительные знаки, а аргументы передавать в массив? (первый и второй вариант)
-        cursorQuery = database.rawQuery(queryInformById(id), null );
-     /* cursorQuery = database.rawQuery("SELECT * FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
-                " WHERE "+ ContactsBaseSQLiteHelper.COLUMN_ID + "= ?",new String[]{String.valueOf(id)} ); */
-        setContactInfoText(cursorQuery);
-        cursorQuery.close();
-        database.close();
-    }
-    private String queryInformById(int id){
-        return " SELECT * FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
-                " WHERE " + ContactsBaseSQLiteHelper.COLUMN_ID + " = '" + id + "'";
+        setContactInfoText(contactBaseManager.getContactById(id));
     }
 
-    private void setContactInfoText(Cursor cursor){
-        if(cursor.moveToFirst()){
-            firstNameText.setText(cursor.getString(1));
-            secondNameText.setText(cursor.getString(3));
-            patronymicText.setText(cursor.getString(5));
-            lastNameText.setText(cursor.getString(7));
-            mobilePhoneText.setText(cursor.getString(9));
-            homePhoneText.setText(cursor.getString(10));
-            personalWebsiteText.setText(cursor.getString(11));
-            eMailText.setText(cursor.getString(12));
-            flatText.setText(cursor.getString(13));
-            houseText.setText(cursor.getString(14));
-            streetText.setText(cursor.getString(15));
-            cityText.setText(cursor.getString(16));
-            stateText.setText(cursor.getString(17));
-            countryText.setText(cursor.getString(18));
-            postCodeText.setText(cursor.getString(19));
-        }
+    private void setContactInfoText(Contact contact){
+        firstNameText.setText(contact.getFirstName());
+        secondNameText.setText(contact.getSecondName());
+        patronymicText.setText(contact.getPatronymic());
+        lastNameText.setText(contact.getLastName());
+        mobilePhoneText.setText(contact.getMobilePhone());
+        homePhoneText.setText(contact.getHomePhone());
+        personalWebsiteText.setText(contact.getPersonalWebsite());
+        eMailText.setText(contact.getEMail());
+        flatText.setText(contact.getFlat());
+        houseText.setText(contact.getHouse());
+        streetText.setText(contact.getStreet());
+        cityText.setText(contact.getCity());
+        stateText.setText(contact.getState());
+        countryText.setText(contact.getCountry());
+        postCodeText.setText(contact.getPostCode());
+    }
+
+    public void setEmptyStringsToText(){
+        firstNameText.setText(EMPTY_STRING);
+        secondNameText.setText(EMPTY_STRING);
+        patronymicText.setText(EMPTY_STRING);
+        lastNameText.setText(EMPTY_STRING);
+        mobilePhoneText.setText(EMPTY_STRING);
+        homePhoneText.setText(EMPTY_STRING);
+        personalWebsiteText.setText(EMPTY_STRING);
+        eMailText.setText(EMPTY_STRING);
+        flatText.setText(EMPTY_STRING);
+        houseText.setText(EMPTY_STRING);
+        streetText.setText(EMPTY_STRING);
+        cityText.setText(EMPTY_STRING);
+        stateText.setText(EMPTY_STRING);
+        countryText.setText(EMPTY_STRING);
+        postCodeText.setText(EMPTY_STRING);
     }
 
 }

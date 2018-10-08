@@ -1,102 +1,126 @@
 package com.study.riseof.contactbook;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity
-        implements SeekBarFragment.SeekBarProgressListener,
-        AlphabetRecyclerViewAdapter.AdapterLetterClickListener,
-        ContactListFragment.ContactListClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.frame_contact_list)
-    FrameLayout contactListFrame;
-    @BindView(R.id.frame_contact_info)
-    FrameLayout contactInfoFrame;
+    @BindView(R.id.frame_link_to_contacts_main)
+    FrameLayout linkToContactsMainFrame;
+    @BindView(R.id.frame_link_to_weather_main)
+    FrameLayout linkToWeatherMainFrame;
+    @BindView(R.id.image_contact_book)
+    ImageView imageContactBook;
 
-    ContactListFragment contactListFragment;
-    ContactInfoFragment contactInfoFragment;
-    ButtonPanelFragment buttonPanelFragment;
-    AlphabetListFragment alphabetListFragment;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
-   private int maxSeekBar;
 
-    public static final String TAG = "myLogs";
-
-    ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
-    SQLiteDatabase database;
-
+    @BindView(R.id.lbl_title)
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        maxSeekBar = getResources().getInteger(R.integer.seek_bar_maximum);
-        addFragments();
-        contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
+        Picasso.get().load(R.drawable.book).into(imageContactBook);
 
-   //     database.delete(ContactsBaseSQLiteHelper.TABLE_CONTACTS, null, null);
-     //    this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
+
+      //  mPicasso.load(getItem(position)).resizeDimen(R.dimen.image_size, R.dimen.image_size). centerInside().into(imageView);
+
+      /*  linkToContactsMainFrame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ContactsMainActivity.class);
+                startActivity(intent);
+            }
+        });*/
+
    }
+
+    @OnClick(R.id.frame_link_to_contacts_main)
+    public void onClickLinkToContacts() {
+        Intent intent = new Intent(this, ContactsMainActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.frame_link_to_weather_main)
+    public void onClickLinkToWeather() {
+        Intent intent = new Intent(this, WeatherForecastActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.lbl_title)
+    public void onClick2() {
+        Toast.makeText(this, "Title", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //  this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
-    }
-
-    private void addFragments(){
-        alphabetListFragment = new AlphabetListFragment();
-        contactListFragment = new ContactListFragment();
-        contactInfoFragment = new ContactInfoFragment();
-        buttonPanelFragment = new ButtonPanelFragment();
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.frame_alphabet_list, alphabetListFragment);
-        fragmentTransaction.add(R.id.frame_contact_list, contactListFragment);
-        fragmentTransaction.add(R.id.frame_contact_info, contactInfoFragment);
-        fragmentTransaction.add(R.id.frame_button_panel, buttonPanelFragment);
-        fragmentTransaction.commit();
     }
 
     @Override
-    public void changeSeekBarProgress(int progress) {
-        LinearLayout.LayoutParams paramsContactListFrame = (LinearLayout.LayoutParams)contactListFrame.getLayoutParams();
-        LinearLayout.LayoutParams paramsContactInfoFrame = (LinearLayout.LayoutParams)contactInfoFrame.getLayoutParams();
-        paramsContactListFrame.weight=(maxSeekBar-progress);
-        paramsContactInfoFrame.weight=progress;
-        contactListFrame.setLayoutParams(paramsContactListFrame);
-        contactInfoFrame.setLayoutParams(paramsContactInfoFrame);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getMenuInflater().inflate(R.menu.menu_my_contacts, menu);
+        return true;
     }
 
-    @Override
-    public void adapterLetterClick(String letter) {
-        Log.d("myLog","нажата буква "+letter);
-        contactListFragment.showContactsByFirstLetter(letter);
-   }
 
     @Override
-    public void onContactItemClick(int id) {
-        contactInfoFragment.setContactInfoById(id);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id){
+            case R.id.menu_item_contacts_add_contact :
+                Toast.makeText(this, "first", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_item_contacts_back_to_main_activity :
+                Toast.makeText(this, "second", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_item_contacts_quit:
+                Intent minimizeApp = new Intent(Intent.ACTION_MAIN);
+                minimizeApp.addCategory(Intent.CATEGORY_HOME);
+                minimizeApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(minimizeApp);
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
+
 }

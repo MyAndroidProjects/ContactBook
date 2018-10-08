@@ -36,6 +36,7 @@ public class ContactListFragment extends Fragment {
     private final String EMPTY_STRING = "";
     private final String BUTTON_ALL = "All";
     private Unbinder unbinder;
+    private ContactBaseManager contactBaseManager;
 
     @BindView(R.id.contact_list_view)
     ListView contactListView;
@@ -47,8 +48,7 @@ public class ContactListFragment extends Fragment {
     View view;
     ContactListClickListener contactClickListener;
 
-    ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
-    SQLiteDatabase database;
+    private String selectedLetter = EMPTY_STRING;
 
     @TargetApi(23)
     @Override
@@ -70,7 +70,7 @@ public class ContactListFragment extends Fragment {
         try {
             contactClickListener = (ContactListClickListener)context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement onSomeEventListener");
+            throw new ClassCastException(context.toString() + " must implement ContactListClickListener");
         }
     }
 
@@ -78,15 +78,18 @@ public class ContactListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_contact_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-        contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(getContext());
+        contactBaseManager = new ContactBaseManager(getContext());
+        Bundle args = getArguments();
+        selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
+
         setContactArrayAdapter();
         // как лучше ставить обработчик, ниже два варианта:
         AdapterView.OnItemClickListener abbreviatedContactListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 AbbreviatedContact abbreviatedContact = (AbbreviatedContact)parent.getItemAtPosition(position);
-                contactClickListener.onContactItemClick(abbreviatedContact.getItemId());
-            //    Log.d("myLog", "click name "+abbreviatedContact.getContactName()+ " position = " + position + ", id = " + id);
+             //   Log.d("myLog", "click name "+abbreviatedContact.getContactName()+ " position = " + position + ", id = " + id+" abbreviatedContact.getItemId()= "+abbreviatedContact.getItemId());
+              contactClickListener.onContactItemClick(abbreviatedContact.getItemId());
             }
         };
         contactListView.setOnItemClickListener(abbreviatedContactListener);
@@ -103,21 +106,24 @@ public class ContactListFragment extends Fragment {
 
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(!selectedLetter.equals(EMPTY_STRING)){
+            showContactsByFirstLetter(selectedLetter);
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
 
     public void showContactsByFirstLetter(String letter){
-        database = contactsBaseSQLiteHelper.getReadableDatabase();
-        Cursor cursorQuery;
-
-        cursorQuery = database.rawQuery(queryByFirstLetterFromLastName(letter), null );
-        ArrayList<AbbreviatedContact> selectedContacts = getSelectedContactsList(cursorQuery);
+        this.selectedLetter=letter;
+        ArrayList<AbbreviatedContact> selectedContacts = contactBaseManager.getAbbrContactListByFirstLetter(letter);
         setContacts(selectedContacts);
         setContactArrayAdapter();
-        cursorQuery.close();
-        database.close();
     }
 
     public void setContacts(ArrayList<AbbreviatedContact> contacts) {
@@ -131,70 +137,7 @@ public class ContactListFragment extends Fragment {
         Log.d("myLog","Адаптер установлен!");
     }
 
-    private String queryByFirstLetterFromLastName(String letter){
-        if(letter.equals(BUTTON_ALL)){
-            return " SELECT " + ContactsBaseSQLiteHelper.COLUMN_ID + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_LAST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_FIRST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_SECOND_NAME_INITIAL_LETTER + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_PATRONYMIC_INITIAL_LETTER +
-                    " FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
-                    " ORDER BY " + ContactsBaseSQLiteHelper.COLUMN_LAST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_FIRST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_SECOND_NAME_INITIAL_LETTER + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_PATRONYMIC_INITIAL_LETTER;
-        }else if(letter.equals("__")){
-            return " SELECT " + ContactsBaseSQLiteHelper.COLUMN_ID + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_LAST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_FIRST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_SECOND_NAME_INITIAL_LETTER + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_PATRONYMIC_INITIAL_LETTER +
-                    " FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
-                    " WHERE " + ContactsBaseSQLiteHelper.COLUMN_LAST_NAME +
-                    " LIKE " + "'" + EMPTY_STRING + "'" +
-                    " ORDER BY " + ContactsBaseSQLiteHelper.COLUMN_FIRST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_SECOND_NAME_INITIAL_LETTER + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_PATRONYMIC_INITIAL_LETTER;
-        }  else {
-            return " SELECT " + ContactsBaseSQLiteHelper.COLUMN_ID + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_LAST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_FIRST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_SECOND_NAME_INITIAL_LETTER + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_PATRONYMIC_INITIAL_LETTER +
-                    " FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
-                    " WHERE " + ContactsBaseSQLiteHelper.COLUMN_LAST_NAME +
-                    " LIKE " + "'" + letter + "%'" +
-                    " ORDER BY " + ContactsBaseSQLiteHelper.COLUMN_LAST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_FIRST_NAME + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_SECOND_NAME_INITIAL_LETTER + ", " +
-                    ContactsBaseSQLiteHelper.COLUMN_PATRONYMIC_INITIAL_LETTER;
-        }
-    }
 
-    private ArrayList<AbbreviatedContact> getSelectedContactsList(Cursor cursor){
-        ArrayList<AbbreviatedContact> contactsList = new ArrayList();
-        AbbreviatedContact oneContact;
-        if(cursor.moveToFirst()){
-            do{
-                oneContact = getOneContactFromCursor(cursor);
-                contactsList.add(oneContact);
-            }
-            while(cursor.moveToNext());
-        }
-        return contactsList;
-    }
-
-    // как тут обойтись без цифр? Под каждый запрос делать ENUM?
-    private AbbreviatedContact getOneContactFromCursor(Cursor cursor){
-        int id = cursor.getInt(0);
-        String lastName = cursor.getString(1);
-        String firstName = cursor.getString(2);
-        String secondNameInitialLetter = cursor.getString(3);
-        String patronymicInitialLetter = cursor.getString(4);
-        String contactName =lastName +" "+ firstName +" "+ secondNameInitialLetter +" "+ patronymicInitialLetter;
-        AbbreviatedContact contact = new AbbreviatedContact(id, contactName);
-        return contact;
-    }
 
 
     public void updateContactArrayAdapter(){

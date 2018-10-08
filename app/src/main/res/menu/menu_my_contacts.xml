@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_item_contacts_add_contact"
+        android:orderInCategory="1"
+
+        android:title="@string/menu_item_contacts_add_contact_title" >
+    </item>
+    <item
+        android:id="@+id/menu_item_contacts_back_to_main_activity"
+        android:orderInCategory="4"
+        app:showAsAction="always"
+        android:title="@string/menu_item_contacts_back_to_main_activity_title" >
+    </item>
+    <item
+        android:id="@+id/menu_item_contacts_quit"
+        android:orderInCategory="3"
+        android:title="@string/menu_item_contacts_quit_title" >
+    </item>
+</menu>
