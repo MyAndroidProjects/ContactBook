@@ -41,4 +41,16 @@
     <string name="dialog_delete_button_negative">no</string>
     <string name="dialog_delete_button_neutral">cancel</string>
 
+    <!-- dialog delete contact -->
+    <string name="label_forecast_temperature">Temperature:</string>
+    <string name="label_forecast_heat">Feels like:</string>
+    <string name="label_forecast_cloudiness">Сloudiness:</string>
+    <string name="label_forecast_precipitation">Precipitation:</string>
+    <string name="label_forecast_wind">Wind:</string>
+    <string name="label_forecast_pressure">Pressure:</string>
+    <string name="label_forecast_relative_wet">Relative wet:</string>
+
+    <!--  weather forecast activity -->
+    <string name="start_message">loading...</string>
+
 </resources>
