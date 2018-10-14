@@ -36,4 +36,7 @@
     <integer name="forecast_item_left_column_horizontal_weight">55</integer>
     <integer name="forecast_item_right_column_horizontal_weight">45</integer>
 
+    <!-- Weather forecast frame link animation -->
+    <integer name="weather_image_duration">100</integer>
+
 </resources>

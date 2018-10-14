@@ -16,6 +16,7 @@ public class WeatherForecast {
             this.dayPart = dayPart;
         }
     }
+
     private enum Weekday{
         //weekday -	день недели, 1 - воскресенье, 2 - понедельник, и т.д.
         SUNDAY("1","Sunday"),
@@ -56,7 +57,7 @@ public class WeatherForecast {
         RAIN("4","rain"),
         CLOUDBURST("5","cloudburst"),
         SNOW("6","snow"),
-        SNOWFALL("7","snowfall"),
+        WET_SNOW("7","wet snow"),
         THUNDERSTORM("8","thunderstorm"),
         NO_DATA("9","no data"),
         NO_PRECIPITATION("10","no precipitation");
@@ -88,7 +89,7 @@ public class WeatherForecast {
         }
     }
 
-    private int DEGREE_CELSIUS_SYMBOL_CODE=186;
+    private int DEGREE_SYMBOL_CODE=186;
 
     private String day;
     private String month;
@@ -311,7 +312,7 @@ public class WeatherForecast {
         return minTemperature;
     }
     public String getTemperature() {
-        String temperature = minTemperature + ".." + maxTemperature + "," + ((char)DEGREE_CELSIUS_SYMBOL_CODE)+"C";
+        String temperature = minTemperature + ".." + maxTemperature + "," + ((char)DEGREE_SYMBOL_CODE)+"C";
         return temperature;
     }
 
@@ -353,7 +354,7 @@ public class WeatherForecast {
         return minHeat;
     }
     public String getHeat() {
-        String heat = maxHeat + ".." + maxHeat + "," + ((char)DEGREE_CELSIUS_SYMBOL_CODE)+"C";
+        String heat = maxHeat + ".." + maxHeat + "," + ((char)DEGREE_SYMBOL_CODE)+"C";
         return heat;
     }
 

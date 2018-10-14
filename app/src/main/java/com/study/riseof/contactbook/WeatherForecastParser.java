@@ -14,6 +14,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherForecastParser {
+    private enum TownInfo{
+        TOWN_INDEX(0),
+        NAME(1),
+        LATITUDE(2),
+        LONGITUDE(3);
+// положительные: северная широта и восточная долгота, отрицательные: южная широта, западная долгота
+        private int index;
+        private TownInfo(int index){
+            this.index = index;
+        }
+    }
+
+
+    private enum TownList{
+        NOVOSIBIRSK("99","Novosibirsk");
+
+        String index;
+        String name;
+        private TownList(String index, String name){
+            this.index = index;
+            this.name = name;
+        }
+    }
+
+
     private enum TagName {
         MMWEATHER("MMWEATHER"),
         REPORT("REPORT"),
@@ -66,29 +91,15 @@ public class WeatherForecastParser {
         }
     }
 
-    final String LOG_TAG = "myLogs";
     final String EMPTY_STRING = "";
 
+    private String[] town;
 
-    boolean isParsing = false;
-    private Context context;
-    PassLocation passLocation;
-    PassWeatherForecasts passWeatherForecasts;
+    private List<WeatherForecast> weatherForecasts = new ArrayList<WeatherForecast>();
 
-    private List<WeatherForecast> weatherForecasts;
-
-    public WeatherForecastParser(Context context){
-        this.context = context;
-        passLocation = (PassLocation)context;
-        passWeatherForecasts = (PassWeatherForecasts)context;
-        weatherForecasts = new ArrayList<WeatherForecast>();
-    }
 
 
     public boolean parse(String xmlData){
-
-
-
         WeatherForecast weatherForecast = null;
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -99,7 +110,6 @@ public class WeatherForecastParser {
                 switch (xpp.getEventType()) {
                     // начало документа
                     case XmlPullParser.START_DOCUMENT:
-                        isParsing = true;
                         break;
                     // начало тэга
                     case XmlPullParser.START_TAG:
@@ -160,17 +170,11 @@ public class WeatherForecastParser {
                 // следующий элемент
                 xpp.next();
             }
-            Log.d(LOG_TAG, "END_DOCUMENT");
+            Log.d("myLog", "END_DOCUMENT");
 
-        } catch (
-                XmlPullParserException e)
-
-        {
+        } catch (XmlPullParserException e){
             e.printStackTrace();
-        } catch (
-                IOException e)
-
-        {
+        } catch (IOException e){
             e.printStackTrace();
         }
         return true;
@@ -193,12 +197,25 @@ public class WeatherForecastParser {
                 longitude = xpp.getAttributeValue(i);
             }
         }
-        passLocation.location(townIndex, latitude, longitude);
+        setTown(townIndex, latitude, longitude);
         Log.d("myLog","startTagTown"+" townIndex "+townIndex+" latitude "+latitude+" longitude "+longitude);
     }
 
-    public interface PassLocation {
-        public void location(String townIndex, String latitude, String longitude);
+
+    public void setTown(String townIndex, String latitude, String longitude) {
+        town = new String[TownInfo.values().length];
+        town[TownInfo.TOWN_INDEX.index] = townIndex;
+        town[TownInfo.LATITUDE.index] = latitude;
+        town[TownInfo.LONGITUDE.index] = longitude;
+            for (TownList value: TownList.values()) {
+                if (townIndex.equals(value.index)) {
+                    town[TownInfo.NAME.index] = value.name;
+                }
+            }
+    }
+
+    public String[] getTown() {
+        return town;
     }
 
     private WeatherForecast startTagForecast(XmlPullParser xpp, WeatherForecast weatherForecast){
@@ -308,10 +325,11 @@ public class WeatherForecastParser {
     }
 
     private void endTagTown(){
-        passWeatherForecasts.passWeatherForecasts(weatherForecasts);
+        Log.d("myLog","endTagTown");
     }
-    public interface PassWeatherForecasts {
-        public void passWeatherForecasts(List<WeatherForecast> forecasts);
+
+    public List<WeatherForecast> getWeatherForecasts() {
+        return weatherForecasts;
     }
 
 }

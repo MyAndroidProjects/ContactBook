@@ -5,6 +5,15 @@
     android:layout_height="match_parent"
     android:background="#64acce"
     android:weightSum="100">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/weather_forecast_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4852c7">
+        <TextView android:id="@+id/weather_forecast_toolbar_title"
+            style="@style/style_forecast_toolbar_title"
+            android:text="@string/weather_forecast_toolbar_title"/>
+    </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
@@ -29,8 +38,7 @@
                 android:textColor="#11115b"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textSize="36sp"
-                android:text="@string/start_message"/>
+                android:textSize="36sp"/>
 
             <TextView
                 android:id="@+id/town_coordinates"
@@ -39,8 +47,7 @@
                 android:textColor="#83ced7"
                 android:textStyle="normal"
                 android:gravity="center"
-                android:textSize="14sp"
-                android:text=" 54°N 82°E"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -71,7 +78,7 @@
             />
     </android.support.v7.widget.CardView>
     <TextView
-        android:id="@+id/info_text3"
+        android:id="@+id/link_to_meteoservice"
         android:background="#a8c8d4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

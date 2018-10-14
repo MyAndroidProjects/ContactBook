@@ -2,42 +2,68 @@ package com.study.riseof.contactbook;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherForecastActivity extends AppCompatActivity
-        implements WeatherForecastParser.PassLocation, WeatherForecastParser.PassWeatherForecasts {
+public class WeatherForecastActivity extends AppCompatActivity{
 
-    private enum TOWN{
-        NOVOSIBIRSK("99","Novosibirsk");
+    // ??? два одинаковых enum TownInfo (здесь и в WeatherForecastParser)
+    // делать его публичным в парсере или как быть ???
+    private enum TownInfo{
+        TOWN_INDEX(0),
+        NAME(1),
+        LATITUDE(2),
+        LONGITUDE(3);
 
-        String index;
-        String name;
-        private TOWN(String index, String name){
+        private int index;
+        private TownInfo(int index){
             this.index = index;
-            this.name = name;
         }
     }
 
+    private final String WEATHER_SITE_PATH = "https://xml.meteoservice.ru/export/gismeteo/point/99.xml";
+    private final String NORTH_LATITUDE = "N";
+    private final String EAST_LONGITUDE = "E";
+    private final int DEGREE_SYMBOL_CODE = 186;
+    private final String LOADING = "loading...";
+    private final String EMPTY_STRING = "";
+    private String[] town;
+    private List<WeatherForecast>  weatherForecasts;
 
-    private String townIndex;
-    private String town;
-    private String latitude;
-    private String longitude;
-    private  List<WeatherForecast>  weatherForecasts;
-    private WeatherForecastParser weatherForecastParser;
     private WeatherForecastRecyclerAdapter adapter;
+    private WeatherForecastDataLoader weatherForecastDataLoader;
+
+    @BindView(R.id.weather_forecast_toolbar)
+    Toolbar toolbar;
+
     @BindView(R.id.recycler_view_weather_forecast)
     RecyclerView recyclerView;
+
+    @BindView(R.id.town_name)
+    TextView townNameText;
+    @BindView(R.id.town_coordinates)
+    TextView townCoordinatesText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,72 +71,132 @@ public class WeatherForecastActivity extends AppCompatActivity
         setContentView(R.layout.activity_weather_forecast);
 
         ButterKnife.bind(this);
-
-        weatherForecastParser = new WeatherForecastParser(this);
-        /*
-// загрузка локального файла
-        XmlPullParser xpp = getResources().getXml(R.xml.local_weather);
-        */
-        // тестовая строка
-        String xmlData = "<?xml version=\"1.0\" encoding=\"utf-8\"?><MMWEATHER><REPORT type=\"frc3\"><TOWN index=\"99\" sname=\"%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D0%B8%D0%B1%D0%B8%D1%80%D1%81%D0%BA\" latitude=\"55\" longitude=\"83\"><FORECAST day=\"28\" month=\"10\" year=\"2018\" hour=\"21\" tod=\"3\" predict=\"0\" weekday=\"4\">" +
-                "<PHENOMENA cloudiness=\"2\" precipitation=\"6\" rpower=\"0\" spower=\"0\"/></FORECAST></TOWN></REPORT></MMWEATHER>";
-        weatherForecastParser.parse(xmlData);
-
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        weatherForecastDataLoader = new WeatherForecastDataLoader();
+        weatherForecastDataLoader.execute(WEATHER_SITE_PATH);
     }
 
     @Override
-    public void location(String townIndex, String latitude, String longitude) {
-        this.townIndex = townIndex;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        setTown(townIndex);
-        Log.d("myLog","location"+" this.townIndex "+this.townIndex+" latitude "+this.latitude+" longitude "+this.longitude);
+    protected void onDestroy() {
+        super.onDestroy();
+        weatherForecastDataLoader.cancel(true);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_weather_forecast, menu);
+        return true;
+    }
 
     @Override
-    public void passWeatherForecasts(List<WeatherForecast> forecasts) {
-        weatherForecasts = forecasts;
-        Log.d("myLog","weatherForecasts.size() = "+weatherForecasts.size());
-        for(int i=0;i<weatherForecasts.size();i++){
-            WeatherForecast wf = weatherForecasts.get(i);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-
-            Log.d("myLog","town "+ town + " longitude "+longitude + " latitude "+ latitude+"\n"+
-                    "дата " +wf.getDate()+" время суток " +wf.getTod()+ " время "+wf.getHour()+"\n"+
-                    "часы прогноза " +wf.getPredict()+ " день недели "+ wf.getWeekday()+"\n"+
-                    "облачность "+wf.getCloudiness()+" осадки "+wf.getPrecipitation()+"\n"+
-                    "давление мин "+wf.getMinPressure()+" давление макс "+wf.getMaxPressure()+"\n"+
-                    "температура мин "+wf.getMinTemperature()+" температура макс "+wf.getMaxTemperature()+"\n"+
-                    "ветер мин "+wf.getMinWindSpeed()+" ветер макс "+wf.getMaxWindSpeed()+" ветер направление " +wf.getWindDirection()+"\n"+
-                    "влажность мин"+wf.getMinRelativeWet()+" влажность макс"+wf.getMaxRelativeWet()+"\n"+
-                    "ощущается мин "+wf.getMinHeat()+ " ощущается макс "+wf.getMaxHeat()+"\n"+wf.getRelativeWet()
-            );
+        switch(id){
+            case R.id.menu_item_update_forecast :
+                weatherForecastDataLoader = new WeatherForecastDataLoader();
+                weatherForecastDataLoader.execute(WEATHER_SITE_PATH);
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void setWeatherForecastRecyclerAdapter() {
         adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
+    private String getTownCoordinates() {
+        String coord = town[TownInfo.LATITUDE.index] + (char)DEGREE_SYMBOL_CODE + NORTH_LATITUDE+ " "+
+                town[TownInfo.LONGITUDE.index] + (char)DEGREE_SYMBOL_CODE + EAST_LONGITUDE;
+        return coord;
+    }
 
-    public void setTown(String town) {
-        for (TOWN value:TOWN.values()){
-            if(town.equals(value.index)){
-                this.town = value.name;
-                return;
+    private void resetTownInfoText(){
+        townNameText.setText(LOADING);
+        townCoordinatesText.setText(EMPTY_STRING);
+    }
+    private void setTownInfoText(){
+        townNameText.setText(town[TownInfo.NAME.index]);
+        townCoordinatesText.setText(getTownCoordinates());
+    }
+
+    private class WeatherForecastDataLoader extends AsyncTask<String, Void, String>{
+
+        private WeatherForecastParser weatherForecastParser;
+
+        @Override
+        protected void onPreExecute(){
+            resetTownInfoText();
+        }
+
+        @Override
+        protected String doInBackground(String... urlPaths) {
+            String dataXml="";
+            int index = 0;
+
+            try{
+                if (isCancelled()) {
+                    return null;
+                }
+                dataXml = downloadXml(urlPaths[index]);
+            }
+            catch (IOException ex){
+                Log.e("myTag", "downloadXML: IO Exception reading data: " + ex.getMessage());
+            }
+            return dataXml;
+        }
+
+        @Override
+        protected void onPostExecute(String xmlData) {
+            super.onPostExecute(xmlData);
+            weatherForecastParser = new WeatherForecastParser();
+            if(xmlData !=null &&  weatherForecastParser.parse(xmlData))
+            {
+                town = weatherForecastParser.getTown();
+                weatherForecasts = weatherForecastParser.getWeatherForecasts();
+                setWeatherForecastRecyclerAdapter();
+                setTownInfoText();
             }
         }
-        this.town = town;
+
+        private String downloadXml (String urlPath)throws IOException {
+            StringBuilder xmlResult = new StringBuilder();
+            BufferedReader reader = null;
+            try {
+                URL url = new URL(urlPath);
+                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    xmlResult.append(line);
+                }
+                return xmlResult.toString();
+            } catch(MalformedURLException ex) {
+                Log.e("myTag", "downloadXML: Invalid URL " + ex.getMessage());
+            } catch(IOException ex) {
+                Log.e("myTag", "downloadXML: IO Exception reading data: " + ex.getMessage());
+            } catch(SecurityException ex) {
+                Log.e("myTag", "downloadXML: Security Exception.  Needs permisson? " + ex.getMessage());
+            }
+            finally {
+                if (reader != null) {
+                    reader.close();
+                }
+            }
+            return null;
+        }
     }
-
-private class WeatherForecastDataLoader extends AsyncTask<Void, Void, XmlPullParser>{
-
-    @Override
-    protected XmlPullParser doInBackground(Void... voids) {
-        return null;
-    }
-}
-
 }

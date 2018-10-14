@@ -42,36 +42,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.image_contact_book)
     ImageView imageContactBook;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-
-    @BindView(R.id.lbl_title)
-    TextView textView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         Picasso.get().load(R.drawable.book).into(imageContactBook);
-
-
-      //  mPicasso.load(getItem(position)).resizeDimen(R.dimen.image_size, R.dimen.image_size). centerInside().into(imageView);
-
-      /*  linkToContactsMainFrame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ContactsMainActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
    }
 
     @OnClick(R.id.frame_link_to_contacts_main)
@@ -83,44 +59,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClickLinkToWeather() {
         Intent intent = new Intent(this, WeatherForecastActivity.class);
         startActivity(intent);
-    }
-
-    @OnClick(R.id.lbl_title)
-    public void onClick2() {
-        Toast.makeText(this, "Title", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        this.getMenuInflater().inflate(R.menu.menu_my_contacts, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch(id){
-            case R.id.menu_item_contacts_add_contact :
-                Toast.makeText(this, "first", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.menu_item_contacts_back_to_main_activity :
-                Toast.makeText(this, "second", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.menu_item_contacts_quit:
-                Intent minimizeApp = new Intent(Intent.ACTION_MAIN);
-                minimizeApp.addCategory(Intent.CATEGORY_HOME);
-                minimizeApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(minimizeApp);
-
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 }

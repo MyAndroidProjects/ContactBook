@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">My Contacts</string>
-    <!-- My Contacts menu -->
+    <string name="app_name">Contacts And Weather</string>
+    <!-- Contacts toolbar and menu -->
+    <string name="contacts_toolbar_title">Contacts</string>
     <string name="menu_item_contacts_add_contact_title">Add new contact</string>
-    <string name="menu_item_contacts_back_to_main_activity_title">Back to start</string>
-    <string name="menu_item_contacts_quit_title">Quit</string>
+    <string name="menu_item_contacts_quit_title">Quit application</string>
 
     <!-- Button Panel -->
     <string name="button_panel_edit">edit</string>
@@ -44,7 +44,7 @@
     <!-- dialog delete contact -->
     <string name="label_forecast_temperature">Temperature:</string>
     <string name="label_forecast_heat">Feels like:</string>
-    <string name="label_forecast_cloudiness">Сloudiness:</string>
+    <string name="label_forecast_cloudiness">Cloudiness:</string>
     <string name="label_forecast_precipitation">Precipitation:</string>
     <string name="label_forecast_wind">Wind:</string>
     <string name="label_forecast_pressure">Pressure:</string>
@@ -52,5 +52,9 @@
 
     <!--  weather forecast activity -->
     <string name="start_message">loading...</string>
+
+    <!--  weather forecast toolbar and menu -->
+    <string name="weather_forecast_toolbar_title">Weather forecast</string>
+    <string name="menu_item_update_forecast">Update</string>
 
 </resources>
