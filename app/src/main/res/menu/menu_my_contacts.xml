@@ -4,18 +4,11 @@
     <item
         android:id="@+id/menu_item_contacts_add_contact"
         android:orderInCategory="1"
-
         android:title="@string/menu_item_contacts_add_contact_title" >
     </item>
     <item
-        android:id="@+id/menu_item_contacts_back_to_main_activity"
-        android:orderInCategory="4"
-        app:showAsAction="always"
-        android:title="@string/menu_item_contacts_back_to_main_activity_title" >
-    </item>
-    <item
         android:id="@+id/menu_item_contacts_quit"
-        android:orderInCategory="3"
-        android:title="@string/menu_item_contacts_quit_title" >
+        android:orderInCategory="2"
+        android:title="@string/menu_item_contacts_quit_title">
     </item>
 </menu>

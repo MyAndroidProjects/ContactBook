@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,8 @@ public class ContactsMainActivity extends AppCompatActivity
     FrameLayout contactListFrame;
     @BindView(R.id.frame_contact_info)
     FrameLayout contactInfoFrame;
+    @BindView(R.id.contact_toolbar)
+    Toolbar toolbar;
 
     ContactListFragment contactListFragment;
     ContactInfoFragment contactInfoFragment;
@@ -47,6 +50,10 @@ public class ContactsMainActivity extends AppCompatActivity
         //  ContactsBaseSQLiteHelper contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
         //this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         maxSeekBar = getResources().getInteger(R.integer.seek_bar_maximum);
         selectedContactId = getIntent().getIntExtra("selectedContactId",EMPTY_INDEX);
         if(getIntent().getStringExtra("selectedLetter") == null){
@@ -102,15 +109,11 @@ public class ContactsMainActivity extends AppCompatActivity
             case R.id.menu_item_contacts_add_contact :
                 startEditContactActivity();
                 return true;
-            case R.id.menu_item_contacts_back_to_main_activity :
-                this.finish();
-                return true;
             case R.id.menu_item_contacts_quit:
                 Intent minimizeApp = new Intent(Intent.ACTION_MAIN);
                 minimizeApp.addCategory(Intent.CATEGORY_HOME);
                 minimizeApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(minimizeApp);
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
