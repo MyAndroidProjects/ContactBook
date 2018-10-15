@@ -1,18 +1,12 @@
 package com.study.riseof.contactbook;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,17 +39,13 @@ public class AlphabetListFragment extends Fragment {
 
     private int fragmentWidth;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_alphabet_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         AlphabetRecyclerViewAdapter adapter = new AlphabetRecyclerViewAdapter(getContext(), buttonName);
-
         recyclerView.setAdapter(adapter);
 
         view.post(new Runnable() {
@@ -64,17 +54,14 @@ public class AlphabetListFragment extends Fragment {
                 fragmentWidth=view.getWidth();
                 ViewGroup.LayoutParams lp = recyclerView.getLayoutParams();
                 lp.height = fragmentWidth; //public LayoutParams(int width, int height)
-             }
+            }
         });
-
         return view;
     }
-
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 }

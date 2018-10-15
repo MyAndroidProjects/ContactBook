@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -50,16 +48,13 @@ public class WeatherForecastActivity extends AppCompatActivity{
     private final String EMPTY_STRING = "";
     private String[] town;
     private List<WeatherForecast>  weatherForecasts;
-
     private WeatherForecastRecyclerAdapter adapter;
     private WeatherForecastDataLoader weatherForecastDataLoader;
 
     @BindView(R.id.weather_forecast_toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.recycler_view_weather_forecast)
     RecyclerView recyclerView;
-
     @BindView(R.id.town_name)
     TextView townNameText;
     @BindView(R.id.town_coordinates)
@@ -69,7 +64,6 @@ public class WeatherForecastActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
-
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -94,7 +88,6 @@ public class WeatherForecastActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         switch(id){
             case R.id.menu_item_update_forecast :
                 weatherForecastDataLoader = new WeatherForecastDataLoader();
@@ -106,7 +99,6 @@ public class WeatherForecastActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     private void setWeatherForecastRecyclerAdapter() {
         adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
@@ -143,7 +135,6 @@ public class WeatherForecastActivity extends AppCompatActivity{
         protected String doInBackground(String... urlPaths) {
             String dataXml="";
             int index = 0;
-
             try{
                 if (isCancelled()) {
                     return null;

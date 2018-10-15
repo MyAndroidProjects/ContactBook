@@ -11,7 +11,7 @@ public class AbbreviatedContact {
 
     public AbbreviatedContact(int id, String contactAbbrName){
         this.itemId = id;
-         this.contactAbbrName = contactAbbrName;
+        this.contactAbbrName = contactAbbrName;
     }
 
     public AbbreviatedContact(Contact contact){

@@ -53,34 +53,32 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     }
 
     static class Holder extends RecyclerView.ViewHolder {
-                @BindView(R.id.forecast_weekday_value)
-                TextView forecastWeekdayValue;
-                @BindView(R.id.forecast_date_value)
-                TextView forecastDateValue;
-                @BindView(R.id.forecast_tod_value)
-                TextView forecastTodValue;
-                @BindView(R.id.forecast_time_value)
-                TextView forecastTimeValue;
-                @BindView(R.id.forecast_temperature_value)
-                TextView forecastTemperatureValue;
-                @BindView(R.id.forecast_heat_value)
-                TextView forecastHeatValue;
-                @BindView(R.id.forecast_cloudiness_value)
-                TextView forecastCloudinessValue;
-                @BindView(R.id.forecast_precipitation_value)
-                TextView forecastPrecipitationValue;
-                @BindView(R.id.forecast_wind_value)
-                TextView forecastWindValue;
-                @BindView(R.id.forecast_pressure_value)
-                TextView forecastPressureValue;
-                @BindView(R.id.forecast_relative_wet_value)
-                TextView forecastRelativeWetValue;
-
+        @BindView(R.id.forecast_weekday_value)
+        TextView forecastWeekdayValue;
+        @BindView(R.id.forecast_date_value)
+        TextView forecastDateValue;
+        @BindView(R.id.forecast_tod_value)
+        TextView forecastTodValue;
+        @BindView(R.id.forecast_time_value)
+        TextView forecastTimeValue;
+        @BindView(R.id.forecast_temperature_value)
+        TextView forecastTemperatureValue;
+        @BindView(R.id.forecast_heat_value)
+        TextView forecastHeatValue;
+        @BindView(R.id.forecast_cloudiness_value)
+        TextView forecastCloudinessValue;
+        @BindView(R.id.forecast_precipitation_value)
+        TextView forecastPrecipitationValue;
+        @BindView(R.id.forecast_wind_value)
+        TextView forecastWindValue;
+        @BindView(R.id.forecast_pressure_value)
+        TextView forecastPressureValue;
+        @BindView(R.id.forecast_relative_wet_value)
+        TextView forecastRelativeWetValue;
 
         public Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
     }
 }

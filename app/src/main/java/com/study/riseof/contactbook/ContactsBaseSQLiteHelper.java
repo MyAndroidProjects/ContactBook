@@ -4,16 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "database_contacts.db"; // название бд
+    public static final String DATABASE_NAME = "database_contacts.db";
     public static final int VERSION = 1; // версия базы данных
     public static final String TABLE_CONTACTS = "table_contacts"; // название таблицы в бд
 
-    // названия столбцов ??? или их лучше в enum объединить?
-
+    // ??? названия столбцов или их лучше в enum объединить?
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_FIRST_NAME = "first_name";
     public static final String COLUMN_FIRST_NAME_INITIAL_LETTER = "first_name_initial_letter";
@@ -47,16 +45,13 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_CONTACTS + "(" + columnsNameAndType() + ");");
         // добавление начальных данных и заполние базы
         ContentValues contentValues = testContentValues();
-        Log.d("myLog", "Тестовая фамилия: "+contentValues.get(COLUMN_LAST_NAME).toString());
         db.insert(TABLE_CONTACTS, null, contentValues);
         for (int i = 0; i < INITIAL_NUMBER_OF_CONTACTS; i++) {
             contentValues.clear();
             contentValues = randomContentValues();
-   //         Log.d("myLog", "фамилия: "+contentValues.get(COLUMN_LAST_NAME).toString());
             db.insert(TABLE_CONTACTS, null, contentValues);
         }
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
@@ -111,6 +106,7 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
         cv.put( COLUMN_POST_CODE, contact.getPostCode());
         return cv;
     }
+
     private ContentValues testContentValues(){
         ContentValues cv = new ContentValues();
         cv.put( COLUMN_FIRST_NAME, "FirstName");
@@ -134,18 +130,4 @@ public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
         cv.put( COLUMN_POST_CODE, "111222");
         return cv;
     }
-/*
-    public ContactsBaseSQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }*/
 }

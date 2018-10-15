@@ -4,20 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="@integer/weight_sum_100">
-    <!--    App:theme="@style/ToolbarColoredBackArrow"-->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#5e0f0f" >
-        <TextView android:id="@+id/lbl_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="Title"
-            android:textColor="#35c67b"
-            android:layout_gravity="center" />
-    </android.support.v7.widget.Toolbar>
     <FrameLayout android:id="@+id/frame_link_to_contacts_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -27,7 +13,9 @@
         <ImageView android:id="@+id/image_contact_book"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside"
+            android:padding="30dp"
+            android:contentDescription="Contact book picture"/>
     </FrameLayout>
     <FrameLayout android:id="@+id/frame_link_to_weather_main"
         android:layout_width="match_parent"
@@ -39,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:contentDescription="Weather animation"
             android:src="@drawable/anim_weather_forecast_link" />
     </FrameLayout>
-
 </LinearLayout>
 

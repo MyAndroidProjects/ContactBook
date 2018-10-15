@@ -101,8 +101,8 @@ public class WeatherForecast {
     private String predict;
     private String cloudiness;
     private String precipitation;
- //   private String rPower;
- //   private String sPower;
+    //   private String rPower;
+    //   private String sPower;
     private String minPressure;
     private String maxPressure;
     private String minTemperature;
@@ -114,8 +114,6 @@ public class WeatherForecast {
     private String maxRelativeWet;
     private String minHeat;
     private String maxHeat;
-
-
 
     public void setDay(String day) {
         this.day = day;
@@ -180,15 +178,15 @@ public class WeatherForecast {
         }
         this.precipitation = precipitation;
     }
-/*
-    public void setRPower(String rPower) {
-        this.rPower = rPower;
-    }
+    /*
+        public void setRPower(String rPower) {
+            this.rPower = rPower;
+        }
 
-    public void setSPower(String sPower) {
-        this.sPower = sPower;
-    }
-*/
+        public void setSPower(String sPower) {
+            this.sPower = sPower;
+        }
+    */
     public void setMinPressure(String minPressure) {
         this.minPressure = minPressure;
     }
@@ -303,7 +301,6 @@ public class WeatherForecast {
         return pressure;
     }
 
-
     public String getMaxTemperature() {
         return maxTemperature;
     }
@@ -357,5 +354,4 @@ public class WeatherForecast {
         String heat = maxHeat + ".." + maxHeat + "," + ((char)DEGREE_SYMBOL_CODE)+"C";
         return heat;
     }
-
 }
