@@ -11,6 +11,7 @@
 
     <!--  Contact activity main -->
     <integer name="fragment_seek_bar_horizontal_weight">5</integer>
+    <integer name="field_without_seek_bar_horizontal_weight">95</integer>
     <integer name="fragment_alphabet_list_vertical_weight">10</integer>
     <integer name="fragment_contact_list_vertical_weight">40</integer>
     <integer name="fragment_contact_info_vertical_weight">40</integer>
@@ -28,5 +29,15 @@
     <integer name="edit_contact_button_space_vertical_weight">30</integer>
     <integer name="edit_contact_button_horizontal_weight">25</integer>
 
+    <!--  Weather forecast activity -->
+    <integer name="forecast_town_vertical_weight">20</integer>
+    <integer name="forecast_card_vertical_weight">100</integer>
+
+    <!--  Weather forecast item -->
+    <integer name="forecast_item_left_column_horizontal_weight">55</integer>
+    <integer name="forecast_item_right_column_horizontal_weight">45</integer>
+
+    <!-- Weather forecast frame link animation -->
+    <integer name="weather_image_duration">100</integer>
 
 </resources>

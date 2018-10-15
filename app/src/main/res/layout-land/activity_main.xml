@@ -1,41 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-        <!--    App:theme="@style/ToolbarColoredBackArrow"-->
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="#5e0f0f" >
-                <TextView android:id="@+id/lbl_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Title"
-                    android:textColor="#35c67b"
-                    android:layout_gravity="center" />
-        </android.support.v7.widget.Toolbar>
-        <LinearLayout
-            android:orientation="horizontal"
+    android:layout_height="match_parent"
+    android:weightSum="@integer/weight_sum_100">
+    <FrameLayout android:id="@+id/frame_link_to_contacts_main"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/frame_link_to_contacts_main_horizontal_weight"
+        android:layout_gravity="center"
+        android:background="#ecc8a7">
+        <ImageView android:id="@+id/image_contact_book"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="@integer/weight_sum_100">
-                <FrameLayout android:id="@+id/frame_link_to_contacts_main"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="@integer/frame_link_to_contacts_main_horizontal_weight"
-                    android:layout_gravity="center"
-                    android:background="#3CA0D0"
-                    />
-                <FrameLayout android:id="@+id/frame_link_to_weather_main"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="@integer/frame_link_to_weather_main_horizontal_weight"
-                    android:layout_gravity="center"
-                    android:background="#7247D7"
-                    />
-        </LinearLayout>
+            android:scaleType="centerInside"
+            android:padding="30dp"/>
+    </FrameLayout>
+    <FrameLayout android:id="@+id/frame_link_to_weather_main"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/frame_link_to_weather_main_horizontal_weight"
+        android:layout_gravity="center"
+        android:background="#ffffff">
+        <ImageView android:id="@+id/animation_link_to_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/anim_weather_forecast_link" />
+    </FrameLayout>
 </LinearLayout>
+
 

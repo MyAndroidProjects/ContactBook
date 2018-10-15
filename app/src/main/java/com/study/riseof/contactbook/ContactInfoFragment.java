@@ -1,18 +1,11 @@
 package com.study.riseof.contactbook;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.SeekBar;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,8 +32,8 @@ public class ContactInfoFragment extends Fragment {
 
     private final String EMPTY_STRING="";
     private final int EMPTY_INDEX = -1;
-    ContactBaseManager contactBaseManager;
 
+    ContactBaseManager contactBaseManager;
     private int selectedContactId;
 
     @Override
@@ -50,17 +43,16 @@ public class ContactInfoFragment extends Fragment {
         contactBaseManager = new ContactBaseManager(getContext());
         Bundle args = getArguments();
         selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
-        Log.d("myLog", "ContactInfoFragment selectedContactId "+selectedContactId);
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       if(selectedContactId != EMPTY_INDEX){
-           setContactInfoById(selectedContactId);
-       }
-  }
+        if(selectedContactId != EMPTY_INDEX){
+            setContactInfoById(selectedContactId);
+        }
+    }
 
     @Override
     public void onDestroyView() {
@@ -107,5 +99,4 @@ public class ContactInfoFragment extends Fragment {
         countryText.setText(EMPTY_STRING);
         postCodeText.setText(EMPTY_STRING);
     }
-
 }

@@ -50,9 +50,7 @@ public class ContactBaseManager {
     public ContactBaseManager(Context context){
         this.context = context;
         contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(context);
-
     }
-
 
     public void deleteContactFromBase(int id){
         database = contactsBaseSQLiteHelper.getWritableDatabase();
@@ -125,12 +123,11 @@ public class ContactBaseManager {
             }
             while(cursor.moveToNext());
         }
-
         return contactsList;
     }
 
     // ??? как тут обойтись без цифр? Под каждый запрос делать ENUM?
-    // или делать запрос на все столбцы и потом уже нужные колонки дёргать из курсора, пользуя один enum
+    // ??? или делать запрос на все столбцы и потом уже нужные колонки дёргать из курсора, пользуя один enum
     private AbbreviatedContact getAbbrContactFromCursor(Cursor cursor){
         AbbreviatedContact abbreviatedContact = new AbbreviatedContact(
                 cursor.getInt(0), cursor.getString(1),
@@ -139,7 +136,6 @@ public class ContactBaseManager {
         );
         return abbreviatedContact;
     }
-
 
     public Contact getContactFromCursor(Cursor cursor) {
         cursor.moveToFirst();
@@ -165,7 +161,6 @@ public class ContactBaseManager {
                 cursor.getString(BaseColumn.COUNTRY.tableIndex),
                 cursor.getString(BaseColumn.POST_CODE.tableIndex)
         );
-
         return contact;
     }
 
@@ -180,11 +175,10 @@ public class ContactBaseManager {
     }
 
     private String queryInformById(int id){
-        // как лучше делать запросы: передавать аргументы прямо в строку запроса, а в selectionArg ставить null
+        //??? как лучше делать запросы: передавать аргументы прямо в строку запроса, а в selectionArg ставить null
         // или ставить вопросительные знаки, а аргументы передавать в массив? (первый и второй вариант)
              /* cursorQuery = database.rawQuery("SELECT * FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
                 " WHERE "+ ContactsBaseSQLiteHelper.COLUMN_ID + "= ?",new String(Contact.Column..tableIndex)); */
-
         return " SELECT * FROM " + ContactsBaseSQLiteHelper.TABLE_CONTACTS +
                 " WHERE " + ContactsBaseSQLiteHelper.COLUMN_ID + " = '" + id + "'";
     }
@@ -265,5 +259,4 @@ public class ContactBaseManager {
         database.close();
         return abbreviatedContact;
     }
-
 }

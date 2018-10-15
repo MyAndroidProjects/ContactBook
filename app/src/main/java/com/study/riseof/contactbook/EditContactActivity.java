@@ -1,27 +1,24 @@
 package com.study.riseof.contactbook;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class EditContactActivity extends AppCompatActivity {
     private final String EMPTY_STRING="";
     private final String POINT=".";
     private final int INITIAL_LETTER_INDEX = 0;
     private final int EMPTY_INDEX = -1;
+
+    ContactBaseManager contactBaseManager;
+    private int selectedContactId = EMPTY_INDEX;
+    private String selectedLetter = EMPTY_STRING;
 
     @BindView(R.id.edit_text_first_name) TextView firstNameText;
     @BindView(R.id.edit_text_second_name) TextView secondNameText;
@@ -39,22 +36,13 @@ public class EditContactActivity extends AppCompatActivity {
     @BindView(R.id.edit_text_country) TextView countryText;
     @BindView(R.id.edit_text_post_code) TextView postCodeText;
 
-    ContactBaseManager contactBaseManager;
-
-    private int selectedContactId = EMPTY_INDEX;
-    private String selectedLetter = EMPTY_STRING;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_contact);
-//        getSupportActionBar().setHomeButtonEnabled(true);
- //       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
         contactBaseManager = new ContactBaseManager(this);
         selectedContactId = getIntent().getIntExtra("selectedContactId",EMPTY_INDEX);
-        Log.d("myLog", "selectedContactId "+selectedContactId);
         if(selectedContactId == EMPTY_INDEX){
             setEmptyStringsToText();
         } else {
@@ -66,12 +54,6 @@ public class EditContactActivity extends AppCompatActivity {
             selectedLetter = getIntent().getStringExtra("selectedLetter");
         }
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
 
     public void selectContactInfoById(int selectedContactId) {
         setContactEditText(contactBaseManager.getContactById(selectedContactId));
@@ -94,6 +76,7 @@ public class EditContactActivity extends AppCompatActivity {
         countryText.setText(contact.getCountry());
         postCodeText.setText(contact.getPostCode());
     }
+
     public void setEmptyStringsToText(){
         firstNameText.setText(EMPTY_STRING);
         secondNameText.setText(EMPTY_STRING);
@@ -121,13 +104,14 @@ public class EditContactActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContactsMainActivity.class);
         intent.putExtra("selectedContactId", selectedContactId);
         intent.putExtra("selectedLetter", selectedLetter);
-        Log.d("myLog","onClickButtonClose id "+selectedContactId+" letter "+ selectedLetter);
         startActivity(intent);
     }
+
     @OnClick(R.id.edit_button_save_contact)
     public void onClickButtonSave() {
         saveContactToContactBase(selectedContactId);
     }
+
     @OnClick(R.id.edit_button_ok)
     public void onClickButtonOk() {
         saveContactToContactBase(selectedContactId);
@@ -137,34 +121,15 @@ public class EditContactActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Toast.makeText(this, "GO BACK!", Toast.LENGTH_SHORT).show();
-                //  startActivity(new Intent(this, MainActivity.class));
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-*/
     private void saveContactToContactBase(int selectedContactId){
         Contact contact = getContactFromText();
         selectedLetter = getFirstLetter(contact.getLastName());
-        Log.d("myLog","selectedContactId= " +selectedContactId + " selectedLetter= "+selectedLetter);
         if(selectedContactId == EMPTY_INDEX){
             this.selectedContactId = contactBaseManager.addNewContactToBase(contact);
         } else {
             contactBaseManager.updateContactInBase(selectedContactId, contact);
         }
     }
-
-
-
 
     private Contact getContactFromText(){
         Contact contact = new Contact(
@@ -210,8 +175,4 @@ public class EditContactActivity extends AppCompatActivity {
         }
         return initial;
     }
-
-
-
-
 }

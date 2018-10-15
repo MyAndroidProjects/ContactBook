@@ -18,10 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContactsMainActivity"/>
+        <activity android:name=".ContactsMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".EditContactActivity"/>
-        <activity android:name=".WeatherForecastActivity"/>
-
+        <activity android:name=".WeatherForecastActivity"
+            >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

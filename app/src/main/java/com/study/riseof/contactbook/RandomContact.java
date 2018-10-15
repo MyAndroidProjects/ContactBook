@@ -1,20 +1,38 @@
 package com.study.riseof.contactbook;
 
-import android.util.Log;
-
-import java.util.IllegalFormatCodePointException;
 import java.util.Random;
 
 public class RandomContact {
-
-    Random rand = new Random();
+    private static final String[] COUNTRIES;
+    private static final String[] STATES;
+    private static final String[] CITIES;
+    private static final String[] STREETS;
+    static  {
+        COUNTRIES = new String[]{
+                "", "Russia", "England", "Germany", "France", "Sweden",
+                "Portugal", "Belgium", "Netherlands", "Spain", "Italy",
+                "Greece", "Austria", "Switzerland", "Finland", "Iceland"
+        };
+        STATES = new String[]{
+                "", "Crooked", "Curved", "Deep", "Flat", "High",
+                "Hollow", "Low", "Narrow", "Refined", "Round",
+                "Shallow", "Square", "Steep", "Straight", "Wide"
+        };
+        CITIES = new String[]{
+                "", "Ancient", "Brief", "Early", "Fast", "Future",
+                "Late", "Modern", "Old", "Old-fashioned", "Prehistoric",
+                "Quick", "Rapid", "Slow", "Swift", "Young"
+        };
+        STREETS = new String[]{
+                "","Albino", "Black", "Blue", "Gray", "Green",
+                "Indigo", "Magenta", "Ochre", "Orange", "Purple",
+                "Red", "Ruby", "Sepia", "White", "Yellow"
+        };
+    }
 
     private final int LETTERS_QUANTITY=26;
     private final int LETTER_CODE_UPPER_A=65;
-    private final int LETTER_CODE_UPPER_Z=90;
     private final int LETTER_CODE_LOWER_A=97;
-    private final int LETTER_CODE_LOWER_Z=122;
-
     private final int DIGIT_QUANTITY=10;
     private final int POST_CODE_DIGIT_QUANTITY=6;
     private final int FLATS_MAX_QUANTITY=330;
@@ -23,7 +41,6 @@ public class RandomContact {
     private final int STRINGS_MAX_LENGTH=10;
     private final int PHONE_NUMBER_MIN_LENGTH=7;
     private final int PHONE_NUMBER_MAX_LENGTH=11;
-
     private final String EMPTY_STRING = "";
     private final int PROBABILITY_OF_EMPTY_STRING = 25;
     private final int HUNDRED_PERCENT = 100;
@@ -49,43 +66,7 @@ public class RandomContact {
     private String patronymicInitialLetter;
     private String lastNameInitialLetter;
 
-
-    private static final String[] COUNTRIES;
-    static  {
-        COUNTRIES = new String[]{
-                "", "Russia", "England", "Germany", "France", "Sweden",
-                "Portugal", "Belgium", "Netherlands", "Spain", "Italy",
-                "Greece", "Austria", "Switzerland", "Finland", "Iceland"
-        };
-    }
-
-    private static final String[] STATES;
-    static  {
-        STATES = new String[]{
-                "", "Crooked", "Curved", "Deep", "Flat", "High",
-                "Hollow", "Low", "Narrow", "Refined", "Round",
-                "Shallow", "Square", "Steep", "Straight", "Wide"
-        };
-    }
-
-    private static final String[] CITIES;
-    static  {
-        CITIES = new String[]{
-                "", "Ancient", "Brief", "Early", "Fast", "Future",
-                "Late", "Modern", "Old", "Old-fashioned", "Prehistoric",
-                "Quick", "Rapid", "Slow", "Swift", "Young"
-        };
-    }
-
-    private static final String[] STREETS;
-    static  {
-        STREETS = new String[]{
-               "","Albino", "Black", "Blue", "Gray", "Green",
-                "Indigo", "Magenta", "Ochre", "Orange", "Purple",
-                "Red", "Ruby", "Sepia", "White", "Yellow"
-        };
-    }
-
+    Random rand = new Random();
 
     public  RandomContact(){
         setCity();
@@ -275,9 +256,9 @@ public class RandomContact {
         if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
             personalWebsite =EMPTY_STRING;
         } else {
-           personalWebsite="www.";
-           personalWebsite+=wordImitationInLowerCase();
-           personalWebsite+=".com";
+            personalWebsite="www.";
+            personalWebsite+=wordImitationInLowerCase();
+            personalWebsite+=".com";
         }
         this.personalWebsite = personalWebsite;
     }
@@ -345,7 +326,7 @@ public class RandomContact {
         }
         return word;
     }
-    
+
     private String getInitialLetter(String word){
         String letter;
         if(word.equals("")){
@@ -387,7 +368,7 @@ public class RandomContact {
     }
 
     private void setLastNameInitialLetter() {
-         String letter = getInitialLetter(lastName);
+        String letter = getInitialLetter(lastName);
         if (letter.equals("")){
             letter=EMPTY_STRING;
         }else {

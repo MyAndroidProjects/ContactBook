@@ -1,21 +1,14 @@
 package com.study.riseof.contactbook;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -59,7 +52,6 @@ public class ButtonPanelFragment extends Fragment{
         return view;
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -68,7 +60,7 @@ public class ButtonPanelFragment extends Fragment{
 
     @OnClick(R.id.button_edit)
     public void onClickEditContact() {
-        Log.d("myLog", "onClickEditContact id "+selectedContactId+" letter "+selectedLetter);
+        //  Log.d("myLog", "onClickEditContact id "+selectedContactId+" letter "+selectedLetter);
         if(selectedContactId == EMPTY_INDEX){
             Toast.makeText(getContext(), "No selected contact", Toast.LENGTH_SHORT).show();
         } else {
@@ -77,9 +69,7 @@ public class ButtonPanelFragment extends Fragment{
             intent.putExtra("selectedLetter", selectedLetter);
             startActivity(intent);
         }
-
     }
-
 
     @OnClick(R.id.button_delete)
     public void onClickDeleteContact() {
@@ -93,9 +83,7 @@ public class ButtonPanelFragment extends Fragment{
             contactDeleteDialog.setArguments(args);
             contactDeleteDialog.show(getFragmentManager(), "contactDeleteDialog");
         }
-
     }
-
 
     @OnClick(R.id.button_add)
     public void onClickAddContact() {
@@ -103,7 +91,6 @@ public class ButtonPanelFragment extends Fragment{
         intent.putExtra("selectedLetter", selectedLetter);
         startActivity(intent);
     }
-
 
     @OnClick(R.id.button_call)
     public void onClickCallContact() {
@@ -117,11 +104,8 @@ public class ButtonPanelFragment extends Fragment{
             } else {
                 Toast.makeText(getContext(), "Phone number is not correct", Toast.LENGTH_SHORT).show();
             }
-
         }
-
     }
-
 
     public void setSelectedContactId(int id) {
         selectedContactId = id;
@@ -129,13 +113,5 @@ public class ButtonPanelFragment extends Fragment{
 
     public void setSelectedLetter(String selectedLetter) {
         this.selectedLetter = selectedLetter;
-    }
-
-    // реализовать интерфейс в Contacts Main Activity или в этом классе сделать onClick'и
-    public interface ButtonPanelClickListener {
-        public void onButtonEditClick();
-        public void onButtonDeleteClick();
-        public void onButtonAddContactClick();
-        public void onButtonCallClick();
     }
 }

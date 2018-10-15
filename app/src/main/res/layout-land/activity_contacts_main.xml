@@ -4,42 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ff00aa"
-    android:weightSum="@integer/weight_sum_100"
-    >
+    android:weightSum="@integer/weight_sum_100">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/contact_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#bc7e46">
+        <TextView android:id="@+id/contacts_toolbar_title"
+            style="@style/style_contact_toolbar_title"
+            android:text="@string/contacts_toolbar_title"/>
+    </android.support.v7.widget.Toolbar>
     <FrameLayout android:id="@+id/frame_alphabet_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:layout_gravity="center_horizontal"
-        />
+        android:layout_gravity="center_horizontal"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:background="#aa0000"
         android:weightSum="100"
-        android:layout_weight="90"
-        >
-
-
+        android:layout_weight="90">
         <FrameLayout android:id="@+id/frame_contact_list"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="40"
-            android:layout_gravity="center_horizontal"
-            />
+            android:layout_gravity="center_horizontal"/>
         <FrameLayout android:id="@+id/frame_contact_info"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="45"
-            android:layout_gravity="center_horizontal"
-            />
+            android:layout_gravity="center_horizontal"/>
         <FrameLayout android:id="@+id/frame_button_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="15"
-            android:layout_gravity="center_horizontal"
-            />
-
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 </LinearLayout>
