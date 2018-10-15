@@ -90,7 +90,5 @@
             android:text="@string/label_post_code"/>
         <TextView android:id="@+id/text_post_code"
             style="@style/style_contact_info_text"/>
-
     </LinearLayout>
-
 </ScrollView>

@@ -28,21 +28,19 @@
                 style="@style/style_forecast_date_time_text"
                 android:gravity="center_vertical|start"
                 android:paddingLeft="5dp"
-                android:layout_weight="@integer/forecast_item_left_column_horizontal_weight"
-                />
+                android:layout_weight="@integer/forecast_item_left_column_horizontal_weight"/>
             <TextView android:id="@+id/forecast_time_value"
                 style="@style/style_forecast_date_time_text"
                 android:gravity="center_vertical|end"
                 android:paddingRight="5dp"
-                android:layout_weight="@integer/forecast_item_right_column_horizontal_weight"
-                />
+                android:layout_weight="@integer/forecast_item_right_column_horizontal_weight"/>
         </LinearLayout>
         <TextView android:id="@+id/forecast_temperature_label"
             style="@style/style_forecast_label_text"
             android:background="#9fd1cf"
-             android:text="@string/label_forecast_temperature"/>
+            android:text="@string/label_forecast_temperature"/>
         <TextView android:id="@+id/forecast_temperature_value"
-          style="@style/style_forecast_value_text"
+            style="@style/style_forecast_value_text"
             android:background="#9fd1cf"/>
 
         <TextView android:id="@+id/forecast_heat_label"

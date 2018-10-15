@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- for testing parsing -->
 <MMWEATHER>
     <REPORT type="frc3">
         <TOWN index="99" sname="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D0%B8%D0%B1%D0%B8%D1%80%D1%81%D0%BA" latitude="55" longitude="83">

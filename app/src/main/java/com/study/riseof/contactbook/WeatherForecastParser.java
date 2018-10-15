@@ -1,7 +1,5 @@
 package com.study.riseof.contactbook;
 
-import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -19,13 +17,12 @@ public class WeatherForecastParser {
         NAME(1),
         LATITUDE(2),
         LONGITUDE(3);
-// положительные: северная широта и восточная долгота, отрицательные: южная широта, западная долгота
+        // на случай выбора города. Положительные: северная широта и восточная долгота, отрицательные: южная широта, западная долгота
         private int index;
         private TownInfo(int index){
             this.index = index;
         }
     }
-
 
     private enum TownList{
         NOVOSIBIRSK("99","Novosibirsk");
@@ -37,7 +34,6 @@ public class WeatherForecastParser {
             this.name = name;
         }
     }
-
 
     private enum TagName {
         MMWEATHER("MMWEATHER"),
@@ -94,10 +90,7 @@ public class WeatherForecastParser {
     final String EMPTY_STRING = "";
 
     private String[] town;
-
     private List<WeatherForecast> weatherForecasts = new ArrayList<WeatherForecast>();
-
-
 
     public boolean parse(String xmlData){
         WeatherForecast weatherForecast = null;
@@ -118,9 +111,9 @@ public class WeatherForecastParser {
                             case MMWEATHER:
                                 break;
                             case REPORT:
-                               break;
+                                break;
                             case TOWN:
-                                 startTagTown(xpp);
+                                startTagTown(xpp);
                                 break;
                             case FORECAST:
                                 weatherForecast = startTagForecast(xpp, weatherForecast);
@@ -138,10 +131,10 @@ public class WeatherForecastParser {
                                 weatherForecast = startTagWind(xpp, weatherForecast);
                                 break;
                             case RELWET:
-                                 weatherForecast = startTagRelwet(xpp, weatherForecast);
+                                weatherForecast = startTagRelwet(xpp, weatherForecast);
                                 break;
                             case HEAT:
-                               weatherForecast = startTagHeat(xpp, weatherForecast);
+                                weatherForecast = startTagHeat(xpp, weatherForecast);
                                 break;
                             default:
                                 break;
@@ -171,24 +164,20 @@ public class WeatherForecastParser {
                 xpp.next();
             }
             Log.d("myLog", "END_DOCUMENT");
-
-        } catch (XmlPullParserException e){
-            e.printStackTrace();
-        } catch (IOException e){
-            e.printStackTrace();
+        } catch (XmlPullParserException ex){
+            Log.e("myTag", "XmlPullParserException: " + ex.getMessage());
+        } catch (IOException ex){
+            Log.e("myTag", "IOException: " + ex.getMessage());
         }
         return true;
     }
+
     private void startTagTown(XmlPullParser xpp){
         int attributeCount = xpp.getAttributeCount();
-        Log.d("myLod"," startTagTown xpp.getAttributeCount() "+xpp.getAttributeCount());
-
         String townIndex = EMPTY_STRING;
         String latitude = EMPTY_STRING;
         String longitude = EMPTY_STRING;
         for (int i = 0; i < attributeCount; i++) {
-            Log.d("myLod"," startTagTown xpp xpp.getAttributeName(i) "+xpp.getAttributeName(i)+
-                    " xpp.getAttributeValue(i) "+xpp.getAttributeValue(i));
             if (xpp.getAttributeName(i).equals(AttributeName.INDEX.name)) {
                 townIndex = xpp.getAttributeValue(i);
             } else if (xpp.getAttributeName(i).equals(AttributeName.LATITUDE.name)) {
@@ -198,20 +187,18 @@ public class WeatherForecastParser {
             }
         }
         setTown(townIndex, latitude, longitude);
-        Log.d("myLog","startTagTown"+" townIndex "+townIndex+" latitude "+latitude+" longitude "+longitude);
     }
-
 
     public void setTown(String townIndex, String latitude, String longitude) {
         town = new String[TownInfo.values().length];
         town[TownInfo.TOWN_INDEX.index] = townIndex;
         town[TownInfo.LATITUDE.index] = latitude;
         town[TownInfo.LONGITUDE.index] = longitude;
-            for (TownList value: TownList.values()) {
-                if (townIndex.equals(value.index)) {
-                    town[TownInfo.NAME.index] = value.name;
-                }
+        for (TownList value: TownList.values()) {
+            if (townIndex.equals(value.index)) {
+                town[TownInfo.NAME.index] = value.name;
             }
+        }
     }
 
     public String[] getTown() {
@@ -331,5 +318,4 @@ public class WeatherForecastParser {
     public List<WeatherForecast> getWeatherForecasts() {
         return weatherForecasts;
     }
-
 }

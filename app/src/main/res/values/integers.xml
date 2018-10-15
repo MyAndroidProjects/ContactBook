@@ -11,6 +11,7 @@
 
     <!--  Contact activity main -->
     <integer name="fragment_seek_bar_horizontal_weight">5</integer>
+    <integer name="field_without_seek_bar_horizontal_weight">95</integer>
     <integer name="fragment_alphabet_list_vertical_weight">10</integer>
     <integer name="fragment_contact_list_vertical_weight">40</integer>
     <integer name="fragment_contact_info_vertical_weight">40</integer>

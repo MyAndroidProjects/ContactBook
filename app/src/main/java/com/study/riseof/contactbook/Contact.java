@@ -1,7 +1,5 @@
 package com.study.riseof.contactbook;
 
-import android.database.Cursor;
-
 public class Contact {
     private final String EMPTY_STRING="";
     private final String POINT=".";
@@ -49,6 +47,7 @@ public class Contact {
         this.country = EMPTY_STRING;
         this.postCode = EMPTY_STRING;
     }
+
     public Contact (String firstName,
                     String firstNameInitialLetter,
                     String secondName,
@@ -232,7 +231,7 @@ public class Contact {
         return lastNameInitialLetter;
     }
 
-    private String getInitial(String word){
+    private String getInitialLetter(String word){
         String initial;
         if(word.equals("")){
             initial = EMPTY_STRING;

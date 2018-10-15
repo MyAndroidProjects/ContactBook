@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Contacts And Weather</string>
-    <!-- Contacts toolbar and menu -->
+
+    <!-- contacts toolbar and menu -->
     <string name="contacts_toolbar_title">Contacts</string>
     <string name="menu_item_contacts_add_contact_title">Add new contact</string>
     <string name="menu_item_contacts_quit_title">Quit application</string>
 
-    <!-- Button Panel -->
+    <!-- button Panel -->
     <string name="button_panel_edit">edit</string>
     <string name="button_panel_delete">del</string>
     <string name="button_panel_add">add</string>

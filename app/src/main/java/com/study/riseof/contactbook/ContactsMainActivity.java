@@ -1,7 +1,6 @@
 package com.study.riseof.contactbook;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -24,24 +23,20 @@ public class ContactsMainActivity extends AppCompatActivity
     private final String EMPTY_STRING = "";
     private final int EMPTY_INDEX = -1;
 
+    ContactListFragment contactListFragment;
+    ContactInfoFragment contactInfoFragment;
+    ButtonPanelFragment buttonPanelFragment;
+    AlphabetListFragment alphabetListFragment;
+    private int selectedContactId = EMPTY_INDEX;
+    private String selectedLetter = EMPTY_STRING;
+    private int maxSeekBar;
+
     @BindView(R.id.frame_contact_list)
     FrameLayout contactListFrame;
     @BindView(R.id.frame_contact_info)
     FrameLayout contactInfoFrame;
     @BindView(R.id.contact_toolbar)
     Toolbar toolbar;
-
-    ContactListFragment contactListFragment;
-    ContactInfoFragment contactInfoFragment;
-    ButtonPanelFragment buttonPanelFragment;
-    AlphabetListFragment alphabetListFragment;
-
-    private int selectedContactId = EMPTY_INDEX;
-    private String selectedLetter = EMPTY_STRING;
-
-    private int maxSeekBar;
-
-    public static final String TAG = "myLogs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +56,6 @@ public class ContactsMainActivity extends AppCompatActivity
         } else {
             selectedLetter = getIntent().getStringExtra("selectedLetter");
         }
-        Log.d("myLog","ContactsMainActivity onCreate id "+selectedContactId+" letter "+ selectedLetter);
         addFragments();
     }
 
@@ -77,23 +71,19 @@ public class ContactsMainActivity extends AppCompatActivity
         super.onSaveInstanceState(outState);
         outState.putInt("selectedContactId", selectedContactId);
         outState.putString("selectedLetter", selectedLetter);
-        Log.d("myLog","onSaveInstanceState letter "+selectedLetter+ " id "+ selectedContactId);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d("myLog","111 onRestoreInstanceState letter "+selectedLetter+ " id "+ selectedContactId);
         selectedContactId = savedInstanceState.getInt("selectedContactId", EMPTY_INDEX);
         selectedLetter = savedInstanceState.getString("selectedLetter", EMPTY_STRING);
-        Log.d("myLog","222 onRestoreInstanceState letter "+selectedLetter+ " id "+ selectedContactId);
         if(selectedContactId != EMPTY_INDEX){
             onContactItemClick(selectedContactId);
         }
         if(!selectedLetter.equals(EMPTY_STRING)){
             adapterLetterClick(selectedLetter);
         }
-
     }
 
     @Override
@@ -119,9 +109,6 @@ public class ContactsMainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override protected void onStop() {
-        super.onStop();
-    }
     private void addFragments(){
         alphabetListFragment = new AlphabetListFragment();
         contactListFragment = new ContactListFragment();
@@ -160,16 +147,13 @@ public class ContactsMainActivity extends AppCompatActivity
     @Override
     public void adapterLetterClick(String letter) {
         selectedLetter = letter;
-        Log.d("myLog","нажата буква "+selectedLetter);
         contactListFragment.showContactsByFirstLetter(selectedLetter);
         buttonPanelFragment.setSelectedLetter(letter);
     }
 
     @Override
     public void onContactItemClick(int id) {
-        Log.d("myLog", "1 onContactItemClick id "+id);
         selectedContactId = id;
-        Log.d("myLog", "2 onContactItemClick selectedContactId "+selectedContactId);
         contactInfoFragment.setContactInfoById(selectedContactId);
         buttonPanelFragment.setSelectedContactId(selectedContactId);
     }
@@ -188,6 +172,4 @@ public class ContactsMainActivity extends AppCompatActivity
         selectedContactId = EMPTY_INDEX;
         buttonPanelFragment.setSelectedContactId(selectedContactId);
     }
-
-
 }
