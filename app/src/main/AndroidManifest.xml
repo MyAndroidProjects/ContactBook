@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.study.riseof.contactbook">
+    package="com.study.riseof.contactBookAndWeather">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -11,24 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".main.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContactsMainActivity">
+        <activity android:name=".contactBook.ui.activity.ContactsMainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.study.riseof.contactBookAndWeather.main.ui.activity.MainActivity" />
         </activity>
-        <activity android:name=".EditContactActivity"/>
-        <activity android:name=".WeatherForecastActivity"
-            >
+        <activity android:name=".contactBook.ui.activity.EditContactActivity"/>
+        <activity android:name=".weather.ui.activity.WeatherForecastActivity">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            android:value="com.study.riseof.contactBookAndWeather.main.ui.activity.MainActivity" />
         </activity>
     </application>
 

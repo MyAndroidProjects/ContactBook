@@ -24,7 +24,7 @@
             android:id="@+id/fragment_withButton"
             android:layout_weight="@integer/fragment_seek_bar_horizontal_weight"
             android:layout_gravity="center_horizontal"
-            android:name="com.study.riseof.contactbook.SeekBarFragment"/>
+            android:name="com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.SeekBarFragment"/>
         <LinearLayout android:id="@+id/container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
