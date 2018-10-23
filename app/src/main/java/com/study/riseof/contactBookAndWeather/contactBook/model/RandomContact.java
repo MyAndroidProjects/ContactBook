@@ -1,4 +1,4 @@
-package com.study.riseof.contactBookAndWeather.contactBook.objects;
+package com.study.riseof.contactBookAndWeather.contactBook.model;
 
 import java.util.Random;
 

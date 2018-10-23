@@ -1,7 +1,7 @@
 package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.objects.AlphabetList;
+import com.study.riseof.contactBookAndWeather.contactBook.model.AlphabetList;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.AlphabetRecyclerViewAdapter;
 
 import android.os.Bundle;

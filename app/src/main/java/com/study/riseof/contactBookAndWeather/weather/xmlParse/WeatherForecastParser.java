@@ -2,7 +2,7 @@ package com.study.riseof.contactBookAndWeather.weather.xmlParse;
 
 import android.util.Log;
 
-import com.study.riseof.contactBookAndWeather.weather.objects.WeatherForecast;
+import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

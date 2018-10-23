@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.study.riseof.contactBookAndWeather.contactBook.objects.RandomContact;
+import com.study.riseof.contactBookAndWeather.contactBook.model.RandomContact;
 
 public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
 

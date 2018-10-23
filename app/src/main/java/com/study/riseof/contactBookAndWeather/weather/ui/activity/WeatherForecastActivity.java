@@ -1,7 +1,7 @@
 package com.study.riseof.contactBookAndWeather.weather.ui.activity;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.weather.objects.WeatherForecast;
+import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 import com.study.riseof.contactBookAndWeather.weather.ui.adapter.WeatherForecastRecyclerAdapter;
 import com.study.riseof.contactBookAndWeather.weather.xmlParse.WeatherForecastParser;
 
