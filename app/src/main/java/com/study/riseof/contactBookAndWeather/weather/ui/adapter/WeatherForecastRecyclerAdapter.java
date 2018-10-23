@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.weather.objects.WeatherForecast;
+import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
 import java.util.List;
 

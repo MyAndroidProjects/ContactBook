@@ -1,4 +1,4 @@
-package com.study.riseof.contactBookAndWeather.weather.objects;
+package com.study.riseof.contactBookAndWeather.weather.model;
 
 public class WeatherForecast {
 

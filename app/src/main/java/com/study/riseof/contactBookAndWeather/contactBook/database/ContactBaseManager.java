@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
-import com.study.riseof.contactBookAndWeather.contactBook.objects.AbbreviatedContact;
-import com.study.riseof.contactBookAndWeather.contactBook.objects.Contact;
+import com.study.riseof.contactBookAndWeather.contactBook.model.AbbreviatedContact;
+import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
 import java.util.ArrayList;
 

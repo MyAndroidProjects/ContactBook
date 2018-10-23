@@ -1,4 +1,4 @@
-package com.study.riseof.contactBookAndWeather.main.ui.activity;
+package com.study.riseof.contactBookAndWeather;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
