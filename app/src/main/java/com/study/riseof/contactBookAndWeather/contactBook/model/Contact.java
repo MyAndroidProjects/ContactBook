@@ -1,6 +1,6 @@
-package com.study.riseof.contactBookAndWeather.contactBook.objects;
+package com.study.riseof.contactBookAndWeather.contactBook.model;
 
-//import com.study.riseof.contactBookAndWeather.contactBook.objects.RandomContact;
+//import com.study.riseof.contactBookAndWeather.contactBook.model.RandomContact;
 
 public class Contact {
     private final String EMPTY_STRING="";

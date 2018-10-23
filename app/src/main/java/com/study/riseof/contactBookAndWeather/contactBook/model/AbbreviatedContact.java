@@ -1,4 +1,4 @@
-package com.study.riseof.contactBookAndWeather.contactBook.objects;
+package com.study.riseof.contactBookAndWeather.contactBook.model;
 
 public class AbbreviatedContact {
 

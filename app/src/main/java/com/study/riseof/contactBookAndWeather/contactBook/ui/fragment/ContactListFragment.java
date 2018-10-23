@@ -18,7 +18,7 @@ import android.widget.AdapterView;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.ContactListAdapter;
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
-import com.study.riseof.contactBookAndWeather.contactBook.objects.AbbreviatedContact;
+import com.study.riseof.contactBookAndWeather.contactBook.model.AbbreviatedContact;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

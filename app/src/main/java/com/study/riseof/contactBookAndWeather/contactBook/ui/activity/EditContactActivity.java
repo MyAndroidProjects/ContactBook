@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
-import com.study.riseof.contactBookAndWeather.contactBook.objects.Contact;
+import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
