@@ -48,7 +48,7 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = inflater.inflate(R.layout.recycler_view_alphabet_item, viewGroup, false);
+        View view = inflater.inflate(R.layout.item_recycler_view_alphabet, viewGroup, false);
         return new Holder(view);
     }
 

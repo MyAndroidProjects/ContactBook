@@ -63,7 +63,7 @@ public class ContactDeleteDialog extends DialogFragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_contact_delete, null);
+        View view = inflater.inflate(R.layout.dialog_fragment_contact_delete, null);
         unbinder = ButterKnife.bind(this, view);
         selectedContactId = getArguments().getInt("selectedContactId");
         ContactBaseManager contactBaseManager = new ContactBaseManager(getContext());

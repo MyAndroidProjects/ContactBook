@@ -29,7 +29,7 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.recycler_view_weather_forecast_item, parent, false);
+        View view = inflater.inflate(R.layout.item_recycler_view_weather_forecast, parent, false);
         return new Holder(view);
     }
 
