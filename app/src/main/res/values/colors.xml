@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- color list -->
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorFadedPurpleWhite">#fadfc5</color>
+    <color name="colorFadedAlmond">#ecc8a7</color>
+    <color name="colorSandyAlmond">#e6cbb3</color>
+    <color name="colorBrown">#bc7e46</color>
+    <color name="colorDarkBrown">#7b4b1f</color>
+    <color name="colorBlackBrown">#54300e</color>
+    <color name="colorDarkGrey">#717a7e</color>
+    <color name="colorLightBlue">#b4edeb</color>
+    <color name="colorLightGreyBlue">#9fd1cf</color>
+    <color name="colorGreyBlue">#91c1d2</color>
+    <color name="colorBlue">#64acce</color>
+    <color name="colorDeepBlue">#4852c7</color>
+    <color name="colorDarkBlue">#4a3d7c</color>
+    <color name="colorBlackBlue">#372e59</color>
+    <color name="colorPurple">#7a5aa7</color>
+
+     <!-- contactBook -->
+    <color name="contactPrimaryBackground">@color/colorFadedAlmond</color>
+    <color name="contactSecondaryBackground">@color/colorFadedPurpleWhite</color>
+    <color name="contactTertiaryBackground">@color/colorSandyAlmond</color>
+
+    <color name="contactLabel">@color/colorDarkGrey</color>
+    <color name="contactText">@color/colorBlackBrown</color>
+
+    <color name="contactToolbarText">@color/colorFadedPurpleWhite</color>
+    <color name="contactToolbarTextShadow">@color/colorDarkBrown</color>
+    <color name="contactToolbarBackground">@color/colorBrown</color>
+
+    <color name="contactListItemText">@color/colorBlackBrown</color>
+    <color name="contactListItemTextShadow">@color/colorBrown</color>
+
+    <color name="contactButtonBackground">@color/colorBrown</color>
+    <color name="contactButtonBackgroundFocused">@color/colorSandyAlmond</color>
+    <color name="contactButtonBackgroundPressed">@color/colorDarkBrown</color>
+    <color name="contactButtonText">@color/colorFadedPurpleWhite</color>
+
+    <!-- weather -->
+    <color name="mainActivityWeatherAnimationBackground">@color/colorWhite</color>
+
+    <color name="weatherToolbarText">@color/colorBlue</color>
+    <color name="weatherToolbarTextShadow">@color/colorBlackBlue</color>
+    <color name="weatherToolbarBackground">@color/colorDeepBlue</color>
+
+    <color name="weatherCardViewTownBackground">@color/colorGreyBlue</color>
+    <color name="weatherCardViewTownText">@color/colorDarkBlue</color>
+    <color name="weatherCardViewTownShadow">@color/colorPurple</color>
+
+    <color name="weatherForecastPrimaryBackground">@color/colorLightBlue</color>
+    <color name="weatherForecastSecondaryBackground">@color/colorLightGreyBlue</color>
+    <color name="weatherForecastTertiaryBackground">@color/colorBlue</color>
+    <color name="weatherForecastCardViewBackground">@color/colorGreyBlue</color>
+    <color name="weatherLinkToMeteosericeBackground">@color/colorGreyBlue</color>
+
+    <color name="weatherDateTimeText">@color/colorDarkBlue</color>
+    <color name="weatherDateTimeTextShadow">@color/colorPurple</color>
+
+    <color name="weatherForecastItemLabelText">@color/colorDeepBlue</color>
+    <color name="weatherForecastItemText">@color/colorDarkBlue</color>
+
 </resources>

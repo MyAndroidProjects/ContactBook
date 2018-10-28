@@ -3,17 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_item_update_forecast"
-        android:textAllCaps="false"
-        android:textColor="#f4d0af"
         android:textSize="18sp"
-        android:textStyle="bold|italic"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
-        android:shadowColor="#7b4b1f"
         android:orderInCategory="1"
         app:showAsAction="always"
-
         android:title="@string/menu_item_update_forecast" >
     </item>
 </menu>

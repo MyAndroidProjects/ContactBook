@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.ui.activity.WeatherForecastActivity;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.activity.ContactsMainActivity;
 
@@ -17,28 +15,26 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.frame_link_to_contacts_main)
-    FrameLayout linkToContactsMainFrame;
-    @BindView(R.id.frame_link_to_weather_main)
+ /*   @BindView(R.id.animation_link_to_weather)
     FrameLayout linkToWeatherMainFrame;
     @BindView(R.id.image_contact_book)
-    ImageView imageContactBook;
+    ImageView imageContactBook;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Picasso.get().load(R.drawable.book).into(imageContactBook);
+
     }
 
-    @OnClick(R.id.frame_link_to_contacts_main)
+    @OnClick(R.id.image_contact_book)
     public void onClickLinkToContacts() {
         Intent intent = new Intent(this, ContactsMainActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.frame_link_to_weather_main)
+    @OnClick(R.id.animation_link_to_weather)
     public void onClickLinkToWeather() {
         Intent intent = new Intent(this, WeatherForecastActivity.class);
         startActivity(intent);

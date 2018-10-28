@@ -10,15 +10,15 @@
     <integer name="frame_link_to_weather_main_horizontal_weight">50</integer>
 
     <!--  Contact activity main -->
-    <integer name="fragment_seek_bar_horizontal_weight">5</integer>
-    <integer name="field_without_seek_bar_horizontal_weight">95</integer>
-    <integer name="fragment_alphabet_list_vertical_weight">10</integer>
-    <integer name="fragment_contact_list_vertical_weight">40</integer>
-    <integer name="fragment_contact_info_vertical_weight">40</integer>
-    <integer name="fragment_button_panel_vertical_weight">10</integer>
-    <integer name="button_panel_button_weight">25</integer>
+    <!--    <integer name="fragment_seek_bar_horizontal_weight">5</integer>
+       <integer name="field_without_seek_bar_horizontal_weight">95</integer> -->
+       <integer name="fragment_alphabet_list_vertical_weight">10</integer>
+       <integer name="fragment_contact_list_vertical_weight">40</integer>
+       <integer name="fragment_contact_info_vertical_weight">40</integer>
+       <integer name="fragment_button_panel_vertical_weight">10</integer>
+       <integer name="button_panel_button_weight">25</integer>
 
-    <!--  Seek bar -->
+       <!--  Seek bar -->
     <integer name="seek_bar_minimum">0</integer>
     <integer name="seek_bar_default_progress">40</integer>
     <integer name="seek_bar_maximum">80</integer>
@@ -28,6 +28,9 @@
     <integer name="edit_contact_edit_space_vertical_weight">70</integer>
     <integer name="edit_contact_button_space_vertical_weight">30</integer>
     <integer name="edit_contact_button_horizontal_weight">25</integer>
+
+    <!--  dialog contact -->
+    <integer name="dialog_button_horizontal_weight">50</integer>
 
     <!--  Weather forecast activity -->
     <integer name="forecast_town_vertical_weight">20</integer>
