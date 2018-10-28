@@ -2,23 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorFadedPurpleWhite">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:id="@+id/dialog_delete_text_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/dialog_delete_text"/>
+           style="@style/style_dialog_message_text"/>
         <TextView
             android:id="@+id/dialog_delete_text_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/dialog_delete_text"/>
+            style="@style/style_dialog_message_text.contact_name"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,16 +22,12 @@
         android:weightSum="100">
         <Button
             android:id="@+id/dialog_delete_button_positive"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
+            style="@style/style_contact_button.dialog"
             android:text="@string/dialog_delete_button_positive">
         </Button>
         <Button
             android:id="@+id/dialog_delete_button_negative"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
+            style="@style/style_contact_button.dialog"
             android:text="@string/dialog_delete_button_negative">
         </Button>
     </LinearLayout>

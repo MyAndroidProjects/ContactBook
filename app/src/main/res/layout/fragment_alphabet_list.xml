@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ecc8a7">
+    android:background="@color/contactPrimaryBackground">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_alphabet"
         android:layout_width="wrap_content"

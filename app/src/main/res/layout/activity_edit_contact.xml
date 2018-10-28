@@ -8,7 +8,6 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#eee8aa"
         app:layout_constraintTop_toTopOf="@id/edit_contact_layout"
         app:layout_constraintBottom_toTopOf="@id/edit_contact_button_group">
         <LinearLayout android:id="@+id/edit_label_and_text_space"
@@ -105,27 +104,19 @@
         android:layout_height="0dp"
         android:weightSum="@integer/weight_sum_100"
         android:orientation="horizontal"
-        android:background="#b4edeb"
+        android:background="@color/contactSecondaryBackground"
         app:layout_constraintBottom_toBottomOf="@id/edit_contact_layout">
         <Button android:id="@+id/edit_button_clear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/edit_contact_button_horizontal_weight"
+            style="@style/style_contact_button.edit"
             android:text="@string/edit_button_clear_text"/>
         <Button android:id="@+id/edit_button_close"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/edit_contact_button_horizontal_weight"
+            style="@style/style_contact_button.edit"
             android:text="@string/edit_button_close_text"/>
         <Button android:id="@+id/edit_button_save_contact"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/edit_contact_button_horizontal_weight"
+            style="@style/style_contact_button.edit"
             android:text="@string/edit_button_save_contact_text"/>
         <Button android:id="@+id/edit_button_ok"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/edit_contact_button_horizontal_weight"
+            style="@style/style_contact_button.edit"
             android:text="@string/edit_button_ok_text"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

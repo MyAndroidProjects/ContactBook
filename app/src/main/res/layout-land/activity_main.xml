@@ -4,30 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="@integer/weight_sum_100">
-    <FrameLayout android:id="@+id/frame_link_to_contacts_main"
+    <ImageView android:id="@+id/image_contact_book"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="@integer/frame_link_to_contacts_main_horizontal_weight"
         android:layout_gravity="center"
-        android:background="#ecc8a7">
-        <ImageView android:id="@+id/image_contact_book"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:padding="30dp"/>
-    </FrameLayout>
-    <FrameLayout android:id="@+id/frame_link_to_weather_main"
+        android:background="@color/contactPrimaryBackground"
+        android:scaleType="centerInside"
+        android:padding="30dp"
+        android:contentDescription="@string/image_contact_book_content_description"
+        android:src="@drawable/book"/>
+    <ImageView android:id="@+id/animation_link_to_weather"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="@integer/frame_link_to_weather_main_horizontal_weight"
+        android:background="@color/mainActivityWeatherAnimationBackground"
         android:layout_gravity="center"
-        android:background="#ffffff">
-        <ImageView android:id="@+id/animation_link_to_weather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/anim_weather_forecast_link" />
-    </FrameLayout>
+        android:scaleType="centerInside"
+        android:src="@drawable/anim_weather_forecast_link" />
 </LinearLayout>
 
 

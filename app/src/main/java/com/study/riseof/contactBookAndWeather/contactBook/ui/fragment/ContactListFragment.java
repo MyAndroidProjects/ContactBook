@@ -115,7 +115,7 @@ public class ContactListFragment extends Fragment {
     }
 
     public void setContactArrayAdapter(){
-        contactAdapter = new ContactListAdapter(getContext(), R.layout.contact_list_item, contacts);
+        contactAdapter = new ContactListAdapter(getContext(), R.layout.item_list_view_contact, contacts);
         contactListView.setAdapter(contactAdapter);
     }
 

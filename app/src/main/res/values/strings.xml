@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Contacts And Weather</string>
 
+    <!-- main activity -->
+    <string name="image_contact_book_content_description">Contact book picture</string>
+    <string name="animation_link_to_weather_content_description">Weather animation</string>
+
     <!-- contacts toolbar and menu -->
     <string name="contacts_toolbar_title">Contacts</string>
     <string name="menu_item_contacts_add_contact_title">Add new contact</string>
@@ -55,7 +59,7 @@
     <string name="start_message">loading...</string>
 
     <!--  weather forecast toolbar and menu -->
-    <string name="weather_forecast_toolbar_title">Weather forecast</string>
+    <string name="weather_forecast_toolbar_title">Weather</string>
     <string name="menu_item_update_forecast">Update</string>
 
 </resources>
