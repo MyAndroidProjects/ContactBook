@@ -17,9 +17,9 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/contactToolbarText</item>
         <item name="android:textStyle">bold|italic</item>
-        <item name="android:shadowDx">2</item>
-        <item name="android:shadowDy">2</item>
-        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowDx">@integer/contact_toolbar_text_shadow_delta</item>
+        <item name="android:shadowDy">@integer/contact_toolbar_text_shadow_delta</item>
+        <item name="android:shadowRadius">@integer/contact_toolbar_text_shadow_radius</item>
         <item name="android:shadowColor">@color/contactToolbarTextShadow</item>
     </style>
 
@@ -29,17 +29,17 @@
         <item name="android:textColor">@color/contactLabel</item>
         <item name="android:background">@color/contactPrimaryBackground</item>
         <item name="android:gravity">center_vertical|left</item>
-        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingLeft">@dimen/size_medium</item>
     </style>
 
     <style name="style_contact_info_text" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">34dp</item>
+        <item name="android:minHeight">@dimen/size_xlarge</item>
         <item name="android:textColor">@color/contactText</item>
         <item name="android:background">@color/contactSecondaryBackground</item>
         <item name="android:gravity">center_vertical|right</item>
-        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingRight">@dimen/size_medium</item>
         <item name="android:textIsSelectable">true</item>
         <item name="android:linksClickable">true</item>
         <item name="android:autoLink">all</item>
@@ -48,16 +48,16 @@
     <style name="style_contact_list_item_text"  parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">48dp</item>
+        <item name="android:minHeight">@dimen/size_xxxlarge</item>
         <item name="android:textColor">@color/contactListItemText</item>
         <item name="android:background">@color/contactTertiaryBackground</item>
         <item name="android:gravity">left|center_vertical</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingLeft">@dimen/size_medium</item>
+        <item name="android:paddingRight">@dimen/size_medium</item>
         <item name="android:shadowColor">@color/contactListItemTextShadow</item>
-        <item name="android:shadowDx">2</item>
-        <item name="android:shadowDy">2</item>
-        <item name="android:shadowRadius">4</item>
+        <item name="android:shadowDx">@integer/contact_list_text_shadow_delta</item>
+        <item name="android:shadowDy">@integer/contact_list_text_shadow_delta</item>
+        <item name="android:shadowRadius">@integer/contact_list_text_shadow_radius</item>
         <item name="android:textStyle">bold|italic</item>
         <!--  С этим атрибутом не работает метод OnItemClick() интерфейса AdapterView.OnItemClickListener.
           <item name="android:textIsSelectable">true</item>-->
@@ -76,11 +76,11 @@
     <style name="style_contact_edit_text" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">48dp</item>
+        <item name="android:minHeight">@dimen/size_xxxlarge</item>
         <item name="android:textColor">@color/contactText</item>
         <item name="android:background">@color/contactSecondaryBackground</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingLeft">@dimen/size_medium</item>
+        <item name="android:paddingRight">@dimen/size_medium</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
@@ -88,48 +88,48 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/contactText</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">@dimen/size_medium</item>
+        <item name="android:paddingRight">@dimen/size_medium</item>
+        <item name="android:paddingTop">@dimen/size_medium</item>
+        <item name="android:paddingBottom">@dimen/size_zero</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="style_dialog_message_text.contact_name" >
-        <item name="android:textSize">14sp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">16dp</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:paddingTop">@dimen/size_zero</item>
+        <item name="android:paddingBottom">@dimen/size_medium</item>
     </style>
 
     <style name="style_contact_button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textColor">@color/contactButtonText</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginTop">@dimen/size_xsmall</item>
+        <item name="android:layout_marginBottom">@dimen/size_small</item>
+        <item name="android:layout_marginLeft">@dimen/size_xsmall</item>
+        <item name="android:layout_marginRight">@dimen/size_xsmall</item>
         <item name="android:background">@drawable/selector_button_contact</item>
     </style>
 
     <style name="style_contact_button.port">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/size_zero</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">@integer/button_panel_button_weight</item>
     </style>
 
     <style name="style_contact_button.land">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_height">@dimen/size_zero</item>
         <item name="android:layout_weight">@integer/button_panel_button_weight</item>
     </style>
 
     <style name="style_contact_button.edit">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/size_zero</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">@integer/edit_contact_button_horizontal_weight</item>
     </style>
 
     <style name="style_contact_button.dialog">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/size_zero</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">@integer/dialog_button_horizontal_weight</item>
     </style>
@@ -141,9 +141,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/weatherToolbarText</item>
-        <item name="android:shadowDx">2</item>
-        <item name="android:shadowDy">2</item>
-        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowDx">@integer/forecast_toolbar_text_shadow_delta</item>
+        <item name="android:shadowDy">@integer/forecast_toolbar_text_shadow_delta</item>
+        <item name="android:shadowRadius">@integer/forecast_toolbar_text_shadow_radius</item>
         <item name="android:shadowColor">@color/weatherToolbarTextShadow</item>
     </style>
 
@@ -151,24 +151,24 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:shadowDx">2</item>
-        <item name="android:shadowDy">2</item>
-        <item name="android:shadowRadius">3</item>
+        <item name="android:shadowDx">@integer/forecast_town_text_shadow_delta</item>
+        <item name="android:shadowDy">@integer/forecast_town_text_shadow_delta</item>
+        <item name="android:shadowRadius">@integer/forecast_town_text_shadow_radius</item>
         <item name="android:shadowColor">@color/weatherCardViewTownShadow</item>
         <item name="android:textColor">@color/weatherCardViewTownText</item>
     </style>
 
     <style name="style_forecast_town.coordinates">
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
     <style name="style_forecast_date_time_text" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowDx">2</item>
-        <item name="android:shadowDy">2</item>
-        <item name="android:shadowRadius">4</item>
+        <item name="android:shadowDx">@integer/forecast_date_time_text_shadow_delta</item>
+        <item name="android:shadowDy">@integer/forecast_date_time_text_shadow_delta</item>
+        <item name="android:shadowRadius">@integer/forecast_date_time_text_shadow_radius</item>
         <item name="android:textColor">@color/weatherDateTimeText</item>
         <item name="android:background">@color/weatherForecastPrimaryBackground</item>
         <item name="android:shadowColor">@color/weatherDateTimeTextShadow</item>
@@ -178,7 +178,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical|start</item>
-        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingLeft">@dimen/size_medium</item>
         <item name="android:textColor">@color/weatherForecastItemLabelText</item>
     </style>
 
@@ -194,7 +194,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical|end</item>
-        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingRight">@dimen/size_medium</item>
         <item name="android:textColor">@color/weatherForecastItemText</item>
     </style>
 
@@ -214,10 +214,10 @@
         <item name="android:linksClickable">true</item>
         <item name="android:background">@color/weatherLinkToMeteosericeBackground</item>
         <item name="android:textColor">@color/weatherForecastItemText</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">@dimen/size_medium</item>
+        <item name="android:paddingRight">@dimen/size_medium</item>
+        <item name="android:paddingTop">@dimen/size_xsmall</item>
+        <item name="android:paddingBottom">@dimen/size_small</item>
     </style>
 
 

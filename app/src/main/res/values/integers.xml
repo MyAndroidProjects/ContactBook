@@ -17,6 +17,10 @@
        <integer name="fragment_contact_info_vertical_weight">40</integer>
        <integer name="fragment_button_panel_vertical_weight">10</integer>
        <integer name="button_panel_button_weight">25</integer>
+    <integer name="contact_toolbar_text_shadow_delta">2</integer>
+    <integer name="contact_toolbar_text_shadow_radius">2</integer>
+    <integer name="contact_list_text_shadow_delta">2</integer>
+    <integer name="contact_list_text_shadow_radius">4</integer>
 
        <!--  Seek bar -->
     <integer name="seek_bar_minimum">0</integer>
@@ -35,6 +39,12 @@
     <!--  Weather forecast activity -->
     <integer name="forecast_town_vertical_weight">20</integer>
     <integer name="forecast_card_vertical_weight">100</integer>
+    <integer name="forecast_toolbar_text_shadow_delta">2</integer>
+    <integer name="forecast_toolbar_text_shadow_radius">4</integer>
+    <integer name="forecast_town_text_shadow_delta">2</integer>
+    <integer name="forecast_town_text_shadow_radius">4</integer>
+    <integer name="forecast_date_time_text_shadow_delta">2</integer>
+    <integer name="forecast_date_time_text_shadow_radius">4</integer>
 
     <!--  Weather forecast item -->
     <integer name="forecast_item_left_column_horizontal_weight">55</integer>

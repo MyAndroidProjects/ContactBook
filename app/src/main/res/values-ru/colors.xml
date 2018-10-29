@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- color list -->
+    <color name="colorLightGreen">#cdefbb</color>
+    <color name="colorLightGreyGreen">#c9e1bd</color>
+    <color name="colorGreyGreen">#afc6ac</color>
+    <color name="colorGreen">#9bc995</color>
+    <color name="colorDeepGreen">#309e21</color>
+    <color name="colorDarkGreen">#27791e</color>
+    <color name="colorBlackGreen">#144113</color>
+    <color name="colorSwamp">#c5d179</color>
+    
+
+    <!-- weather -->
+    <color name="weatherToolbarText">@color/colorGreen</color>
+    <color name="weatherToolbarTextShadow">@color/colorBlackGreen</color>
+    <color name="weatherToolbarBackground">@color/colorDeepGreen</color>
+
+    <color name="weatherCardViewTownBackground">@color/colorGreyGreen</color>
+    <color name="weatherCardViewTownText">@color/colorDarkGreen</color>
+    <color name="weatherCardViewTownShadow">@color/colorSwamp</color>
+
+    <color name="weatherForecastPrimaryBackground">@color/colorLightGreen</color>
+    <color name="weatherForecastSecondaryBackground">@color/colorLightGreyGreen</color>
+    <color name="weatherForecastTertiaryBackground">@color/colorGreen</color>
+    <color name="weatherForecastCardViewBackground">@color/colorGreyGreen</color>
+    <color name="weatherLinkToMeteosericeBackground">@color/colorGreyGreen</color>
+
+    <color name="weatherDateTimeText">@color/colorDarkGreen</color>
+    <color name="weatherDateTimeTextShadow">@color/colorSwamp</color>
+
+    <color name="weatherForecastItemLabelText">@color/colorDeepGreen</color>
+    <color name="weatherForecastItemText">@color/colorDarkGreen</color>
+</resources>

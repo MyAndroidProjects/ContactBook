@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="4dp"
+    android:paddingRight="@dimen/fragment_button_panel_padding_right"
     android:background="@color/contactPrimaryBackground"
     android:weightSum="@integer/weight_sum_100">
     <!-- android:textAllCaps="false" -->

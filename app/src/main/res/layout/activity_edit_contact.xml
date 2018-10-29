@@ -7,7 +7,7 @@
     android:orientation="vertical">
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/size_zero"
         app:layout_constraintTop_toTopOf="@id/edit_contact_layout"
         app:layout_constraintBottom_toTopOf="@id/edit_contact_button_group">
         <LinearLayout android:id="@+id/edit_label_and_text_space"
@@ -101,7 +101,7 @@
     </ScrollView>
     <LinearLayout android:id="@+id/edit_contact_button_group"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/size_zero"
         android:weightSum="@integer/weight_sum_100"
         android:orientation="horizontal"
         android:background="@color/contactSecondaryBackground"
