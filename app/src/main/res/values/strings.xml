@@ -57,6 +57,7 @@
 
     <!--  weather forecast activity -->
     <string name="start_message">loading...</string>
+    <string name="text_meteoservice_ru">Provided by Meteoservice.ru\nhttps://www.meteoservice.ru</string>
 
     <!--  weather forecast toolbar and menu -->
     <string name="weather_forecast_toolbar_title">Weather</string>

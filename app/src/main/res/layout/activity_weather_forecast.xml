@@ -21,8 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@color/weatherCardViewTownBackground"
-        card_view:cardCornerRadius="16dp"
-        card_view:cardElevation="4dp">
+        card_view:cardCornerRadius="@dimen/size_medium"
+        card_view:cardElevation="@dimen/size_small">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,25 +40,25 @@
         android:id="@+id/card_view_forecast"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/size_zero"
         android:layout_weight="@integer/forecast_card_vertical_weight"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="@dimen/size_small"
+        android:layout_marginTop="@dimen/size_small"
+        android:layout_marginRight="@dimen/size_small"
+        android:layout_marginBottom="@dimen/size_small"
         card_view:cardBackgroundColor="@color/weatherForecastCardViewBackground"
-        card_view:cardCornerRadius="6dp"
-        card_view:cardElevation="4dp">
+        card_view:cardCornerRadius="@dimen/size_small"
+        card_view:cardElevation="@dimen/size_small">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_weather_forecast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/size_medium"
+            android:layout_marginBottom="@dimen/size_medium"
             android:layout_gravity="center"/>
     </android.support.v7.widget.CardView>
     <TextView android:id="@+id/link_to_meteoservice"
         style="@style/style_forecast_link_to_meteoservice_text"
-        android:text="Предоставлено Meteoservice.ru \n https://www.meteoservice.ru"/>
+        android:text="@string/text_meteoservice_ru"/>
 </LinearLayout>

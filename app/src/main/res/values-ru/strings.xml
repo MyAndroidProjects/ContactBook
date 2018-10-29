@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Contacts And Weather</string>
+
+    <!-- main activity -->
+    <string name="image_contact_book_content_description">Картинка книги контактов</string>
+    <string name="animation_link_to_weather_content_description">Анимация изменения погоды</string>
+
+    <!-- contacts toolbar and menu -->
+    <string name="contacts_toolbar_title">Контакты</string>
+    <string name="menu_item_contacts_add_contact_title">Добавить контакт</string>
+    <string name="menu_item_contacts_quit_title">Выйти</string>
+
+    <!-- button Panel -->
+    <string name="button_panel_edit">Ред</string>
+    <string name="button_panel_delete">Удал</string>
+    <string name="button_panel_add">Добав</string>
+    <string name="button_panel_call">Звонок</string>
+
+    <!-- contact info, edit contact -->
+    <string name="label_first_name">Имя:</string>
+    <string name="label_second_name">Второе имя:</string>
+    <string name="label_patronymic">Отчество:</string>
+    <string name="label_last_name">Фамилия:</string>
+    <string name="label_mobile_phone">Мобильный телефон:</string>
+    <string name="label_home_phone">Домашний телефон:</string>
+    <string name="label_personal_website">Личный сайт:</string>
+    <string name="label_e_mail">Электронная почта:</string>
+    <string name="title_address">---Адрес---</string>
+    <string name="label_flat">Квартира:</string>
+    <string name="label_house">Дом:</string>
+    <string name="label_street">Улица:</string>
+    <string name="label_city">Город:</string>
+    <string name="label_state">Область/Штат:</string>
+    <string name="label_country">Страна:</string>
+    <string name="label_post_code">Почтовый индекс:</string>
+
+    <!-- edit contact -->
+    <string name="edit_button_clear_text">Сброс</string>
+    <string name="edit_button_close_text">Закр.</string>
+    <string name="edit_button_save_contact_text">Сохр.</string>
+    <string name="edit_button_ok_text">ОК</string>
+
+    <!-- dialog delete contact -->
+    <string name="dialog_delete_button_positive">да</string>
+    <string name="dialog_delete_button_negative">нет</string>
+
+    <!-- dialog delete contact -->
+    <string name="label_forecast_temperature">Температура:</string>
+    <string name="label_forecast_heat">Ощущается:</string>
+    <string name="label_forecast_cloudiness">Облачность:</string>
+    <string name="label_forecast_precipitation">Осадки:</string>
+    <string name="label_forecast_wind">Ветер:</string>
+    <string name="label_forecast_pressure">Давление:</string>
+    <string name="label_forecast_relative_wet">Влажность:</string>
+
+    <!--  weather forecast activity -->
+    <string name="start_message">Загрузка...</string>
+    <string name="text_meteoservice_ru">Предоставлено Meteoservice.ru\nhttps://www.meteoservice.ru</string>
+
+    <!--  weather forecast toolbar and menu -->
+    <string name="weather_forecast_toolbar_title">Погода</string>
+    <string name="menu_item_update_forecast">Обновить</string>
+
+
+</resources>

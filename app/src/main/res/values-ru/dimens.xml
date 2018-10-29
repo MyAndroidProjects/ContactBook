@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fragment_button_panel_padding_right">@dimen/size_xsmall</dimen>
+</resources>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="30dp"
-    android:layout_height="30dp">
+    android:layout_width="@dimen/size_xlarge"
+    android:layout_height="@dimen/size_xlarge">
     <TextView
         android:id="@+id/letter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/contactPrimaryBackground"
         android:layout_gravity="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_large"
         android:rotation="90">
     </TextView>
 </FrameLayout>
