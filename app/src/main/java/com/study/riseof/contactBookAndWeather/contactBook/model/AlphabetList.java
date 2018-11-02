@@ -9,15 +9,16 @@ public class AlphabetList {
     private final int LETTER_CODE_Z=90; */
 
     // тут вполне хватит обычного массива, но использовал List, чтобы было
-   public static List<Character> alphabet;
+    public static List<Character> alphabet;
+
     static {
         alphabet = new ArrayList<Character>();
-        for (char c='A'; c<='Z'; c++){
+        for (char c = 'A'; c <= 'Z'; c++) {
             alphabet.add(c);
         }
     }
 
-    public AlphabetList(){
+    public AlphabetList() {
     }
 
     // ??? второй способ создания алфавита, какой лучше?
@@ -30,7 +31,7 @@ public class AlphabetList {
         Log.d("mylog","создание алфавита "+Character.toString(alphabet.get(0)));
     }*/
 
-    public static List<Character> getAlphabet(){
+    public static List<Character> getAlphabet() {
         return alphabet;
     }
 }

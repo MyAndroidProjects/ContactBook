@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -20,14 +21,15 @@ import butterknife.Unbinder;
 
 public class SeekBarFragment extends Fragment {
 
-    private final float PADDING_PART_OF_FRAGMENT=0.1f;
+    private final float PADDING_PART_OF_FRAGMENT = 0.1f;
 
     private View view;
     private Unbinder unbinder;
     private SeekBarProgressListener seekBarListener;
     private int fragmentHeight;
 
-    @Nullable @BindView(R.id.window_height_seek_bar)
+    @Nullable
+    @BindView(R.id.window_height_seek_bar)
     SeekBar windowHeightBar;
 
     // onAttach(Context) не вызовется до API 23 версии
@@ -59,7 +61,7 @@ public class SeekBarFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_seek_bar, container, false);
         unbinder = ButterKnife.bind(this, view);
         windowHeightBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -80,10 +82,10 @@ public class SeekBarFragment extends Fragment {
         view.post(new Runnable() {
             @Override
             public void run() {
-                fragmentHeight=view.getHeight();
+                fragmentHeight = view.getHeight();
                 ViewGroup.LayoutParams lp = windowHeightBar.getLayoutParams();
                 lp.width = fragmentHeight; //public LayoutParams(int width, int height)
-                windowHeightBar.setPadding((int)(fragmentHeight*PADDING_PART_OF_FRAGMENT),0,(int)(fragmentHeight*PADDING_PART_OF_FRAGMENT),0);
+                windowHeightBar.setPadding((int) (fragmentHeight * PADDING_PART_OF_FRAGMENT), 0, (int) (fragmentHeight * PADDING_PART_OF_FRAGMENT), 0);
                 seekBarListener.changeSeekBarProgress(windowHeightBar.getProgress());
             }
         });
@@ -97,6 +99,6 @@ public class SeekBarFragment extends Fragment {
     }
 
     public interface SeekBarProgressListener {
-        public void changeSeekBarProgress(int progress);
+        void changeSeekBarProgress(int progress);
     }
 }

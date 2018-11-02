@@ -2,20 +2,20 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/size_small"/>
-            <solid android:color="@color/contactButtonBackgroundPressed"/>
+            <corners android:radius="@dimen/size_small" />
+            <solid android:color="@color/contactButtonBackgroundPressed" />
         </shape>
     </item>
-    <item android:state_focused="true" >
+    <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/size_small"/>
-            <solid android:color="@color/contactButtonBackgroundFocused"/>
+            <corners android:radius="@dimen/size_small" />
+            <solid android:color="@color/contactButtonBackgroundFocused" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/size_small"/>
-            <solid android:color="@color/contactButtonBackground"/>
+            <corners android:radius="@dimen/size_small" />
+            <solid android:color="@color/contactButtonBackground" />
         </shape>
     </item>
 </selector>

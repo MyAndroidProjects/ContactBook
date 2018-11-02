@@ -7,7 +7,8 @@ public class RandomContact {
     private static final String[] STATES;
     private static final String[] CITIES;
     private static final String[] STREETS;
-    static  {
+
+    static {
         COUNTRIES = new String[]{
                 "", "Russia", "England", "Germany", "France", "Sweden",
                 "Portugal", "Belgium", "Netherlands", "Spain", "Italy",
@@ -24,23 +25,23 @@ public class RandomContact {
                 "Quick", "Rapid", "Slow", "Swift", "Young"
         };
         STREETS = new String[]{
-                "","Albino", "Black", "Blue", "Gray", "Green",
+                "", "Albino", "Black", "Blue", "Gray", "Green",
                 "Indigo", "Magenta", "Ochre", "Orange", "Purple",
                 "Red", "Ruby", "Sepia", "White", "Yellow"
         };
     }
 
-    private final int LETTERS_QUANTITY=26;
-    private final int LETTER_CODE_UPPER_A=65;
-    private final int LETTER_CODE_LOWER_A=97;
-    private final int DIGIT_QUANTITY=10;
-    private final int POST_CODE_DIGIT_QUANTITY=6;
-    private final int FLATS_MAX_QUANTITY=330;
-    private final int HOUSES_MAX_QUANTITY=150;
-    private final int STRINGS_MIN_LENGTH=3;
-    private final int STRINGS_MAX_LENGTH=10;
-    private final int PHONE_NUMBER_MIN_LENGTH=7;
-    private final int PHONE_NUMBER_MAX_LENGTH=11;
+    private final int LETTERS_QUANTITY = 26;
+    private final int LETTER_CODE_UPPER_A = 65;
+    private final int LETTER_CODE_LOWER_A = 97;
+    private final int DIGIT_QUANTITY = 10;
+    private final int POST_CODE_DIGIT_QUANTITY = 6;
+    private final int FLATS_MAX_QUANTITY = 330;
+    private final int HOUSES_MAX_QUANTITY = 150;
+    private final int STRINGS_MIN_LENGTH = 3;
+    private final int STRINGS_MAX_LENGTH = 10;
+    private final int PHONE_NUMBER_MIN_LENGTH = 7;
+    private final int PHONE_NUMBER_MAX_LENGTH = 11;
     private final String EMPTY_STRING = "";
     private final int PROBABILITY_OF_EMPTY_STRING = 25;
     private final int HUNDRED_PERCENT = 100;
@@ -66,9 +67,9 @@ public class RandomContact {
     private String patronymicInitialLetter;
     private String lastNameInitialLetter;
 
-    Random rand = new Random();
+    private Random rand = new Random();
 
-    public  RandomContact(){
+    public RandomContact() {
         setCity();
         setCountry();
         setEMail();
@@ -168,57 +169,57 @@ public class RandomContact {
 
     private void setFirstName() {
         String firstName;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            firstName =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            firstName = EMPTY_STRING;
         } else {
-            firstName=randomUpperLetter();
-            firstName+=wordImitationInLowerCase();
+            firstName = randomUpperLetter();
+            firstName += wordImitationInLowerCase();
         }
         this.firstName = firstName;
     }
 
     private void setSecondName() {
         String secondName;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            secondName =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            secondName = EMPTY_STRING;
         } else {
-            secondName=randomUpperLetter();
-            secondName+=wordImitationInLowerCase();
+            secondName = randomUpperLetter();
+            secondName += wordImitationInLowerCase();
         }
         this.secondName = secondName;
     }
 
     private void setLastName() {
         String lastName;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            lastName =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            lastName = EMPTY_STRING;
         } else {
-            lastName=randomUpperLetter();
-            lastName+=wordImitationInLowerCase();
+            lastName = randomUpperLetter();
+            lastName += wordImitationInLowerCase();
         }
         this.lastName = lastName;
     }
 
     private void setPatronymic() {
         String patronymic;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            patronymic =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            patronymic = EMPTY_STRING;
         } else {
-            patronymic=randomUpperLetter();
-            patronymic+=wordImitationInLowerCase();
+            patronymic = randomUpperLetter();
+            patronymic += wordImitationInLowerCase();
         }
         this.patronymic = patronymic;
     }
 
     private void setHomePhone() {
         String homePhone;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            homePhone=EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            homePhone = EMPTY_STRING;
         } else {
-            homePhone="+";
-            int length=rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
-            for (int i=0;i < length ;i++){
-                homePhone+=((Integer)rand.nextInt(DIGIT_QUANTITY)).toString();
+            homePhone = "+";
+            int length = rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
+            for (int i = 0; i < length; i++) {
+                homePhone += ((Integer) rand.nextInt(DIGIT_QUANTITY)).toString();
             }
         }
         this.homePhone = homePhone;
@@ -226,26 +227,26 @@ public class RandomContact {
 
     private void setEMail() {
         String eMail;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            eMail =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            eMail = EMPTY_STRING;
         } else {
-            eMail=wordImitationInLowerCase();
-            eMail+="@";
-            eMail+=wordImitationInLowerCase();
-            eMail+=".com";
+            eMail = wordImitationInLowerCase();
+            eMail += "@";
+            eMail += wordImitationInLowerCase();
+            eMail += ".com";
         }
         this.eMail = eMail;
     }
 
     private void setMobilePhone() {
         String mobilePhone;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            mobilePhone=EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            mobilePhone = EMPTY_STRING;
         } else {
-            mobilePhone="+";
-            int length=rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
-            for (int i=0;i < length ;i++){
-                mobilePhone+=((Integer)rand.nextInt(DIGIT_QUANTITY)).toString();
+            mobilePhone = "+";
+            int length = rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
+            for (int i = 0; i < length; i++) {
+                mobilePhone += ((Integer) rand.nextInt(DIGIT_QUANTITY)).toString();
             }
         }
         this.mobilePhone = mobilePhone;
@@ -253,12 +254,12 @@ public class RandomContact {
 
     private void setPersonalWebsite() {
         String personalWebsite;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            personalWebsite =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            personalWebsite = EMPTY_STRING;
         } else {
-            personalWebsite="www.";
-            personalWebsite+=wordImitationInLowerCase();
-            personalWebsite+=".com";
+            personalWebsite = "www.";
+            personalWebsite += wordImitationInLowerCase();
+            personalWebsite += ".com";
         }
         this.personalWebsite = personalWebsite;
     }
@@ -268,16 +269,16 @@ public class RandomContact {
     }
 
     private void setFlat() {
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            this.flat =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            this.flat = EMPTY_STRING;
         } else {
             this.flat = ((Integer) rand.nextInt(FLATS_MAX_QUANTITY)).toString();
         }
     }
 
     private void setHouse() {
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            this.house =EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            this.house = EMPTY_STRING;
         } else {
             this.house = ((Integer) rand.nextInt(HOUSES_MAX_QUANTITY)).toString();
         }
@@ -289,12 +290,12 @@ public class RandomContact {
 
     private void setPostCode() {
         String postCode;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING){
-            postCode=EMPTY_STRING;
+        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
+            postCode = EMPTY_STRING;
         } else {
-            postCode=EMPTY_STRING;
-            for (int i=0;i<POST_CODE_DIGIT_QUANTITY;i++){
-                postCode+=((Integer)rand.nextInt(DIGIT_QUANTITY)).toString();
+            postCode = EMPTY_STRING;
+            for (int i = 0; i < POST_CODE_DIGIT_QUANTITY; i++) {
+                postCode += ((Integer) rand.nextInt(DIGIT_QUANTITY)).toString();
             }
         }
         this.postCode = postCode;
@@ -308,30 +309,30 @@ public class RandomContact {
         this.street = STREETS[rand.nextInt(STREETS.length)];
     }
 
-    private String randomLowerLetter(){
-        Character letter = (char)(rand.nextInt(LETTERS_QUANTITY) + LETTER_CODE_LOWER_A);
-        return  letter.toString();
+    private String randomLowerLetter() {
+        Character letter = (char) (rand.nextInt(LETTERS_QUANTITY) + LETTER_CODE_LOWER_A);
+        return letter.toString();
     }
 
-    private String randomUpperLetter(){
-        Character letter = (char)(rand.nextInt(LETTERS_QUANTITY) + LETTER_CODE_UPPER_A);
-        return  letter.toString();
+    private String randomUpperLetter() {
+        Character letter = (char) (rand.nextInt(LETTERS_QUANTITY) + LETTER_CODE_UPPER_A);
+        return letter.toString();
     }
 
-    private String wordImitationInLowerCase(){
-        String word=EMPTY_STRING;
-        int length=rand.nextInt(STRINGS_MAX_LENGTH - STRINGS_MIN_LENGTH) + STRINGS_MIN_LENGTH;
-        for (int i=0;i < length; i++){
-            word+=randomLowerLetter();
+    private String wordImitationInLowerCase() {
+        String word = EMPTY_STRING;
+        int length = rand.nextInt(STRINGS_MAX_LENGTH - STRINGS_MIN_LENGTH) + STRINGS_MIN_LENGTH;
+        for (int i = 0; i < length; i++) {
+            word += randomLowerLetter();
         }
         return word;
     }
 
-    private String getInitialLetter(String word){
+    private String getInitialLetter(String word) {
         String letter;
-        if(word.equals("")){
-            letter=EMPTY_STRING;
-        }else {
+        if (word.equals("")) {
+            letter = EMPTY_STRING;
+        } else {
             letter = String.valueOf(word.charAt(INITIAL_LETTER_INDEX));
         }
         return letter;
@@ -339,40 +340,40 @@ public class RandomContact {
 
     private void setFirstNameInitialLetter() {
         String letter = getInitialLetter(firstName);
-        if (letter.equals("")){
-            letter=EMPTY_STRING;
-        }else {
-            letter+=".";
+        if (letter.equals("")) {
+            letter = EMPTY_STRING;
+        } else {
+            letter += ".";
         }
         this.firstNameInitialLetter = letter;
     }
 
     private void setSecondNameInitialLetter() {
         String letter = getInitialLetter(secondName);
-        if (letter.equals("")){
-            letter=EMPTY_STRING;
-        }else {
-            letter+=".";
+        if (letter.equals("")) {
+            letter = EMPTY_STRING;
+        } else {
+            letter += ".";
         }
         this.secondNameInitialLetter = letter;
     }
 
     private void setPatronymicInitialLetter() {
         String letter = getInitialLetter(patronymic);
-        if (letter.equals("")){
-            letter=EMPTY_STRING;
-        }else {
-            letter+=".";
+        if (letter.equals("")) {
+            letter = EMPTY_STRING;
+        } else {
+            letter += ".";
         }
         this.patronymicInitialLetter = letter;
     }
 
     private void setLastNameInitialLetter() {
         String letter = getInitialLetter(lastName);
-        if (letter.equals("")){
-            letter=EMPTY_STRING;
-        }else {
-            letter+=".";
+        if (letter.equals("")) {
+            letter = EMPTY_STRING;
+        } else {
+            letter += ".";
         }
         this.lastNameInitialLetter = letter;
     }

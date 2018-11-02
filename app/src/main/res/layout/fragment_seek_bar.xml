@@ -2,13 +2,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <SeekBar android:id="@+id/window_height_seek_bar"
-        android:rotation="@integer/seek_bar_rotation"
+
+    <SeekBar
+        android:id="@+id/window_height_seek_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@color/contactPrimaryBackground"
         android:max="@integer/seek_bar_maximum"
-        android:min="@integer/seek_bar_minimum"
         android:progress="@integer/seek_bar_default_progress"
-        android:background="@color/contactPrimaryBackground"/>
+        android:rotation="@integer/seek_bar_rotation" />
 </FrameLayout>

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class ContactListFragment extends Fragment {
 
     private Unbinder unbinder;
     private ContactBaseManager contactBaseManager;
-    private ArrayList<AbbreviatedContact> contacts = new ArrayList();
+    private ArrayList<AbbreviatedContact> contacts = new ArrayList<>();
     private ContactListAdapter contactAdapter;
     private View view;
     private ContactListClickListener contactClickListener;
@@ -56,25 +57,26 @@ public class ContactListFragment extends Fragment {
 
     protected void onAttachToContext(Context context) {
         try {
-            contactClickListener = (ContactListClickListener)context;
+            contactClickListener = (ContactListClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement ContactListClickListener");
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_contact_list, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
         Bundle args = getArguments();
+        assert args != null;
         selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
         setContactArrayAdapter();
         // ??? как лучше ставить обработчик, ниже два варианта:
         AdapterView.OnItemClickListener abbreviatedContactListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                AbbreviatedContact abbreviatedContact = (AbbreviatedContact)parent.getItemAtPosition(position);
+                AbbreviatedContact abbreviatedContact = (AbbreviatedContact) parent.getItemAtPosition(position);
                 contactClickListener.onContactItemClick(abbreviatedContact.getItemId());
             }
         };
@@ -92,7 +94,7 @@ public class ContactListFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(!selectedLetter.equals(EMPTY_STRING)){
+        if (!selectedLetter.equals(EMPTY_STRING)) {
             showContactsByFirstLetter(selectedLetter);
         }
     }
@@ -103,8 +105,8 @@ public class ContactListFragment extends Fragment {
         unbinder.unbind();
     }
 
-    public void showContactsByFirstLetter(String letter){
-        this.selectedLetter=letter;
+    public void showContactsByFirstLetter(String letter) {
+        this.selectedLetter = letter;
         ArrayList<AbbreviatedContact> selectedContacts = contactBaseManager.getAbbrContactListByFirstLetter(letter);
         setContacts(selectedContacts);
         setContactArrayAdapter();
@@ -114,12 +116,12 @@ public class ContactListFragment extends Fragment {
         this.contacts = contacts;
     }
 
-    public void setContactArrayAdapter(){
+    public void setContactArrayAdapter() {
         contactAdapter = new ContactListAdapter(getContext(), R.layout.item_list_view_contact, contacts);
         contactListView.setAdapter(contactAdapter);
     }
 
     public interface ContactListClickListener {
-        public void onContactItemClick(int id);
+        void onContactItemClick(int id);
     }
 }

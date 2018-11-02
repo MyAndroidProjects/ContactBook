@@ -3,7 +3,8 @@
     package="com.study.riseof.contactBookAndWeather">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,11 +24,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.study.riseof.contactBookAndWeather.MainActivity" />
         </activity>
-        <activity android:name=".contactBook.ui.activity.EditContactActivity"/>
+        <activity android:name=".contactBook.ui.activity.EditContactActivity" />
         <activity android:name=".weather.ui.activity.WeatherForecastActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.study.riseof.contactBookAndWeather.MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.study.riseof.contactBookAndWeather.MainActivity" />
         </activity>
     </application>
 

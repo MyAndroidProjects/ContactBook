@@ -79,7 +79,7 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
         @BindView(R.id.forecast_relative_wet_value)
         TextView forecastRelativeWetValue;
 
-        public Holder(View itemView) {
+        Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

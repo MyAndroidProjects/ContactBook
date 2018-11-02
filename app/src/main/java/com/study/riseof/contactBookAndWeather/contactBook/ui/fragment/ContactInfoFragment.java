@@ -1,6 +1,7 @@
 package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,42 +19,61 @@ import butterknife.Unbinder;
 public class ContactInfoFragment extends Fragment {
     private Unbinder unbinder;
 
-    @BindView(R.id.text_first_name) TextView firstNameText;
-    @BindView(R.id.text_second_name) TextView secondNameText;
-    @BindView(R.id.text_patronymic) TextView patronymicText;
-    @BindView(R.id.text_last_name) TextView lastNameText;
-    @BindView(R.id.text_mobile_phone) TextView mobilePhoneText;
-    @BindView(R.id.text_home_phone) TextView homePhoneText;
-    @BindView(R.id.text_personal_website) TextView personalWebsiteText;
-    @BindView(R.id.text_e_mail) TextView eMailText;
-    @BindView(R.id.text_flat) TextView flatText;
-    @BindView(R.id.text_house) TextView houseText;
-    @BindView(R.id.text_street) TextView streetText;
-    @BindView(R.id.text_city) TextView cityText;
-    @BindView(R.id.text_state) TextView stateText;
-    @BindView(R.id.text_country) TextView countryText;
-    @BindView(R.id.text_post_code) TextView postCodeText;
+    @BindView(R.id.text_first_name)
+    TextView firstNameText;
+    @BindView(R.id.text_second_name)
+    TextView secondNameText;
+    @BindView(R.id.text_patronymic)
+    TextView patronymicText;
+    @BindView(R.id.text_last_name)
+    TextView lastNameText;
+    @BindView(R.id.text_mobile_phone)
+    TextView mobilePhoneText;
+    @BindView(R.id.text_home_phone)
+    TextView homePhoneText;
+    @BindView(R.id.text_personal_website)
+    TextView personalWebsiteText;
+    @BindView(R.id.text_e_mail)
+    TextView eMailText;
+    @BindView(R.id.text_flat)
+    TextView flatText;
+    @BindView(R.id.text_house)
+    TextView houseText;
+    @BindView(R.id.text_street)
+    TextView streetText;
+    @BindView(R.id.text_city)
+    TextView cityText;
+    @BindView(R.id.text_state)
+    TextView stateText;
+    @BindView(R.id.text_country)
+    TextView countryText;
+    @BindView(R.id.text_post_code)
+    TextView postCodeText;
 
-    private final String EMPTY_STRING="";
+    private final String EMPTY_STRING = "";
     private final int EMPTY_INDEX = -1;
 
-    ContactBaseManager contactBaseManager;
+    private ContactBaseManager contactBaseManager;
     private int selectedContactId;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact_info, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
         Bundle args = getArguments();
-        selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
+        if (args != null) {
+            selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
+        } else {
+            selectedContactId = EMPTY_INDEX;
+        }
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(selectedContactId != EMPTY_INDEX){
+        if (selectedContactId != EMPTY_INDEX) {
             setContactInfoById(selectedContactId);
         }
     }
@@ -68,7 +88,7 @@ public class ContactInfoFragment extends Fragment {
         setContactInfoText(contactBaseManager.getContactById(id));
     }
 
-    private void setContactInfoText(Contact contact){
+    private void setContactInfoText(Contact contact) {
         firstNameText.setText(contact.getFirstName());
         secondNameText.setText(contact.getSecondName());
         patronymicText.setText(contact.getPatronymic());
@@ -86,7 +106,7 @@ public class ContactInfoFragment extends Fragment {
         postCodeText.setText(contact.getPostCode());
     }
 
-    public void setEmptyStringsToText(){
+    public void setEmptyStringsToText() {
         firstNameText.setText(EMPTY_STRING);
         secondNameText.setText(EMPTY_STRING);
         patronymicText.setText(EMPTY_STRING);

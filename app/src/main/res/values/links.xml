@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  weather forecast activity -->
+    <string name="link_meteoservice_ru" translatable="false">https://xml.meteoservice.ru/export/gismeteo/point/99.xml</string>
+
+
+</resources>

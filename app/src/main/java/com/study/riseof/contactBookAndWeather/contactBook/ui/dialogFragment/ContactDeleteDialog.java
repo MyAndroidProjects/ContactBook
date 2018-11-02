@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +22,16 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class ContactDeleteDialog extends DialogFragment {
-    private final String EMPTY_STRING="";
+    private final String EMPTY_STRING = "";
     private final int EMPTY_INDEX = -1;
-    private final String TITLE_TEXT="Caution!";
-    private final String MESSAGE_TEXT="Delete\n";
+    private final String TITLE_TEXT = "Caution!";
+    private final String MESSAGE_TEXT = "Delete\n";
 
     private Unbinder unbinder;
     private int selectedContactId = EMPTY_INDEX;
     private String messageName = EMPTY_STRING;
 
-    DialogClickButtonPositiveListener dialogClickButtonPositiveListener;
+    private DialogClickButtonPositiveListener dialogClickButtonPositiveListener;
 
     @BindView(R.id.dialog_delete_text_message)
     TextView dialogTextMessage;
@@ -55,15 +56,15 @@ public class ContactDeleteDialog extends DialogFragment {
 
     protected void onAttachToContext(Context context) {
         try {
-            dialogClickButtonPositiveListener  = (DialogClickButtonPositiveListener)context;
+            dialogClickButtonPositiveListener = (DialogClickButtonPositiveListener) context;
         } catch (ClassCastException e) {
             //           Log.d("mylog",context.toString() + " must implement DialogClickButtonPositiveListener");
             throw new ClassCastException(context.toString() + " must implement DialogClickButtonPositiveListener");
         }
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_fragment_contact_delete, null);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_fragment_contact_delete, container);
         unbinder = ButterKnife.bind(this, view);
         selectedContactId = getArguments().getInt("selectedContactId");
         ContactBaseManager contactBaseManager = new ContactBaseManager(getContext());
@@ -71,7 +72,7 @@ public class ContactDeleteDialog extends DialogFragment {
         getDialog().setTitle(TITLE_TEXT);
         getDialog().setCancelable(false); //не работает
         dialogTextMessage.setText(MESSAGE_TEXT);
-        messageName = abbreviatedContact.getContactName()+" ?";
+        messageName = abbreviatedContact.getContactName() + " ?";
         dialogTextContactName.setText(messageName);
         return view;
     }
@@ -96,7 +97,7 @@ public class ContactDeleteDialog extends DialogFragment {
     }
 
     public interface DialogClickButtonPositiveListener {
-        public void dialogClickButtonPositive();
+        void dialogClickButtonPositive();
     }
 
 /*

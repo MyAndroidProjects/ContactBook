@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/size_xlarge"
     android:layout_height="@dimen/size_xlarge">
+
     <TextView
         android:id="@+id/letter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/contactPrimaryBackground"
         android:layout_gravity="center"
-        android:textSize="@dimen/text_size_large"
-        android:rotation="90">
-    </TextView>
+        android:background="@color/contactPrimaryBackground"
+        android:rotation="@integer/alphabet_item_rotation"
+        android:textSize="@dimen/text_size_large" />
 </FrameLayout>

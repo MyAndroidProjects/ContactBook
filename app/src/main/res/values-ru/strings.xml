@@ -3,7 +3,7 @@
 
     <!-- main activity -->
     <string name="image_contact_book_content_description">Картинка книги контактов</string>
-    <string name="animation_link_to_weather_content_description">Анимация изменения погоды</string>
+    <string name="weather_changing_animation">Анимация изменения погоды</string>
 
     <!-- contacts toolbar and menu -->
     <string name="contacts_toolbar_title">Контакты</string>
@@ -34,6 +34,22 @@
     <string name="label_country">Страна:</string>
     <string name="label_post_code">Почтовый индекс:</string>
 
+    <string name="hint_first_name">Имя</string>
+    <string name="hint_second_name">Второе имя</string>
+    <string name="hint_patronymic">Отчество</string>
+    <string name="hint_last_name">Фамилия</string>
+    <string name="hint_mobile_phone">Мобильный телефон</string>
+    <string name="hint_home_phone">Домашний телефон</string>
+    <string name="hint_personal_website">Личный сайт</string>
+    <string name="hint_e_mail">Электронная почта</string>
+    <string name="hint_flat">Квартира</string>
+    <string name="hint_house">Дом</string>
+    <string name="hint_street">Улица</string>
+    <string name="hint_city">Город</string>
+    <string name="hint_state">Область/Штат</string>
+    <string name="hint_country">Страна</string>
+    <string name="hint_post_code">Почтовый индекс</string>
+
     <!-- edit contact -->
     <string name="edit_button_clear_text">Сброс</string>
     <string name="edit_button_close_text">Закр.</string>
@@ -54,7 +70,6 @@
     <string name="label_forecast_relative_wet">Влажность:</string>
 
     <!--  weather forecast activity -->
-    <string name="start_message">Загрузка...</string>
     <string name="text_meteoservice_ru">Предоставлено Meteoservice.ru\nhttps://www.meteoservice.ru</string>
 
     <!--  weather forecast toolbar and menu -->
