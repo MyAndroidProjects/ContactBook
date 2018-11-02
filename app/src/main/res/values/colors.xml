@@ -58,7 +58,7 @@
     <color name="weatherForecastSecondaryBackground">@color/colorLightGreyBlue</color>
     <color name="weatherForecastTertiaryBackground">@color/colorBlue</color>
     <color name="weatherForecastCardViewBackground">@color/colorGreyBlue</color>
-    <color name="weatherLinkTometeoserviceBackground">@color/colorGreyBlue</color>
+    <color name="weatherLinkToMeteoserviceBackground">@color/colorGreyBlue</color>
 
     <color name="weatherDateTimeText">@color/colorDarkBlue</color>
     <color name="weatherDateTimeTextShadow">@color/colorPurple</color>

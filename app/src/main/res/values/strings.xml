@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Contacts And Weather</string>
 
+    <string name="current_language">English</string>
+
     <!-- main activity -->
     <string name="image_contact_book_content_description">Contact book picture</string>
     <string name="weather_changing_animation">Weather changing animation</string>
@@ -60,7 +62,7 @@
     <string name="dialog_delete_button_positive">yes</string>
     <string name="dialog_delete_button_negative">no</string>
 
-    <!-- dialog delete contact -->
+    <!-- dialog forecast -->
     <string name="label_forecast_temperature">Temperature:</string>
     <string name="label_forecast_heat">Feels like:</string>
     <string name="label_forecast_cloudiness">Cloudiness:</string>
@@ -68,6 +70,9 @@
     <string name="label_forecast_wind">Wind:</string>
     <string name="label_forecast_pressure">Pressure:</string>
     <string name="label_forecast_relative_wet">Relative wet:</string>
+    <string name="norse_latitude">N</string>
+    <string name="east_longitude">E</string>
+    <string name="loading">Loading&#8230;</string>
 
     <!--  weather forecast activity -->
     <string name="text_meteoservice_ru">Provided by Meteoservice.ru\nhttps://www.meteoservice.ru</string>

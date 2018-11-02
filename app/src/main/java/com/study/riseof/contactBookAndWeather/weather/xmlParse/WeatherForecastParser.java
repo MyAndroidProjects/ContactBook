@@ -2,6 +2,7 @@ package com.study.riseof.contactBookAndWeather.weather.xmlParse;
 
 import android.util.Log;
 
+import com.study.riseof.contactBookAndWeather.weather.model.Town;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -14,30 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherForecastParser {
-    private enum TownInfo {
-        TOWN_INDEX(0),
-        NAME(1),
-        LATITUDE(2),
-        LONGITUDE(3);
-        // на случай выбора города. Положительные: северная широта и восточная долгота, отрицательные: южная широта, западная долгота
-        private int index;
 
-        TownInfo(int index) {
-            this.index = index;
-        }
-    }
-
-    private enum TownList {
-        NOVOSIBIRSK("99", "Novosibirsk");
-
-        String index;
-        String name;
-
-        TownList(String index, String name) {
-            this.index = index;
-            this.name = name;
-        }
-    }
 
     private enum TagName {
         MMWEATHER("MMWEATHER"),
@@ -96,7 +74,7 @@ public class WeatherForecastParser {
 
     private final String EMPTY_STRING = "";
 
-    private String[] town;
+    private Town town;
     private List<WeatherForecast> weatherForecasts = new ArrayList<WeatherForecast>();
 
     public boolean parse(String xmlData) {
@@ -170,7 +148,7 @@ public class WeatherForecastParser {
                 // следующий элемент
                 xpp.next();
             }
-            Log.d("myLog", "END_DOCUMENT");
+            Log.d("myLog", "end document");
         } catch (XmlPullParserException ex) {
             Log.e("myTag", "XmlPullParserException: " + ex.getMessage());
         } catch (IOException ex) {
@@ -193,22 +171,10 @@ public class WeatherForecastParser {
                 longitude = xpp.getAttributeValue(i);
             }
         }
-        setTown(townIndex, latitude, longitude);
+        town = new Town(townIndex, latitude, longitude);
     }
 
-    private void setTown(String townIndex, String latitude, String longitude) {
-        town = new String[TownInfo.values().length];
-        town[TownInfo.TOWN_INDEX.index] = townIndex;
-        town[TownInfo.LATITUDE.index] = latitude;
-        town[TownInfo.LONGITUDE.index] = longitude;
-        for (TownList value : TownList.values()) {
-            if (townIndex.equals(value.index)) {
-                town[TownInfo.NAME.index] = value.name;
-            }
-        }
-    }
-
-    public String[] getTown() {
+    public Town getTown() {
         return town;
     }
 

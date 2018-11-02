@@ -1,5 +1,12 @@
 package com.study.riseof.contactBookAndWeather.weather.model;
 
+import com.study.riseof.contactBookAndWeather.MainActivity;
+import com.study.riseof.contactBookAndWeather.MainActivity.Language;
+import com.study.riseof.contactBookAndWeather.R;
+
+import static com.study.riseof.contactBookAndWeather.MainActivity.Language.ENGLISH;
+import static com.study.riseof.contactBookAndWeather.MainActivity.Language.RUSSIAN;
+
 public class WeatherForecast {
 
     private enum Tod {
@@ -13,6 +20,22 @@ public class WeatherForecast {
         String dayPart;
 
         Tod(String index, String dayPart) {
+            this.index = index;
+            this.dayPart = dayPart;
+        }
+    }
+
+    private enum TodRu {
+        // tod - время суток, для которого составлен прогноз: 0 - ночь 1 - утро, 2 - день, 3 - вечер
+        NIGHT("0", "Ночь"),
+        MORNING("1", "Утро"),
+        DAY("2", "День"),
+        EVENING("3", "Вечер");
+
+        String index;
+        String dayPart;
+
+        TodRu(String index, String dayPart) {
             this.index = index;
             this.dayPart = dayPart;
         }
@@ -37,18 +60,54 @@ public class WeatherForecast {
         }
     }
 
+    private enum WeekdayRu {
+        //weekday -	день недели, 1 - воскресенье, 2 - понедельник, и т.д.
+        SUNDAY("1", "Воскресенье"),
+        MONDAY("2", "Понедельник"),
+        TUESDAY("3", "Вторник"),
+        WEDNESDAY("4", "Среда"),
+        THURSDAY("5", "Четверг"),
+        FRIDAY("6", "Пятница"),
+        SATURDAY("7", "Суббота");
+
+        String index;
+        String name;
+
+        WeekdayRu(String index, String name) {
+            this.index = index;
+            this.name = name;
+        }
+    }
+
     private enum Cloudiness {
         //cloudiness -	облачность по градациям: -1 - туман, 0 - ясно, 1 - малооблачно, 2 - облачно, 3 - пасмурно
         FOG("-1", "fog"),
         CLEAR("0", "clear"),
         LOW_CLOUD("1", "low cloud"),
         CLOUDY("2", "cloudy"),
-        OVERCAST("3", "overcast ");
+        OVERCAST("3", "overcast");
 
         String index;
         String name;
 
         Cloudiness(String index, String name) {
+            this.index = index;
+            this.name = name;
+        }
+    }
+
+    private enum CloudinessRu {
+        //cloudiness -	облачность по градациям: -1 - туман, 0 - ясно, 1 - малооблачно, 2 - облачно, 3 - пасмурно
+        FOG("-1", "туман"),
+        CLEAR("0", "ясно"),
+        LOW_CLOUD("1", "малооблачно"),
+        CLOUDY("2", "облачно"),
+        OVERCAST("3", "пасмурно");
+
+        String index;
+        String name;
+
+        CloudinessRu(String index, String name) {
             this.index = index;
             this.name = name;
         }
@@ -74,6 +133,26 @@ public class WeatherForecast {
         }
     }
 
+    private enum PrecipitationRu {
+        // precipitation -	тип осадков: 3 - смешанные, 4 - дождь, 5 - ливень, 6,7 – снег, 8 - гроза, 9 - нет данных, 10 - без осадков
+        MIXED("3", "смешанные"),
+        RAIN("4", "дождь"),
+        CLOUDBURST("5", "ливень"),
+        SNOW("6", "снег"),
+        WET_SNOW("7", "мокрый снег"),
+        THUNDERSTORM("8", "гроза"),
+        NO_DATA("9", "нет данных"),
+        NO_PRECIPITATION("10", "без осадков");
+
+        String index;
+        String name;
+
+        PrecipitationRu(String index, String name) {
+            this.index = index;
+            this.name = name;
+        }
+    }
+
     private enum WindDirection {
         // direction - направление ветра , 0 - северный, 1 - северо-восточный, и т.д
         N("0", "N"),
@@ -94,8 +173,35 @@ public class WeatherForecast {
         }
     }
 
-    private int DEGREE_SYMBOL_CODE = 186;
+    private enum WindDirectionRu {
+        // direction - направление ветра , 0 - северный, 1 - северо-восточный, и т.д
+        N("0", "С"),
+        NE("1", "СВ"),
+        E("2", "В"),
+        SE("3", "ЮВ"),
+        S("4", "Ю"),
+        SW("5", "ЮЗ"),
+        W("6", "З"),
+        NW("7", "СЗ");
 
+        String index;
+        String name;
+
+        WindDirectionRu(String index, String name) {
+            this.index = index;
+            this.name = name;
+        }
+    }
+
+    private int DEGREE_SYMBOL_CODE = 186;
+    private final String EMPTY_STRING = "";
+    private final String CELSIUS = "C";
+    private final String MM_HG = "mmHg";
+    private final String MM_HG_RU = "мм.рт.ст.";
+    private final String MS = "m/s";
+    private final String MS_RU = "м/с";
+
+    private MainActivity.Language language = ENGLISH;
     private String day;
     private String month;
     private String year;
@@ -141,21 +247,49 @@ public class WeatherForecast {
     }
 
     public void setTod(String tod) {
-        for (Tod val : Tod.values()) {
-            if (tod.equals(val.index)) {
-                this.tod = val.dayPart;
-                return;
-            }
+        switch (MainActivity.language) {
+            case ENGLISH:
+                for (Tod val : Tod.values()) {
+                    if (tod.equals(val.index)) {
+                        this.tod = val.dayPart;
+                        return;
+                    }
+                }
+                break;
+            case RUSSIAN:
+                for (TodRu val : TodRu.values()) {
+                    if (tod.equals(val.index)) {
+                        this.tod = val.dayPart;
+                        return;
+                    }
+                }
+                break;
+            default:
+                break;
         }
         this.tod = tod;
     }
 
     public void setWeekday(String weekday) {
-        for (Weekday val : Weekday.values()) {
-            if (weekday.equals(val.index)) {
-                this.weekday = val.name;
-                return;
-            }
+        switch (MainActivity.language) {
+            case ENGLISH:
+                for (Weekday val : Weekday.values()) {
+                    if (weekday.equals(val.index)) {
+                        this.weekday = val.name;
+                        return;
+                    }
+                }
+                break;
+            case RUSSIAN:
+                for (WeekdayRu val : WeekdayRu.values()) {
+                    if (weekday.equals(val.index)) {
+                        this.weekday = val.name;
+                        return;
+                    }
+                }
+                break;
+            default:
+                break;
         }
         this.weekday = weekday;
     }
@@ -165,21 +299,49 @@ public class WeatherForecast {
     }
 
     public void setCloudiness(String cloudiness) {
-        for (Cloudiness val : Cloudiness.values()) {
-            if (cloudiness.equals(val.index)) {
-                this.cloudiness = val.name;
-                return;
-            }
+        switch (MainActivity.language) {
+            case ENGLISH:
+                for (Cloudiness val : Cloudiness.values()) {
+                    if (cloudiness.equals(val.index)) {
+                        this.cloudiness = val.name;
+                        return;
+                    }
+                }
+                break;
+            case RUSSIAN:
+                for (CloudinessRu val : CloudinessRu.values()) {
+                    if (cloudiness.equals(val.index)) {
+                        this.cloudiness = val.name;
+                        return;
+                    }
+                }
+                break;
+            default:
+                break;
         }
         this.cloudiness = cloudiness;
     }
 
     public void setPrecipitation(String precipitation) {
-        for (Precipitation val : Precipitation.values()) {
-            if (precipitation.equals(val.index)) {
-                this.precipitation = val.name;
-                return;
-            }
+        switch (MainActivity.language) {
+            case ENGLISH:
+                for (Precipitation val : Precipitation.values()) {
+                    if (precipitation.equals(val.index)) {
+                        this.precipitation = val.name;
+                        return;
+                    }
+                }
+                break;
+            case RUSSIAN:
+                for (PrecipitationRu val : PrecipitationRu.values()) {
+                    if (precipitation.equals(val.index)) {
+                        this.precipitation = val.name;
+                        return;
+                    }
+                }
+                break;
+            default:
+                break;
         }
         this.precipitation = precipitation;
     }
@@ -218,11 +380,25 @@ public class WeatherForecast {
     }
 
     public void setWindDirection(String windDirection) {
-        for (WindDirection val : WindDirection.values()) {
-            if (windDirection.equals(val.index)) {
-                this.windDirection = val.name;
-                return;
-            }
+        switch (MainActivity.language) {
+            case ENGLISH:
+                for (WindDirection val : WindDirection.values()) {
+                    if (windDirection.equals(val.index)) {
+                        this.windDirection = val.name;
+                        return;
+                    }
+                }
+                break;
+            case RUSSIAN:
+                for (WindDirectionRu val : WindDirectionRu.values()) {
+                    if (windDirection.equals(val.index)) {
+                        this.windDirection = val.name;
+                        return;
+                    }
+                }
+                break;
+            default:
+                break;
         }
         this.windDirection = windDirection;
     }
@@ -304,7 +480,14 @@ public class WeatherForecast {
     }
 
     public String getPressure() {
-        return minPressure + ".." + maxPressure + " mmHg";
+        switch (MainActivity.language) {
+            case ENGLISH:
+                return minPressure + ".." + maxPressure + " " + MM_HG;
+            case RUSSIAN:
+                return minPressure + ".." + maxPressure + " " + MM_HG_RU;
+            default:
+                return EMPTY_STRING;
+        }
     }
 
     public String getMaxTemperature() {
@@ -316,7 +499,7 @@ public class WeatherForecast {
     }
 
     public String getTemperature() {
-        return minTemperature + ".." + maxTemperature + "," + ((char) DEGREE_SYMBOL_CODE) + "C";
+        return minTemperature + ".." + maxTemperature + "," + ((char) DEGREE_SYMBOL_CODE) + CELSIUS;
     }
 
     public String getMinWindSpeed() {
@@ -332,7 +515,14 @@ public class WeatherForecast {
     }
 
     public String getWind() {
-        return minWindSpeed + "-" + maxWindSpeed + " m/s, " + windDirection;
+        switch (MainActivity.language) {
+            case ENGLISH:
+                return minWindSpeed + "-" + maxWindSpeed + MS + " " + windDirection;
+            case RUSSIAN:
+                return minWindSpeed + "-" + maxWindSpeed + MS_RU + " " + windDirection;
+            default:
+                return EMPTY_STRING;
+        }
     }
 
     public String getMinRelativeWet() {
@@ -356,6 +546,6 @@ public class WeatherForecast {
     }
 
     public String getHeat() {
-        return maxHeat + ".." + maxHeat + "," + ((char) DEGREE_SYMBOL_CODE) + "C";
+        return maxHeat + ".." + maxHeat + "," + ((char) DEGREE_SYMBOL_CODE) + CELSIUS;
     }
 }

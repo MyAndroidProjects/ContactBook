@@ -25,7 +25,7 @@
     <color name="weatherForecastSecondaryBackground">@color/colorLightGreyGreen</color>
     <color name="weatherForecastTertiaryBackground">@color/colorGreen</color>
     <color name="weatherForecastCardViewBackground">@color/colorGreyGreen</color>
-    <color name="weatherLinkTometeoserviceBackground">@color/colorGreyGreen</color>
+    <color name="weatherLinkToMeteoserviceBackground">@color/colorGreyGreen</color>
 
     <color name="weatherDateTimeText">@color/colorDarkGreen</color>
     <color name="weatherDateTimeTextShadow">@color/colorSwamp</color>

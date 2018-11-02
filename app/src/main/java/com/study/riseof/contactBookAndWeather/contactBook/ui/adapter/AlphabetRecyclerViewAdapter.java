@@ -40,7 +40,7 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
         try {
             adapterLetterClickListener = (AdapterLetterClickListener) context;
         } catch (ClassCastException e) {
-            Log.d("mylog", context.toString() + " must implement AdapterLetterClickListener");
+            Log.d("myLog", context.toString() + " must implement AdapterLetterClickListener");
             throw new ClassCastException(context.toString() + " must implement AdapterLetterClickListener");
         }
     }

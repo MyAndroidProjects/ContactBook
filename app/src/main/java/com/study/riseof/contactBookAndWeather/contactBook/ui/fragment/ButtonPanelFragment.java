@@ -52,9 +52,15 @@ public class ButtonPanelFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_button_panel, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
-        Bundle args = getArguments();
-        selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
-        selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
+        if (getArguments() != null) {
+            Bundle args = getArguments();
+            selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
+            selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
+        } else {
+            selectedContactId = EMPTY_INDEX;
+            selectedLetter = EMPTY_STRING;
+        }
+
         return view;
     }
 

@@ -28,7 +28,7 @@ public class AlphabetList {
         for (int i=LETTER_CODE_A;i<=LETTER_CODE_Z;i++){
             alphabet.add((char)i);
         }
-        Log.d("mylog","создание алфавита "+Character.toString(alphabet.get(0)));
+        Log.d("myLog","создание алфавита "+Character.toString(alphabet.get(0)));
     }*/
 
     public static List<Character> getAlphabet() {

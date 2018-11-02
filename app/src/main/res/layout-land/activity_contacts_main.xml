@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="@integer/weight_sum_100">
+    android:background="@color/contactPrimaryBackground"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/contact_toolbar"
@@ -20,14 +20,17 @@
     <FrameLayout
         android:id="@+id/frame_alphabet_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/size_xlarge"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="10" />
+        android:paddingEnd="@dimen/size_xlarge"
+        android:paddingLeft="@dimen/size_xlarge"
+        android:paddingRight="@dimen/size_xlarge"
+        android:paddingStart="@dimen/size_xlarge" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="90"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -35,21 +38,18 @@
             android:id="@+id/frame_contact_list"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:layout_weight="40" />
 
         <FrameLayout
             android:id="@+id/frame_contact_info"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:layout_weight="45" />
 
         <FrameLayout
             android:id="@+id/frame_button_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:layout_weight="15" />
     </LinearLayout>
 </LinearLayout>
