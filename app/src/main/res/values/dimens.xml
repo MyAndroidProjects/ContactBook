@@ -7,6 +7,7 @@
     <dimen name="text_size_xlarge">24sp</dimen>
     <dimen name="text_size_xxlarge">28sp</dimen>
 
+    <dimen name="size_zero">0dp</dimen>
     <dimen name="size_xxxsmall">1dp</dimen>
     <dimen name="size_xxsmall">2dp</dimen>
     <dimen name="size_xsmall">4dp</dimen>

@@ -58,7 +58,7 @@ public class ContactDeleteDialog extends DialogFragment {
         try {
             dialogClickButtonPositiveListener = (DialogClickButtonPositiveListener) context;
         } catch (ClassCastException e) {
-            //           Log.d("mylog",context.toString() + " must implement DialogClickButtonPositiveListener");
+            //           Log.d("myLog",context.toString() + " must implement DialogClickButtonPositiveListener");
             throw new ClassCastException(context.toString() + " must implement DialogClickButtonPositiveListener");
         }
     }
@@ -66,7 +66,11 @@ public class ContactDeleteDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_fragment_contact_delete, container);
         unbinder = ButterKnife.bind(this, view);
-        selectedContactId = getArguments().getInt("selectedContactId");
+        if (getArguments() != null) {
+            selectedContactId = getArguments().getInt("selectedContactId", EMPTY_INDEX);
+        } else {
+            selectedContactId = EMPTY_INDEX;
+        }
         ContactBaseManager contactBaseManager = new ContactBaseManager(getContext());
         AbbreviatedContact abbreviatedContact = contactBaseManager.getAbbrContactById(selectedContactId);
         getDialog().setTitle(TITLE_TEXT);

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +27,7 @@ public class SeekBarFragment extends Fragment {
     private SeekBarProgressListener seekBarListener;
     private int fragmentHeight;
 
-    @Nullable
+
     @BindView(R.id.window_height_seek_bar)
     SeekBar windowHeightBar;
 

@@ -68,9 +68,12 @@ public class ContactListFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_contact_list, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
-        Bundle args = getArguments();
-        assert args != null;
-        selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
+        if (getArguments() != null) {
+            Bundle args = getArguments();
+            selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
+        } else {
+            selectedLetter = EMPTY_STRING;
+        }
         setContactArrayAdapter();
         // ??? как лучше ставить обработчик, ниже два варианта:
         AdapterView.OnItemClickListener abbreviatedContactListener = new AdapterView.OnItemClickListener() {
@@ -117,7 +120,9 @@ public class ContactListFragment extends Fragment {
     }
 
     public void setContactArrayAdapter() {
-        contactAdapter = new ContactListAdapter(getContext(), R.layout.item_list_view_contact, contacts);
+        if (getContext() != null) {
+            contactAdapter = new ContactListAdapter(getContext(), R.layout.item_list_view_contact, contacts);
+        }
         contactListView.setAdapter(contactAdapter);
     }
 

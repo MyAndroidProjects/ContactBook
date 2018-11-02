@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/contactPrimaryBackground"
     android:orientation="horizontal"
+    android:paddingEnd="@dimen/fragment_button_panel_padding_right"
+    android:paddingLeft="@dimen/size_zero"
     android:paddingRight="@dimen/fragment_button_panel_padding_right"
+    android:paddingStart="@dimen/size_zero"
     android:weightSum="@integer/weight_sum_100">
     <!-- android:textAllCaps="false" -->
     <Button
