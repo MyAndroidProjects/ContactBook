@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="@dimen/fragment_button_panel_padding_right"
     android:background="@color/contactPrimaryBackground"
+    android:orientation="horizontal"
+    android:paddingRight="@dimen/fragment_button_panel_padding_right"
     android:weightSum="@integer/weight_sum_100">
     <!-- android:textAllCaps="false" -->
-    <Button android:id="@+id/button_edit"
+    <Button
+        android:id="@+id/button_edit"
         style="@style/style_contact_button.port"
-        android:text="@string/button_panel_edit"/>
-    <Button android:id="@+id/button_delete"
+        android:text="@string/button_panel_edit" />
+
+    <Button
+        android:id="@+id/button_delete"
         style="@style/style_contact_button.port"
-        android:text="@string/button_panel_delete"/>
-    <Button android:id="@+id/button_add"
+        android:text="@string/button_panel_delete" />
+
+    <Button
+        android:id="@+id/button_add"
         style="@style/style_contact_button.port"
-        android:text="@string/button_panel_add"/>
-    <Button android:id="@+id/button_call"
+        android:text="@string/button_panel_add" />
+
+    <Button
+        android:id="@+id/button_call"
         style="@style/style_contact_button.port"
-        android:text="@string/button_panel_call"/>
+        android:text="@string/button_panel_call" />
 </LinearLayout>

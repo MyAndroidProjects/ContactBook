@@ -10,7 +10,7 @@
     <color name="colorDarkGreen">#27791e</color>
     <color name="colorBlackGreen">#144113</color>
     <color name="colorSwamp">#c5d179</color>
-    
+
 
     <!-- weather -->
     <color name="weatherToolbarText">@color/colorGreen</color>
@@ -25,7 +25,7 @@
     <color name="weatherForecastSecondaryBackground">@color/colorLightGreyGreen</color>
     <color name="weatherForecastTertiaryBackground">@color/colorGreen</color>
     <color name="weatherForecastCardViewBackground">@color/colorGreyGreen</color>
-    <color name="weatherLinkToMeteosericeBackground">@color/colorGreyGreen</color>
+    <color name="weatherLinkTometeoserviceBackground">@color/colorGreyGreen</color>
 
     <color name="weatherDateTimeText">@color/colorDarkGreen</color>
     <color name="weatherDateTimeTextShadow">@color/colorSwamp</color>

@@ -1,94 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView android:id="@+id/label_first_name"
+
+        <TextView
+            android:id="@+id/label_first_name"
             style="@style/style_contact_info_label"
-            android:text="@string/label_first_name"/>
-        <TextView android:id="@+id/text_first_name"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_second_name"
+            android:text="@string/label_first_name" />
+
+        <TextView
+            android:id="@+id/text_first_name"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_second_name"
             style="@style/style_contact_info_label"
-            android:text="@string/label_second_name"/>
-        <TextView android:id="@+id/text_second_name"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_patronymic"
+            android:text="@string/label_second_name" />
+
+        <TextView
+            android:id="@+id/text_second_name"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_patronymic"
             style="@style/style_contact_info_label"
-            android:text="@string/label_patronymic"/>
-        <TextView android:id="@+id/text_patronymic"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_last_name"
+            android:text="@string/label_patronymic" />
+
+        <TextView
+            android:id="@+id/text_patronymic"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_last_name"
             style="@style/style_contact_info_label"
-            android:text="@string/label_last_name"/>
-        <TextView android:id="@+id/text_last_name"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_mobile_phone"
+            android:text="@string/label_last_name" />
+
+        <TextView
+            android:id="@+id/text_last_name"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_mobile_phone"
             style="@style/style_contact_info_label"
-            android:text="@string/label_mobile_phone"/>
-        <TextView android:id="@+id/text_mobile_phone"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_home_phone"
+            android:text="@string/label_mobile_phone" />
+
+        <TextView
+            android:id="@+id/text_mobile_phone"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_home_phone"
             style="@style/style_contact_info_label"
-            android:text="@string/label_home_phone"/>
-        <TextView android:id="@+id/text_home_phone"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_e_mail"
+            android:text="@string/label_home_phone" />
+
+        <TextView
+            android:id="@+id/text_home_phone"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_e_mail"
             style="@style/style_contact_info_label"
-            android:text="@string/label_e_mail"/>
-        <TextView android:id="@+id/text_e_mail"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_personal_website"
+            android:text="@string/label_e_mail" />
+
+        <TextView
+            android:id="@+id/text_e_mail"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_personal_website"
             style="@style/style_contact_info_label"
-            android:text="@string/label_personal_website"/>
-        <TextView android:id="@+id/text_personal_website"
-            style="@style/style_contact_info_text"/>
+            android:text="@string/label_personal_website" />
+
+        <TextView
+            android:id="@+id/text_personal_website"
+            style="@style/style_contact_info_text" />
 
         <TextView
             style="@style/style_contact_info_label"
-            android:text=" "/>
-        <TextView android:id="@+id/title_address"
+            android:text="@string/empty_string" />
+
+        <TextView
+            android:id="@+id/title_address"
             style="@style/style_contact_info_label"
             android:gravity="center"
-            android:text="@string/title_address"/>
-        <TextView android:id="@+id/label_flat"
+            android:text="@string/title_address" />
+
+        <TextView
+            android:id="@+id/label_flat"
             style="@style/style_contact_info_label"
-            android:text="@string/label_flat"/>
-        <TextView android:id="@+id/text_flat"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_house"
+            android:text="@string/label_flat" />
+
+        <TextView
+            android:id="@+id/text_flat"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_house"
             style="@style/style_contact_info_label"
-            android:text="@string/label_house"/>
-        <TextView android:id="@+id/text_house"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_street"
+            android:text="@string/label_house" />
+
+        <TextView
+            android:id="@+id/text_house"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_street"
             style="@style/style_contact_info_label"
-            android:text="@string/label_street"/>
-        <TextView android:id="@+id/text_street"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_city"
+            android:text="@string/label_street" />
+
+        <TextView
+            android:id="@+id/text_street"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_city"
             style="@style/style_contact_info_label"
-            android:text="@string/label_city"/>
-        <TextView android:id="@+id/text_city"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_state"
+            android:text="@string/label_city" />
+
+        <TextView
+            android:id="@+id/text_city"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_state"
             style="@style/style_contact_info_label"
-            android:text="@string/label_state"/>
-        <TextView android:id="@+id/text_state"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_country"
+            android:text="@string/label_state" />
+
+        <TextView
+            android:id="@+id/text_state"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_country"
             style="@style/style_contact_info_label"
-            android:text="@string/label_country"/>
-        <TextView android:id="@+id/text_country"
-            style="@style/style_contact_info_text"/>
-        <TextView android:id="@+id/label_post_code"
+            android:text="@string/label_country" />
+
+        <TextView
+            android:id="@+id/text_country"
+            style="@style/style_contact_info_text" />
+
+        <TextView
+            android:id="@+id/label_post_code"
             style="@style/style_contact_info_label"
-            android:text="@string/label_post_code"/>
-        <TextView android:id="@+id/text_post_code"
-            style="@style/style_contact_info_text"/>
+            android:text="@string/label_post_code" />
+
+        <TextView
+            android:id="@+id/text_post_code"
+            style="@style/style_contact_info_text" />
     </LinearLayout>
 </ScrollView>

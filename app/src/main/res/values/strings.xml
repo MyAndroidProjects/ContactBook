@@ -3,7 +3,7 @@
 
     <!-- main activity -->
     <string name="image_contact_book_content_description">Contact book picture</string>
-    <string name="animation_link_to_weather_content_description">Weather animation</string>
+    <string name="weather_changing_animation">Weather changing animation</string>
 
     <!-- contacts toolbar and menu -->
     <string name="contacts_toolbar_title">Contacts</string>
@@ -34,17 +34,31 @@
     <string name="label_country">country:</string>
     <string name="label_post_code">post code:</string>
 
+    <string name="hint_first_name">first name</string>
+    <string name="hint_second_name">second name</string>
+    <string name="hint_patronymic">patronymic</string>
+    <string name="hint_last_name">last name</string>
+    <string name="hint_mobile_phone">mobile phone</string>
+    <string name="hint_home_phone">home phone</string>
+    <string name="hint_personal_website">personal website</string>
+    <string name="hint_e_mail">e mail</string>
+    <string name="hint_flat">flat</string>
+    <string name="hint_house">house</string>
+    <string name="hint_street">street</string>
+    <string name="hint_city">city</string>
+    <string name="hint_state">state</string>
+    <string name="hint_country">country</string>
+    <string name="hint_post_code">post code</string>
+
     <!-- edit contact -->
     <string name="edit_button_clear_text">clear</string>
     <string name="edit_button_close_text">close</string>
     <string name="edit_button_save_contact_text">save</string>
-    <string name="edit_button_ok_text">ok</string>
+    <string name="edit_button_ok_text">@android:string/ok</string>
 
     <!-- dialog delete contact -->
-    <string name="dialog_delete_text">Delete contact?</string>
     <string name="dialog_delete_button_positive">yes</string>
     <string name="dialog_delete_button_negative">no</string>
-    <string name="dialog_delete_button_neutral">cancel</string>
 
     <!-- dialog delete contact -->
     <string name="label_forecast_temperature">Temperature:</string>
@@ -56,11 +70,12 @@
     <string name="label_forecast_relative_wet">Relative wet:</string>
 
     <!--  weather forecast activity -->
-    <string name="start_message">loading...</string>
     <string name="text_meteoservice_ru">Provided by Meteoservice.ru\nhttps://www.meteoservice.ru</string>
 
     <!--  weather forecast toolbar and menu -->
     <string name="weather_forecast_toolbar_title">Weather</string>
     <string name="menu_item_update_forecast">Update</string>
+    <string name="empty_string" translatable="false"> </string>
+
 
 </resources>

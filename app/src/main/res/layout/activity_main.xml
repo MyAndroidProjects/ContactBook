@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="@integer/weight_sum_100">
-    <ImageView android:id="@+id/image_contact_book"
+
+    <ImageView
+        android:id="@+id/image_contact_book"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_zero"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:background="@color/contactPrimaryBackground"
         android:layout_weight="@integer/frame_link_to_contacts_main_vertical_weight"
-        android:scaleType="centerInside"
-        android:padding="@dimen/size_xlarge"
+        android:background="@color/contactPrimaryBackground"
         android:contentDescription="@string/image_contact_book_content_description"
-        android:src="@drawable/book"/>
-    <ImageView android:id="@+id/animation_link_to_weather"
+        android:padding="@dimen/size_xlarge"
+        android:scaleType="centerInside"
+        android:src="@drawable/book" />
+
+    <ImageView
+        android:id="@+id/animation_link_to_weather"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_zero"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
         android:layout_weight="@integer/frame_link_to_weather_main_vertical_weight"
         android:background="@color/mainActivityWeatherAnimationBackground"
-        android:layout_gravity="center"
+        android:contentDescription="@string/weather_changing_animation"
         android:scaleType="centerInside"
-        android:contentDescription="@string/animation_link_to_weather_content_description"
         android:src="@drawable/anim_weather_forecast_link" />
 </LinearLayout>
 

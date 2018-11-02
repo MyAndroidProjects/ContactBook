@@ -1,122 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/edit_contact_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_zero"
-        app:layout_constraintTop_toTopOf="@id/edit_contact_layout"
-        app:layout_constraintBottom_toTopOf="@id/edit_contact_button_group">
-        <LinearLayout android:id="@+id/edit_label_and_text_space"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/edit_contact_button_group"
+        app:layout_constraintTop_toTopOf="@id/edit_contact_layout">
+
+        <LinearLayout
+            android:id="@+id/edit_label_and_text_space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView android:id="@+id/edit_label_first_name"
+
+            <TextView
+                android:id="@+id/edit_label_first_name"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_first_name"/>
-            <EditText android:id="@+id/edit_text_first_name"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_second_name"
+                android:text="@string/label_first_name" />
+
+            <EditText
+                android:id="@+id/edit_text_first_name"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_first_name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/edit_label_second_name"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_second_name"/>
-            <EditText android:id="@+id/edit_text_second_name"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_patronymic"
+                android:text="@string/label_second_name" />
+
+            <EditText
+                android:id="@+id/edit_text_second_name"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_second_name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/edit_label_patronymic"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_patronymic"/>
-            <EditText android:id="@+id/edit_text_patronymic"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_last_name"
+                android:text="@string/label_patronymic" />
+
+            <EditText
+                android:id="@+id/edit_text_patronymic"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_patronymic"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/edit_label_last_name"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_last_name"/>
-            <EditText android:id="@+id/edit_text_last_name"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_mobile_phone"
+                android:text="@string/label_last_name" />
+
+            <EditText
+                android:id="@+id/edit_text_last_name"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_last_name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/edit_label_mobile_phone"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_mobile_phone"/>
-            <EditText android:id="@+id/edit_text_mobile_phone"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_home_phone"
+                android:text="@string/label_mobile_phone" />
+
+            <EditText
+                android:id="@+id/edit_text_mobile_phone"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_mobile_phone"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/edit_label_home_phone"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_home_phone"/>
-            <EditText android:id="@+id/edit_text_home_phone"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_e_mail"
+                android:text="@string/label_home_phone" />
+
+            <EditText
+                android:id="@+id/edit_text_home_phone"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_home_phone"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/edit_label_e_mail"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_e_mail"/>
-            <EditText android:id="@+id/edit_text_e_mail"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_personal_website"
+                android:text="@string/label_e_mail" />
+
+            <EditText
+                android:id="@+id/edit_text_e_mail"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_e_mail"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/edit_label_personal_website"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_personal_website"/>
-            <EditText android:id="@+id/edit_text_personal_website"
-                style="@style/style_contact_edit_text"/>
+                android:text="@string/label_personal_website" />
+
+            <EditText
+                android:id="@+id/edit_text_personal_website"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_personal_website"
+                android:inputType="textUri" />
 
             <TextView
                 style="@style/style_contact_edit_label"
-                android:text=" "/>
-            <TextView android:id="@+id/edit_title_address"
+                android:text="@string/empty_string" />
+
+            <TextView
+                android:id="@+id/edit_title_address"
                 style="@style/style_contact_edit_label"
                 android:gravity="center"
-                android:text="@string/title_address"/>
-            <TextView android:id="@+id/edit_label_flat"
+                android:text="@string/title_address" />
+
+            <TextView
+                android:id="@+id/edit_label_flat"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_flat"/>
-            <EditText android:id="@+id/edit_text_flat"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_house"
+                android:text="@string/label_flat" />
+
+            <EditText
+                android:id="@+id/edit_text_flat"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_flat"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/edit_label_house"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_house"/>
-            <EditText android:id="@+id/edit_text_house"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_street"
+                android:text="@string/label_house" />
+
+            <EditText
+                android:id="@+id/edit_text_house"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_house"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/edit_label_street"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_street"/>
-            <EditText android:id="@+id/edit_text_street"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_city"
+                android:text="@string/label_street" />
+
+            <EditText
+                android:id="@+id/edit_text_street"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_street"
+                android:inputType="textPostalAddress" />
+
+            <TextView
+                android:id="@+id/edit_label_city"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_city"/>
-            <EditText android:id="@+id/edit_text_city"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_state"
+                android:text="@string/label_city" />
+
+            <EditText
+                android:id="@+id/edit_text_city"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_city"
+                android:inputType="textPostalAddress" />
+
+            <TextView
+                android:id="@+id/edit_label_state"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_state"/>
-            <EditText android:id="@+id/edit_text_state"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_country"
+                android:text="@string/label_state" />
+
+            <EditText
+                android:id="@+id/edit_text_state"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_state"
+                android:inputType="textPostalAddress" />
+
+            <TextView
+                android:id="@+id/edit_label_country"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_country"/>
-            <EditText android:id="@+id/edit_text_country"
-                style="@style/style_contact_edit_text"/>
-            <TextView android:id="@+id/edit_label_post_code"
+                android:text="@string/label_country" />
+
+            <EditText
+                android:id="@+id/edit_text_country"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_country"
+                android:inputType="textPostalAddress" />
+
+            <TextView
+                android:id="@+id/edit_label_post_code"
                 style="@style/style_contact_edit_label"
-                android:text="@string/label_post_code"/>
-            <EditText android:id="@+id/edit_text_post_code"
-                style="@style/style_contact_edit_text"/>
+                android:text="@string/label_post_code" />
+
+            <EditText
+                android:id="@+id/edit_text_post_code"
+                style="@style/style_contact_edit_text"
+                android:hint="@string/hint_post_code"
+                android:inputType="textPostalAddress" />
         </LinearLayout>
     </ScrollView>
-    <LinearLayout android:id="@+id/edit_contact_button_group"
+
+    <LinearLayout
+        android:id="@+id/edit_contact_button_group"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_zero"
-        android:weightSum="@integer/weight_sum_100"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
         android:background="@color/contactSecondaryBackground"
+        android:orientation="horizontal"
+        android:weightSum="@integer/weight_sum_100"
         app:layout_constraintBottom_toBottomOf="@id/edit_contact_layout">
-        <Button android:id="@+id/edit_button_clear"
+
+        <Button
+            android:id="@+id/edit_button_clear"
             style="@style/style_contact_button.edit"
-            android:text="@string/edit_button_clear_text"/>
-        <Button android:id="@+id/edit_button_close"
+            android:text="@string/edit_button_clear_text" />
+
+        <Button
+            android:id="@+id/edit_button_close"
             style="@style/style_contact_button.edit"
-            android:text="@string/edit_button_close_text"/>
-        <Button android:id="@+id/edit_button_save_contact"
+            android:text="@string/edit_button_close_text" />
+
+        <Button
+            android:id="@+id/edit_button_save_contact"
             style="@style/style_contact_button.edit"
-            android:text="@string/edit_button_save_contact_text"/>
-        <Button android:id="@+id/edit_button_ok"
+            android:text="@string/edit_button_save_contact_text" />
+
+        <Button
+            android:id="@+id/edit_button_ok"
             style="@style/style_contact_button.edit"
-            android:text="@string/edit_button_ok_text"/>
+            android:text="@string/edit_button_ok_text" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

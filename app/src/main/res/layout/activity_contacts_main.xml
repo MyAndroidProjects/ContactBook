@@ -3,53 +3,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/contact_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/contactToolbarBackground">
-        <TextView android:id="@+id/contacts_toolbar_title"
+
+        <TextView
+            android:id="@+id/contacts_toolbar_title"
             style="@style/style_contact_toolbar_title"
-            android:text="@string/contacts_toolbar_title"/>
+            android:text="@string/contacts_toolbar_title" />
     </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:animateLayoutChanges="true"
         android:background="@color/contactPrimaryBackground"
+        android:orientation="horizontal"
         android:weightSum="@integer/weight_sum_100">
+
         <fragment
+            android:id="@+id/fragment_withButton"
+            android:name="com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.SeekBarFragment"
             android:layout_width="@dimen/size_xlarge"
             android:layout_height="match_parent"
-            android:id="@+id/fragment_withButton"
-            android:layout_gravity="center_horizontal"
-            android:name="com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.SeekBarFragment"/>
-        <LinearLayout android:id="@+id/container"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="@integer/weight_sum_100">
-            <FrameLayout android:id="@+id/frame_alphabet_list"
+
+            <FrameLayout
+                android:id="@+id/frame_alphabet_list"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_zero"
-                android:layout_weight="@integer/fragment_alphabet_list_vertical_weight"
+                android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"
-                android:paddingRight="@dimen/size_medium"/>
-            <FrameLayout android:id="@+id/frame_contact_list"
+                android:layout_weight="@integer/fragment_alphabet_list_vertical_weight"
+                android:paddingRight="@dimen/size_medium" />
+
+            <FrameLayout
+                android:id="@+id/frame_contact_list"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_zero"
-                android:layout_weight="@integer/fragment_contact_list_vertical_weight"
-                android:layout_gravity="center_horizontal"/>
-            <FrameLayout android:id="@+id/frame_contact_info"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="@integer/fragment_contact_list_vertical_weight" />
+
+            <FrameLayout
+                android:id="@+id/frame_contact_info"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_zero"
-                android:layout_weight="@integer/fragment_contact_info_vertical_weight"
-                android:layout_gravity="center_horizontal"/>
-            <FrameLayout android:id="@+id/frame_button_panel"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="@integer/fragment_contact_info_vertical_weight" />
+
+            <FrameLayout
+                android:id="@+id/frame_button_panel"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_zero"
-                android:layout_weight="@integer/fragment_button_panel_vertical_weight"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="@integer/fragment_button_panel_vertical_weight" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

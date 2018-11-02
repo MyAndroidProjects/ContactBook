@@ -3,6 +3,7 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,11 +22,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class ButtonPanelFragment extends Fragment{
+public class ButtonPanelFragment extends Fragment {
 
     private Unbinder unbinder;
     private final int EMPTY_INDEX = -1;
-    private final String EMPTY_STRING="";
+    private final String EMPTY_STRING = "";
 
     private int selectedContactId = EMPTY_INDEX;
     private String selectedLetter = EMPTY_STRING;
@@ -43,11 +44,11 @@ public class ButtonPanelFragment extends Fragment{
     @BindView(R.id.button_call)
     Button buttonCall;
 
-    ContactDeleteDialog contactDeleteDialog;
-    ContactBaseManager contactBaseManager;
+    private ContactDeleteDialog contactDeleteDialog;
+    private ContactBaseManager contactBaseManager;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_button_panel, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
@@ -66,7 +67,7 @@ public class ButtonPanelFragment extends Fragment{
     @OnClick(R.id.button_edit)
     public void onClickEditContact() {
         //  Log.d("myLog", "onClickEditContact id "+selectedContactId+" letter "+selectedLetter);
-        if(selectedContactId == EMPTY_INDEX){
+        if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), "No selected contact", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(getContext(), EditContactActivity.class);
@@ -78,7 +79,7 @@ public class ButtonPanelFragment extends Fragment{
 
     @OnClick(R.id.button_delete)
     public void onClickDeleteContact() {
-        if(selectedContactId == EMPTY_INDEX){
+        if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), "No selected contact", Toast.LENGTH_SHORT).show();
         } else {
             contactDeleteDialog = new ContactDeleteDialog();
@@ -99,12 +100,12 @@ public class ButtonPanelFragment extends Fragment{
 
     @OnClick(R.id.button_call)
     public void onClickCallContact() {
-        if(selectedContactId == EMPTY_INDEX){
+        if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), "No phone number", Toast.LENGTH_SHORT).show();
         } else {
             String phoneNumber = contactBaseManager.getMobileNumberById(selectedContactId);
-            if(phoneNumber.equals("+79139533750")){
-                String toDial="tel:"+ phoneNumber;
+            if (phoneNumber.equals("+79139533750")) {
+                String toDial = "tel:" + phoneNumber;
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(toDial)));
             } else {
                 Toast.makeText(getContext(), "Phone number is not correct", Toast.LENGTH_SHORT).show();

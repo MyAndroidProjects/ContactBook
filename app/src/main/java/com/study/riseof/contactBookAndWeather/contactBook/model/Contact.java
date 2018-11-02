@@ -1,10 +1,8 @@
 package com.study.riseof.contactBookAndWeather.contactBook.model;
 
-//import com.study.riseof.contactBookAndWeather.contactBook.model.RandomContact;
-
 public class Contact {
-    private final String EMPTY_STRING="";
-    private final String POINT=".";
+    private final String EMPTY_STRING = "";
+    private final String POINT = ".";
     private final int INITIAL_LETTER_INDEX = 0;
 
     private int id;
@@ -28,7 +26,7 @@ public class Contact {
     private String country;
     private String postCode;
 
-    public Contact (){
+    public Contact() {
         this.firstName = EMPTY_STRING;
         this.firstNameInitialLetter = EMPTY_STRING;
         this.secondName = EMPTY_STRING;
@@ -50,25 +48,25 @@ public class Contact {
         this.postCode = EMPTY_STRING;
     }
 
-    public Contact (String firstName,
-                    String firstNameInitialLetter,
-                    String secondName,
-                    String secondNameInitialLetter,
-                    String patronymic,
-                    String patronymicInitialLetter,
-                    String lastName,
-                    String lastNameInitialLetter,
-                    String mobilePhone,
-                    String homePhone,
-                    String personalWebsite,
-                    String eMail,
-                    String flat,
-                    String house,
-                    String street,
-                    String city,
-                    String state,
-                    String country,
-                    String postCode){
+    public Contact(String firstName,
+                   String firstNameInitialLetter,
+                   String secondName,
+                   String secondNameInitialLetter,
+                   String patronymic,
+                   String patronymicInitialLetter,
+                   String lastName,
+                   String lastNameInitialLetter,
+                   String mobilePhone,
+                   String homePhone,
+                   String personalWebsite,
+                   String eMail,
+                   String flat,
+                   String house,
+                   String street,
+                   String city,
+                   String state,
+                   String country,
+                   String postCode) {
         this.firstName = firstName;
         this.firstNameInitialLetter = firstNameInitialLetter;
         this.secondName = secondName;
@@ -90,26 +88,27 @@ public class Contact {
         this.postCode = postCode;
     }
 
-    public Contact (int id,
-                    String firstName,
-                    String firstNameInitialLetter,
-                    String secondName,
-                    String secondNameInitialLetter,
-                    String patronymic,
-                    String patronymicInitialLetter,
-                    String lastName,
-                    String lastNameInitialLetter,
-                    String mobilePhone,
-                    String homePhone,
-                    String personalWebsite,
-                    String eMail,
-                    String flat,
-                    String house,
-                    String street,
-                    String city,
-                    String state,
-                    String country,
-                    String postCode){
+    public Contact(int id,
+                   String firstName,
+                   String firstNameInitialLetter,
+                   String secondName,
+                   String secondNameInitialLetter,
+                   String patronymic,
+                   String patronymicInitialLetter,
+                   String lastName,
+                   String lastNameInitialLetter,
+                   String mobilePhone,
+                   String homePhone,
+                   String personalWebsite,
+                   String eMail,
+                   String flat,
+                   String house,
+                   String street,
+                   String city,
+                   String state,
+                   String country,
+                   String postCode) {
+        this.id = id;
         this.firstName = firstName;
         this.firstNameInitialLetter = firstNameInitialLetter;
         this.secondName = secondName;
@@ -131,7 +130,7 @@ public class Contact {
         this.postCode = postCode;
     }
 
-    public Contact(RandomContact randomContact){
+    public Contact(RandomContact randomContact) {
         this.firstName = randomContact.getFirstName();
         this.firstNameInitialLetter = randomContact.getFirstNameInitialLetter();
         this.secondName = randomContact.getSecondName();
@@ -231,15 +230,5 @@ public class Contact {
 
     public String getLastNameInitialLetter() {
         return lastNameInitialLetter;
-    }
-
-    private String getInitialLetter(String word){
-        String initial;
-        if(word.equals("")){
-            initial = EMPTY_STRING;
-        }else {
-            initial = String.valueOf(word.charAt(INITIAL_LETTER_INDEX)) + POINT;;
-        }
-        return initial;
     }
 }

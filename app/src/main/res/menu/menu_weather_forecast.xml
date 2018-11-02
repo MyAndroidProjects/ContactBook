@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_item_update_forecast"
-        android:textSize="@dimen/size_large"
         android:orderInCategory="1"
-        app:showAsAction="always"
-        android:title="@string/menu_item_update_forecast" >
-    </item>
+        android:textSize="@dimen/size_large"
+        android:title="@string/menu_item_update_forecast"
+        app:showAsAction="always" />
 </menu>

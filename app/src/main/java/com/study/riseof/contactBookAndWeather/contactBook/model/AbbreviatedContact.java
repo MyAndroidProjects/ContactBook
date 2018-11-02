@@ -9,29 +9,29 @@ public class AbbreviatedContact {
     private String patronymicInitialLetter;
     private String lastName;
 
-    public AbbreviatedContact(int id, String contactAbbrName){
+    public AbbreviatedContact(int id, String contactAbbrName) {
         this.itemId = id;
         this.contactAbbrName = contactAbbrName;
     }
 
-    public AbbreviatedContact(Contact contact){
+    public AbbreviatedContact(Contact contact) {
         this.itemId = contact.getId();
         this.lastName = contact.getLastName();
         this.firstName = contact.getFirstName();
         this.secondNameInitialLetter = contact.getSecondNameInitialLetter();
         this.patronymicInitialLetter = contact.getPatronymicInitialLetter();
-        this.contactAbbrName = lastName +" "+ firstName +" "+ secondNameInitialLetter +" "+ patronymicInitialLetter;
+        this.contactAbbrName = lastName + " " + firstName + " " + secondNameInitialLetter + " " + patronymicInitialLetter;
     }
 
     public AbbreviatedContact(int id, String lastName, String firstName,
-                              String secondNameInitialLetter, String patronymicInitialLetter){
+                              String secondNameInitialLetter, String patronymicInitialLetter) {
         this.itemId = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.secondNameInitialLetter = secondNameInitialLetter;
         this.patronymicInitialLetter = patronymicInitialLetter;
 
-        this.contactAbbrName = this.lastName +" "+ this.firstName +" "+ this.secondNameInitialLetter
+        this.contactAbbrName = this.lastName + " " + this.firstName + " " + this.secondNameInitialLetter
                 + " " + this.patronymicInitialLetter;
     }
 

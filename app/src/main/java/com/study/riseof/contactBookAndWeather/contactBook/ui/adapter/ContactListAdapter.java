@@ -29,7 +29,9 @@ public class ContactListAdapter extends ArrayAdapter<AbbreviatedContact> {
         this.inflater = LayoutInflater.from(context);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ContactListAdaptersHolder contactListAdaptersHolder;
         View view = convertView;
         if (view == null || view.getTag() == null) {
@@ -47,7 +49,8 @@ public class ContactListAdapter extends ArrayAdapter<AbbreviatedContact> {
     static final class ContactListAdaptersHolder {
         @BindView(R.id.contact_list_item_text)
         TextView itemText;
-        public ContactListAdaptersHolder(View itemView) {
+
+        ContactListAdaptersHolder(View itemView) {
             ButterKnife.bind(this, itemView);
         }
     }

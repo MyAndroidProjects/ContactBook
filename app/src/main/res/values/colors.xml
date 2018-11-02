@@ -23,7 +23,7 @@
     <color name="colorBlackBlue">#372e59</color>
     <color name="colorPurple">#7a5aa7</color>
 
-     <!-- contactBook -->
+    <!-- contactBook -->
     <color name="contactPrimaryBackground">@color/colorFadedAlmond</color>
     <color name="contactSecondaryBackground">@color/colorFadedPurpleWhite</color>
     <color name="contactTertiaryBackground">@color/colorSandyAlmond</color>
@@ -58,7 +58,7 @@
     <color name="weatherForecastSecondaryBackground">@color/colorLightGreyBlue</color>
     <color name="weatherForecastTertiaryBackground">@color/colorBlue</color>
     <color name="weatherForecastCardViewBackground">@color/colorGreyBlue</color>
-    <color name="weatherLinkToMeteosericeBackground">@color/colorGreyBlue</color>
+    <color name="weatherLinkTometeoserviceBackground">@color/colorGreyBlue</color>
 
     <color name="weatherDateTimeText">@color/colorDarkBlue</color>
     <color name="weatherDateTimeTextShadow">@color/colorPurple</color>

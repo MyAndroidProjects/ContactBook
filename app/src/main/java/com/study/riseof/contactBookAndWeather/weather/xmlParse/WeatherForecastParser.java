@@ -14,24 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherForecastParser {
-    private enum TownInfo{
+    private enum TownInfo {
         TOWN_INDEX(0),
         NAME(1),
         LATITUDE(2),
         LONGITUDE(3);
         // на случай выбора города. Положительные: северная широта и восточная долгота, отрицательные: южная широта, западная долгота
         private int index;
-        private TownInfo(int index){
+
+        TownInfo(int index) {
             this.index = index;
         }
     }
 
-    private enum TownList{
-        NOVOSIBIRSK("99","Novosibirsk");
+    private enum TownList {
+        NOVOSIBIRSK("99", "Novosibirsk");
 
         String index;
         String name;
-        private TownList(String index, String name){
+
+        TownList(String index, String name) {
             this.index = index;
             this.name = name;
         }
@@ -50,6 +52,7 @@ public class WeatherForecastParser {
         HEAT("HEAT");
 
         final private String name;
+
         static public TagName getTagNameByValue(String searchingTagName) {
             for (TagName tagName : TagName.values()) {
                 if (tagName.name.equals(searchingTagName)) {
@@ -58,6 +61,7 @@ public class WeatherForecastParser {
             }
             throw new RuntimeException("unknown type");
         }
+
         TagName(String name) {
             this.name = name;
         }
@@ -84,17 +88,18 @@ public class WeatherForecastParser {
         DIRECTION("direction");
 
         final private String name;
+
         AttributeName(String name) {
             this.name = name;
         }
     }
 
-    final String EMPTY_STRING = "";
+    private final String EMPTY_STRING = "";
 
     private String[] town;
     private List<WeatherForecast> weatherForecasts = new ArrayList<WeatherForecast>();
 
-    public boolean parse(String xmlData){
+    public boolean parse(String xmlData) {
         WeatherForecast weatherForecast = null;
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -109,7 +114,7 @@ public class WeatherForecastParser {
                     // начало тэга
                     case XmlPullParser.START_TAG:
                         TagName startTagName = TagName.getTagNameByValue(xpp.getName());
-                        switch (startTagName){
+                        switch (startTagName) {
                             case MMWEATHER:
                                 break;
                             case REPORT:
@@ -118,7 +123,7 @@ public class WeatherForecastParser {
                                 startTagTown(xpp);
                                 break;
                             case FORECAST:
-                                weatherForecast = startTagForecast(xpp, weatherForecast);
+                                weatherForecast = startTagForecast(xpp);
                                 break;
                             case PHENOMENA:
                                 weatherForecast = startTagPhenomena(xpp, weatherForecast);
@@ -148,7 +153,7 @@ public class WeatherForecastParser {
                     // конец тэга
                     case XmlPullParser.END_TAG:
                         TagName endTagName = TagName.getTagNameByValue(xpp.getName());
-                        switch (endTagName){
+                        switch (endTagName) {
                             case FORECAST:
                                 endTagForecast(weatherForecast);
                                 break;
@@ -166,15 +171,15 @@ public class WeatherForecastParser {
                 xpp.next();
             }
             Log.d("myLog", "END_DOCUMENT");
-        } catch (XmlPullParserException ex){
+        } catch (XmlPullParserException ex) {
             Log.e("myTag", "XmlPullParserException: " + ex.getMessage());
-        } catch (IOException ex){
+        } catch (IOException ex) {
             Log.e("myTag", "IOException: " + ex.getMessage());
         }
         return true;
     }
 
-    private void startTagTown(XmlPullParser xpp){
+    private void startTagTown(XmlPullParser xpp) {
         int attributeCount = xpp.getAttributeCount();
         String townIndex = EMPTY_STRING;
         String latitude = EMPTY_STRING;
@@ -191,12 +196,12 @@ public class WeatherForecastParser {
         setTown(townIndex, latitude, longitude);
     }
 
-    public void setTown(String townIndex, String latitude, String longitude) {
+    private void setTown(String townIndex, String latitude, String longitude) {
         town = new String[TownInfo.values().length];
         town[TownInfo.TOWN_INDEX.index] = townIndex;
         town[TownInfo.LATITUDE.index] = latitude;
         town[TownInfo.LONGITUDE.index] = longitude;
-        for (TownList value: TownList.values()) {
+        for (TownList value : TownList.values()) {
             if (townIndex.equals(value.index)) {
                 town[TownInfo.NAME.index] = value.name;
             }
@@ -207,8 +212,8 @@ public class WeatherForecastParser {
         return town;
     }
 
-    private WeatherForecast startTagForecast(XmlPullParser xpp, WeatherForecast weatherForecast){
-        weatherForecast = new WeatherForecast();
+    private WeatherForecast startTagForecast(XmlPullParser xpp) {
+        WeatherForecast weatherForecast = new WeatherForecast();
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.DAY.name)) {
@@ -221,9 +226,9 @@ public class WeatherForecastParser {
                 weatherForecast.setHour(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.TOD.name)) {
                 weatherForecast.setTod(xpp.getAttributeValue(i));
-            }else if (xpp.getAttributeName(i).equals(AttributeName.PREDICT.name)) {
+            } else if (xpp.getAttributeName(i).equals(AttributeName.PREDICT.name)) {
                 weatherForecast.setPredict(xpp.getAttributeValue(i));
-            }else if (xpp.getAttributeName(i).equals(AttributeName.WEEKDAY.name)) {
+            } else if (xpp.getAttributeName(i).equals(AttributeName.WEEKDAY.name)) {
                 weatherForecast.setWeekday(xpp.getAttributeValue(i));
             }
         }
@@ -231,7 +236,7 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private WeatherForecast startTagPhenomena(XmlPullParser xpp, WeatherForecast weatherForecast){
+    private WeatherForecast startTagPhenomena(XmlPullParser xpp, WeatherForecast weatherForecast) {
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.CLOUDINESS.name)) {
@@ -247,7 +252,7 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private WeatherForecast startTagPressure(XmlPullParser xpp, WeatherForecast weatherForecast){
+    private WeatherForecast startTagPressure(XmlPullParser xpp, WeatherForecast weatherForecast) {
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.MIN.name)) {
@@ -259,7 +264,7 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private WeatherForecast startTagTemperature(XmlPullParser xpp, WeatherForecast weatherForecast){
+    private WeatherForecast startTagTemperature(XmlPullParser xpp, WeatherForecast weatherForecast) {
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.MIN.name)) {
@@ -271,7 +276,7 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private WeatherForecast startTagWind(XmlPullParser xpp, WeatherForecast weatherForecast){
+    private WeatherForecast startTagWind(XmlPullParser xpp, WeatherForecast weatherForecast) {
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.MIN.name)) {
@@ -285,7 +290,7 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private WeatherForecast startTagRelwet(XmlPullParser xpp, WeatherForecast weatherForecast){
+    private WeatherForecast startTagRelwet(XmlPullParser xpp, WeatherForecast weatherForecast) {
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.MIN.name)) {
@@ -297,7 +302,7 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private WeatherForecast startTagHeat(XmlPullParser xpp, WeatherForecast weatherForecast){
+    private WeatherForecast startTagHeat(XmlPullParser xpp, WeatherForecast weatherForecast) {
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.MIN.name)) {
@@ -309,12 +314,12 @@ public class WeatherForecastParser {
         return weatherForecast;
     }
 
-    private void endTagForecast(WeatherForecast weatherForecast){
+    private void endTagForecast(WeatherForecast weatherForecast) {
         weatherForecasts.add(weatherForecast);
     }
 
-    private void endTagTown(){
-        Log.d("myLog","endTagTown");
+    private void endTagTown() {
+        Log.d("myLog", "endTagTown");
     }
 
     public List<WeatherForecast> getWeatherForecasts() {

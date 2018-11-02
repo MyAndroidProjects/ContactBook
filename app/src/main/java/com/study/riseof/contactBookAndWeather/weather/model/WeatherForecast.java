@@ -2,94 +2,99 @@ package com.study.riseof.contactBookAndWeather.weather.model;
 
 public class WeatherForecast {
 
-    private enum Tod{
+    private enum Tod {
         // tod - время суток, для которого составлен прогноз: 0 - ночь 1 - утро, 2 - день, 3 - вечер
-        NIGHT("0","Night"),
-        MORNING("1","Morning"),
-        DAY("2","Day"),
-        EVENING("3","Evening");
+        NIGHT("0", "Night"),
+        MORNING("1", "Morning"),
+        DAY("2", "Day"),
+        EVENING("3", "Evening");
 
         String index;
         String dayPart;
-        private Tod(String index, String dayPart){
+
+        Tod(String index, String dayPart) {
             this.index = index;
             this.dayPart = dayPart;
         }
     }
 
-    private enum Weekday{
+    private enum Weekday {
         //weekday -	день недели, 1 - воскресенье, 2 - понедельник, и т.д.
-        SUNDAY("1","Sunday"),
-        MONDAY("2","Monday"),
-        TUESDAY("3","Tuesday"),
-        WEDNESDAY("4","Wednesday"),
-        THURSDAY("5","Thursday"),
-        FRIDAY("6","Friday"),
-        SATURDAY("7","Saturday");
+        SUNDAY("1", "Sunday"),
+        MONDAY("2", "Monday"),
+        TUESDAY("3", "Tuesday"),
+        WEDNESDAY("4", "Wednesday"),
+        THURSDAY("5", "Thursday"),
+        FRIDAY("6", "Friday"),
+        SATURDAY("7", "Saturday");
 
         String index;
         String name;
-        private Weekday(String index, String name){
+
+        Weekday(String index, String name) {
             this.index = index;
             this.name = name;
         }
     }
 
-    private enum Cloudiness{
+    private enum Cloudiness {
         //cloudiness -	облачность по градациям: -1 - туман, 0 - ясно, 1 - малооблачно, 2 - облачно, 3 - пасмурно
-        FOG("-1","fog"),
-        CLEAR("0","clear"),
-        LOW_CLOUD("1","low cloud"),
-        CLOUDY("2","cloudy"),
-        OVERCAST("3","overcast ");
+        FOG("-1", "fog"),
+        CLEAR("0", "clear"),
+        LOW_CLOUD("1", "low cloud"),
+        CLOUDY("2", "cloudy"),
+        OVERCAST("3", "overcast ");
 
         String index;
         String name;
-        private Cloudiness(String index, String name){
+
+        Cloudiness(String index, String name) {
             this.index = index;
             this.name = name;
         }
     }
 
-    private enum Precipitation{
+    private enum Precipitation {
         // precipitation -	тип осадков: 3 - смешанные, 4 - дождь, 5 - ливень, 6,7 – снег, 8 - гроза, 9 - нет данных, 10 - без осадков
-        MIXED("3","mixed"),
-        RAIN("4","rain"),
-        CLOUDBURST("5","cloudburst"),
-        SNOW("6","snow"),
-        WET_SNOW("7","wet snow"),
-        THUNDERSTORM("8","thunderstorm"),
-        NO_DATA("9","no data"),
-        NO_PRECIPITATION("10","no precipitation");
+        MIXED("3", "mixed"),
+        RAIN("4", "rain"),
+        CLOUDBURST("5", "cloudburst"),
+        SNOW("6", "snow"),
+        WET_SNOW("7", "wet snow"),
+        THUNDERSTORM("8", "thunderstorm"),
+        NO_DATA("9", "no data"),
+        NO_PRECIPITATION("10", "no precipitation");
 
         String index;
         String name;
-        private Precipitation(String index, String name){
+
+        Precipitation(String index, String name) {
             this.index = index;
             this.name = name;
         }
     }
 
-    private enum WindDirection{
+    private enum WindDirection {
         // direction - направление ветра , 0 - северный, 1 - северо-восточный, и т.д
-        N("0","N"),
-        NE("1","NE"),
-        E("2","E"),
-        SE("3","SE"),
-        S("4","S"),
-        SW("5","SW"),
-        W("6","W"),
-        NW("7","NW");
+        N("0", "N"),
+        NE("1", "NE"),
+        E("2", "E"),
+        SE("3", "SE"),
+        S("4", "S"),
+        SW("5", "SW"),
+        W("6", "W"),
+        NW("7", "NW");
 
         String index;
         String name;
-        private WindDirection(String index, String name){
+
+        WindDirection(String index, String name) {
             this.index = index;
             this.name = name;
         }
     }
 
-    private int DEGREE_SYMBOL_CODE=186;
+    private int DEGREE_SYMBOL_CODE = 186;
 
     private String day;
     private String month;
@@ -136,8 +141,8 @@ public class WeatherForecast {
     }
 
     public void setTod(String tod) {
-        for (Tod val:Tod.values()){
-            if(tod.equals(val.index)){
+        for (Tod val : Tod.values()) {
+            if (tod.equals(val.index)) {
                 this.tod = val.dayPart;
                 return;
             }
@@ -146,8 +151,8 @@ public class WeatherForecast {
     }
 
     public void setWeekday(String weekday) {
-        for (Weekday val:Weekday.values()){
-            if(weekday.equals(val.index)){
+        for (Weekday val : Weekday.values()) {
+            if (weekday.equals(val.index)) {
                 this.weekday = val.name;
                 return;
             }
@@ -160,8 +165,8 @@ public class WeatherForecast {
     }
 
     public void setCloudiness(String cloudiness) {
-        for (Cloudiness val : Cloudiness.values()){
-            if(cloudiness.equals(val.index)){
+        for (Cloudiness val : Cloudiness.values()) {
+            if (cloudiness.equals(val.index)) {
                 this.cloudiness = val.name;
                 return;
             }
@@ -170,14 +175,15 @@ public class WeatherForecast {
     }
 
     public void setPrecipitation(String precipitation) {
-        for (Precipitation val : Precipitation.values()){
-            if(precipitation.equals(val.index)){
+        for (Precipitation val : Precipitation.values()) {
+            if (precipitation.equals(val.index)) {
                 this.precipitation = val.name;
                 return;
             }
         }
         this.precipitation = precipitation;
     }
+
     /*
         public void setRPower(String rPower) {
             this.rPower = rPower;
@@ -212,8 +218,8 @@ public class WeatherForecast {
     }
 
     public void setWindDirection(String windDirection) {
-        for (WindDirection val : WindDirection.values()){
-            if(windDirection.equals(val.index)){
+        for (WindDirection val : WindDirection.values()) {
+            if (windDirection.equals(val.index)) {
                 this.windDirection = val.name;
                 return;
             }
@@ -256,8 +262,9 @@ public class WeatherForecast {
     public String getHour() {
         return hour;
     }
+
     public String getTime() {
-        return hour+":00";
+        return hour + ":00";
     }
 
     public String getTod() {
@@ -297,8 +304,7 @@ public class WeatherForecast {
     }
 
     public String getPressure() {
-        String pressure = minPressure +".." + maxPressure + " mmHg";
-        return pressure;
+        return minPressure + ".." + maxPressure + " mmHg";
     }
 
     public String getMaxTemperature() {
@@ -308,9 +314,9 @@ public class WeatherForecast {
     public String getMinTemperature() {
         return minTemperature;
     }
+
     public String getTemperature() {
-        String temperature = minTemperature + ".." + maxTemperature + "," + ((char)DEGREE_SYMBOL_CODE)+"C";
-        return temperature;
+        return minTemperature + ".." + maxTemperature + "," + ((char) DEGREE_SYMBOL_CODE) + "C";
     }
 
     public String getMinWindSpeed() {
@@ -326,8 +332,7 @@ public class WeatherForecast {
     }
 
     public String getWind() {
-        String wind = minWindSpeed + "-" + maxWindSpeed + " m/s, "+ windDirection;
-        return wind;
+        return minWindSpeed + "-" + maxWindSpeed + " m/s, " + windDirection;
     }
 
     public String getMinRelativeWet() {
@@ -339,8 +344,7 @@ public class WeatherForecast {
     }
 
     public String getRelativeWet() {
-        String wet = minRelativeWet + "-" + maxRelativeWet + " %";
-        return wet;
+        return minRelativeWet + "-" + maxRelativeWet + " %";
     }
 
     public String getMaxHeat() {
@@ -350,8 +354,8 @@ public class WeatherForecast {
     public String getMinHeat() {
         return minHeat;
     }
+
     public String getHeat() {
-        String heat = maxHeat + ".." + maxHeat + "," + ((char)DEGREE_SYMBOL_CODE)+"C";
-        return heat;
+        return maxHeat + ".." + maxHeat + "," + ((char) DEGREE_SYMBOL_CODE) + "C";
     }
 }

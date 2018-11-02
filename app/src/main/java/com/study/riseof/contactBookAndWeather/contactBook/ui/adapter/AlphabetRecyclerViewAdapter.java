@@ -25,22 +25,22 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
     private List<String> letters;
     private AnimatorSet[] animatorSets;
     private AdapterLetterClickListener adapterLetterClickListener;
-    private View currentView=null;
-    private int selectedPosition=-1;
+    private View currentView = null;
+    private int selectedPosition = -1;
 
     public AlphabetRecyclerViewAdapter(Context context, List<String> letters) {
-        this.letters=letters;
+        this.letters = letters;
         this.inflater = LayoutInflater.from(context);
         int lettersSize = letters.size();
         animatorSets = new AnimatorSet[lettersSize];
-        for (int i=0;i<lettersSize;i++){
+        for (int i = 0; i < lettersSize; i++) {
             animatorSets[i] = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.animator_pressed_letter);
         }
 
         try {
             adapterLetterClickListener = (AdapterLetterClickListener) context;
         } catch (ClassCastException e) {
-            Log.d("mylog",context.toString() + " must implement AdapterLetterClickListener");
+            Log.d("mylog", context.toString() + " must implement AdapterLetterClickListener");
             throw new ClassCastException(context.toString() + " must implement AdapterLetterClickListener");
         }
     }
@@ -53,30 +53,31 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull Holder viewHolder, int position) {
+        final int pos = position;
         final String curLetter = letters.get(position);
         viewHolder.letterItem.setText(curLetter);
-        if(selectedPosition >= 0){
+        if (selectedPosition >= 0) {
             animatorSets[selectedPosition].cancel();
             animatorSets[selectedPosition].end();
         }
         viewHolder.itemView.setScaleX(1f);
         viewHolder.itemView.setScaleY(1f);
-        if(selectedPosition == position){
+        if (selectedPosition == position) {
             animatorSets[selectedPosition].start();
         }
         viewHolder.letterItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 adapterLetterClickListener.adapterLetterClick(curLetter);
-                if(selectedPosition >= 0 && animatorSets[selectedPosition].isRunning()){
+                if (selectedPosition >= 0 && animatorSets[selectedPosition].isRunning()) {
                     animatorSets[selectedPosition].cancel();
                     animatorSets[selectedPosition].end();
                     // animatorSet.end(); не возвращает значение scale в исходное, поэтому добавил
                     currentView.setScaleX(1f);
                     currentView.setScaleY(1f);
                 }
-                selectedPosition = position;
+                selectedPosition = pos;
                 currentView = view;
                 animatorSets[selectedPosition].setTarget(currentView);
                 animatorSets[selectedPosition].start();
@@ -93,13 +94,13 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
         @BindView(R.id.letter)
         TextView letterItem;
 
-        public Holder(View itemView) {
+        Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
 
     public interface AdapterLetterClickListener {
-        public void adapterLetterClick(String letter);
+        void adapterLetterClick(String letter);
     }
 }

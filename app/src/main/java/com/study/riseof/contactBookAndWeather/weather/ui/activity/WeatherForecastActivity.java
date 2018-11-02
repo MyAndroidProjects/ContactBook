@@ -29,30 +29,31 @@ import javax.net.ssl.HttpsURLConnection;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherForecastActivity extends AppCompatActivity{
+public class WeatherForecastActivity extends AppCompatActivity {
 
     // ??? два одинаковых enum TownInfo (здесь и в WeatherForecastParser)
     // делать его публичным в парсере или как быть ???
-    private enum TownInfo{
+    private enum TownInfo {
         TOWN_INDEX(0),
         NAME(1),
         LATITUDE(2),
         LONGITUDE(3);
 
         private int index;
-        private TownInfo(int index){
+
+        TownInfo(int index) {
             this.index = index;
         }
     }
 
-    private final String WEATHER_SITE_PATH = "https://xml.meteoservice.ru/export/gismeteo/point/99.xml";
+    private final String WEATHER_SITE_PATH = this.getString(R.string.link_meteoservice_ru);
     private final String NORTH_LATITUDE = "N";
     private final String EAST_LONGITUDE = "E";
     private final int DEGREE_SYMBOL_CODE = 186;
     private final String LOADING = "loading...";
     private final String EMPTY_STRING = "";
     private String[] town;
-    private List<WeatherForecast>  weatherForecasts;
+    private List<WeatherForecast> weatherForecasts;
     private WeatherForecastRecyclerAdapter adapter;
     private WeatherForecastDataLoader weatherForecastDataLoader;
 
@@ -71,9 +72,11 @@ public class WeatherForecastActivity extends AppCompatActivity{
         setContentView(R.layout.activity_weather_forecast);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         weatherForecastDataLoader = new WeatherForecastDataLoader();
         weatherForecastDataLoader.execute(WEATHER_SITE_PATH);
     }
@@ -93,8 +96,8 @@ public class WeatherForecastActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id){
-            case R.id.menu_item_update_forecast :
+        switch (id) {
+            case R.id.menu_item_update_forecast:
                 weatherForecastDataLoader = new WeatherForecastDataLoader();
                 weatherForecastDataLoader.execute(WEATHER_SITE_PATH);
                 return true;
@@ -113,40 +116,39 @@ public class WeatherForecastActivity extends AppCompatActivity{
     }
 
     private String getTownCoordinates() {
-        String coord = town[TownInfo.LATITUDE.index] + (char)DEGREE_SYMBOL_CODE + NORTH_LATITUDE+ " "+
-                town[TownInfo.LONGITUDE.index] + (char)DEGREE_SYMBOL_CODE + EAST_LONGITUDE;
-        return coord;
+        return town[TownInfo.LATITUDE.index] + (char) DEGREE_SYMBOL_CODE + NORTH_LATITUDE + " " +
+                town[TownInfo.LONGITUDE.index] + (char) DEGREE_SYMBOL_CODE + EAST_LONGITUDE;
     }
 
-    private void resetTownInfoText(){
+    private void resetTownInfoText() {
         townNameText.setText(LOADING);
         townCoordinatesText.setText(EMPTY_STRING);
     }
-    private void setTownInfoText(){
+
+    private void setTownInfoText() {
         townNameText.setText(town[TownInfo.NAME.index]);
         townCoordinatesText.setText(getTownCoordinates());
     }
 
-    private class WeatherForecastDataLoader extends AsyncTask<String, Void, String>{
+    private class WeatherForecastDataLoader extends AsyncTask<String, Void, String> {
 
         private WeatherForecastParser weatherForecastParser;
 
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
             resetTownInfoText();
         }
 
         @Override
         protected String doInBackground(String... urlPaths) {
-            String dataXml="";
+            String dataXml = "";
             int index = 0;
-            try{
+            try {
                 if (isCancelled()) {
                     return null;
                 }
                 dataXml = downloadXml(urlPaths[index]);
-            }
-            catch (IOException ex){
+            } catch (IOException ex) {
                 Log.e("myTag", "downloadXML: IO Exception reading data: " + ex.getMessage());
             }
             return dataXml;
@@ -156,8 +158,7 @@ public class WeatherForecastActivity extends AppCompatActivity{
         protected void onPostExecute(String xmlData) {
             super.onPostExecute(xmlData);
             weatherForecastParser = new WeatherForecastParser();
-            if(xmlData !=null &&  weatherForecastParser.parse(xmlData))
-            {
+            if (xmlData != null && weatherForecastParser.parse(xmlData)) {
                 town = weatherForecastParser.getTown();
                 weatherForecasts = weatherForecastParser.getWeatherForecasts();
                 setWeatherForecastRecyclerAdapter();
@@ -165,14 +166,14 @@ public class WeatherForecastActivity extends AppCompatActivity{
             }
         }
 
-        private String downloadXml (String urlPath)throws IOException {
+        private String downloadXml(String urlPath) throws IOException {
             StringBuilder xmlResult = new StringBuilder();
             BufferedReader reader = null;
             try {
                 URL url = new URL(urlPath);
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line = null;
+                String line;
                 while ((line = reader.readLine()) != null) {
                     if (isCancelled()) {
                         return null;
@@ -180,14 +181,13 @@ public class WeatherForecastActivity extends AppCompatActivity{
                     xmlResult.append(line);
                 }
                 return xmlResult.toString();
-            } catch(MalformedURLException ex) {
+            } catch (MalformedURLException ex) {
                 Log.e("myTag", "downloadXML: Invalid URL " + ex.getMessage());
-            } catch(IOException ex) {
+            } catch (IOException ex) {
                 Log.e("myTag", "downloadXML: IO Exception reading data: " + ex.getMessage());
-            } catch(SecurityException ex) {
+            } catch (SecurityException ex) {
                 Log.e("myTag", "downloadXML: Security Exception.  Needs permisson? " + ex.getMessage());
-            }
-            finally {
+            } finally {
                 if (reader != null) {
                     reader.close();
                 }
