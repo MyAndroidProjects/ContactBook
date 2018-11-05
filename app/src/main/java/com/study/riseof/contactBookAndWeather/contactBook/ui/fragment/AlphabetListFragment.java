@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class AlphabetListFragment extends Fragment {
+public class AlphabetListFragment extends BaseFragment {
     private static List<String> buttonName;
 
     static {
@@ -35,13 +35,13 @@ public class AlphabetListFragment extends Fragment {
         }
     }
 
-    private Unbinder unbinder;
+  //  private Unbinder unbinder;
 
     @BindView(R.id.recycler_view_alphabet)
     RecyclerView recyclerView;
 
     private RecyclerView.LayoutManager layoutManager;
-    private View view;
+  //  private View view;
 
     private int fragmentWidth;
 
@@ -65,9 +65,10 @@ public class AlphabetListFragment extends Fragment {
         return view;
     }
 
-    @Override
+ /*   @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
+    */
 }

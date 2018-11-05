@@ -22,11 +22,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class ButtonPanelFragment extends Fragment {
+public class ButtonPanelFragment extends BaseFragment {
 
-    private Unbinder unbinder;
-    private final int EMPTY_INDEX = -1;
-    private final String EMPTY_STRING = "";
+  //  private Unbinder unbinder;
+  //  private final int EMPTY_INDEX = -1;
+//    private final String EMPTY_STRING = "";
 
     private int selectedContactId = EMPTY_INDEX;
     private String selectedLetter = EMPTY_STRING;
@@ -49,7 +49,7 @@ public class ButtonPanelFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_button_panel, container, false);
+        /*View*/ view = inflater.inflate(R.layout.fragment_button_panel, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
         if (getArguments() != null) {
@@ -64,12 +64,12 @@ public class ButtonPanelFragment extends Fragment {
         return view;
     }
 
-    @Override
+ /*   @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
-
+*/
     @OnClick(R.id.button_edit)
     public void onClickEditContact() {
         //  Log.d("myLog", "onClickEditContact id "+selectedContactId+" letter "+selectedLetter);

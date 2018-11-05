@@ -16,8 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ContactInfoFragment extends Fragment {
-    private Unbinder unbinder;
+public class ContactInfoFragment extends BaseFragment {
+   // private Unbinder unbinder;
 
     @BindView(R.id.text_first_name)
     TextView firstNameText;
@@ -50,15 +50,16 @@ public class ContactInfoFragment extends Fragment {
     @BindView(R.id.text_post_code)
     TextView postCodeText;
 
-    private final String EMPTY_STRING = "";
-    private final int EMPTY_INDEX = -1;
+  //  private final String EMPTY_STRING = "";
+  //  private final int EMPTY_INDEX = -1;
 
     private ContactBaseManager contactBaseManager;
     private int selectedContactId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_contact_info, container, false);
+   //     super.onCreateView(inflater, container, savedInstanceState);
+        view = inflater.inflate(R.layout.fragment_contact_info, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
         Bundle args = getArguments();
@@ -77,13 +78,13 @@ public class ContactInfoFragment extends Fragment {
             setContactInfoById(selectedContactId);
         }
     }
-
+/*
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
-
+*/
     public void setContactInfoById(int id) {
         setContactInfoText(contactBaseManager.getContactById(id));
     }

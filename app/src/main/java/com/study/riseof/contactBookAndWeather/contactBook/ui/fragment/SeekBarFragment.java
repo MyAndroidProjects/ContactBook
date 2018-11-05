@@ -18,12 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SeekBarFragment extends Fragment {
+public class SeekBarFragment extends BaseFragment {
 
     private final float PADDING_PART_OF_FRAGMENT = 0.1f;
 
-    private View view;
-    private Unbinder unbinder;
+//    private View view;
+//    private Unbinder unbinder;
     private SeekBarProgressListener seekBarListener;
     private int fragmentHeight;
 
@@ -91,11 +91,13 @@ public class SeekBarFragment extends Fragment {
         return view;
     }
 
+/*
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
+*/
 
     public interface SeekBarProgressListener {
         void changeSeekBarProgress(int progress);
