@@ -1,96 +1,47 @@
 package com.study.riseof.contactBookAndWeather.weather.model;
 
-import android.util.Log;
+import android.content.Context;
 
-import com.study.riseof.contactBookAndWeather.MainActivity;
+import com.study.riseof.contactBookAndWeather.R;
 
 public class Town {
-    private String index;
-    private String name;
+    private int DEGREE_SYMBOL_CODE = 186;
+    private int townArrayIndex;
     private String latitude;
     private String longitude;
 
-    private enum TownListEn {
-        NOVOSIBIRSK("99", "Novosibirsk"),
-        TOMSK("98", "Tomsk");
-        String index;
-        String name;
+    private enum TownList {
+        UNKNOWN("", 0),
+        NOVOSIBIRSK("99", 1);
 
-        TownListEn(String index, String name) {
+        String index;
+        int arrayIndex;
+
+        TownList(String index, int arrayIndex) {
             this.index = index;
-            this.name = name;
+            this.arrayIndex = arrayIndex;
         }
     }
 
-    private enum TownListRu {
-        NOVOSIBIRSK_RU("99", "Новосибирск"),
-        TOMSK_RU("98", "Томск");
-
-        String index;
-        String name;
-
-        TownListRu(String index, String name) {
-            this.index = index;
-            this.name = name;
-        }
-    }
-
-
-    public Town(String index, String latitude, String longitude) {
-        enumValues(TownListEn.class);
-        enumValues(TownListRu.class);
-        enumValues2(TownListRu.values());
-        this.index = index;
+    public Town(String townIndex, String latitude, String longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-        switch (MainActivity.language) {
-            case ENGLISH:
-                for (TownListEn val : TownListEn.values()) {
-                    if (index.equals(val.index)) {
-                        this.name = val.name;
-                        break;
-                    }
-                }
-                break;
-            case RUSSIAN:
-                for (TownListRu val : TownListRu.values()) {
-                    if (index.equals(val.index)) {
-                        this.name = val.name;
-                        break;
-                    }
-                }
-                break;
-            default:
-                break;
+        this.townArrayIndex = 0;
+        for (TownList val : TownList.values()) {
+            if (townIndex.equals(val.index)) {
+                this.townArrayIndex = val.arrayIndex;
+            }
         }
     }
 
-    public String getName() {
-        return name;
+    public String getCoordinates(Context context) {
+        return String.format(context.getString(R.string.coordinates),
+                latitude, ((char) DEGREE_SYMBOL_CODE),
+                longitude, ((char) DEGREE_SYMBOL_CODE));
     }
 
-    public String getLatitude() {
-        return latitude;
+    public String getTown(Context context) {
+        return context.getResources().getStringArray(R.array.town)[townArrayIndex];
     }
 
-    public String getLongitude() {
-        return longitude;
-    }
-
-
-    public <T extends Enum<T>> void enumValues(Class<T> enumType) {
-        for (T c : enumType.getEnumConstants()) {
-            Log.d("myLog", "c.name() " + c.name());
-            Log.d("myLog", "c.toString() " + c.toString());
-            System.out.println(c.name());
-        }
-    }
-
-    public <T extends Enum<T>> void enumValues2(T[] enumType) {
-        for (T c : enumType) {
-            Log.d("myLog", "c.name()222 " + c.name());
-            Log.d("myLog", "c.toString()222 " + c.toString());
-            System.out.println(c.name());
-        }
-    }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="town">
+        <item>Unknown</item>
+        <item>Novosibirsk</item>
+    </string-array>
+
+    <string-array name="tod">
+        <item>Night</item>
+        <item>Morning</item>
+        <item>Day</item>
+        <item>Evening</item>
+    </string-array>
+
+    <string-array name="weekday">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="cloudiness">
+        <item>fog</item>
+        <item>clear</item>
+        <item>low cloud</item>
+        <item>cloudy</item>
+        <item>overcast</item>
+    </string-array>
+
+    <string-array name="precipitation">
+        <item>mixed</item>
+        <item>rain</item>
+        <item>cloudburst</item>
+        <item>snow</item>
+        <item>wet snow</item>
+        <item>thunderstorm</item>
+        <item>no data</item>
+        <item>no precipitation</item>
+    </string-array>
+
+    <string-array name="windDirection">
+        <item>N</item>
+        <item>NE</item>
+        <item>E</item>
+        <item>SE</item>
+        <item>S</item>
+        <item>SW</item>
+        <item>W</item>
+        <item>NW</item>
+    </string-array>
+
+    <string name="coordinates">%1$s%2$sN %3$s%4$sE</string>
+
+    <string name="time" translatable="false">%1$s:00</string>
+    <string name="date" translatable="false">%1$s.%2$s.%3$s</string>
+    <string name="pressure">%1$s..%2$s mmHG</string>
+    <string name="temperature" translatable="false">%1$s..%2$s,%3$sC</string>
+    <string name="wind">%1$s-%2$sm/s %3$s</string>
+    <string name="relativeWet" translatable="false">%1$s-%2$s %%</string>
+
+</resources>
