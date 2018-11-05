@@ -25,14 +25,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ContactListFragment extends Fragment {
-    private final String EMPTY_STRING = "";
+public class ContactListFragment extends BaseFragment {
+  //  private final String EMPTY_STRING = "";
 
-    private Unbinder unbinder;
+ //   private Unbinder unbinder;
     private ContactBaseManager contactBaseManager;
     private ArrayList<AbbreviatedContact> contacts = new ArrayList<>();
     private ContactListAdapter contactAdapter;
-    private View view;
+ //   private View view;
     private ContactListClickListener contactClickListener;
     private String selectedLetter = EMPTY_STRING;
 
@@ -65,6 +65,7 @@ public class ContactListFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+      //  super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_contact_list, container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
@@ -101,13 +102,13 @@ public class ContactListFragment extends Fragment {
             showContactsByFirstLetter(selectedLetter);
         }
     }
-
+/*
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
-
+*/
     public void showContactsByFirstLetter(String letter) {
         this.selectedLetter = letter;
         ArrayList<AbbreviatedContact> selectedContacts = contactBaseManager.getAbbrContactListByFirstLetter(letter);

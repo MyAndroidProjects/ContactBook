@@ -176,7 +176,7 @@ public class EditContactActivity extends AppCompatActivity {
 
     private String getFirstLetter(String word) {
         String firstLetter;
-        if (word.equals("")) {
+        if (word.equals(EMPTY_STRING)) {
             firstLetter = EMPTY_STRING;
         } else {
             firstLetter = String.valueOf(word.charAt(INITIAL_LETTER_INDEX));
@@ -186,7 +186,7 @@ public class EditContactActivity extends AppCompatActivity {
 
     private String getInitial(String word) {
         String initial;
-        if (word.equals("")) {
+        if (word.equals(EMPTY_STRING)) {
             initial = EMPTY_STRING;
         } else {
             initial = getFirstLetter(word) + POINT;
