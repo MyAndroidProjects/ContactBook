@@ -212,17 +212,17 @@ public class RandomContact {
     }
 
     private void setHomePhone() {
-        String homePhone;
+        StringBuilder phoneNumber;
         if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
-            homePhone = EMPTY_STRING;
+            phoneNumber = new StringBuilder(EMPTY_STRING);
         } else {
-            homePhone = "+";
+            phoneNumber = new StringBuilder("+");
             int length = rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
             for (int i = 0; i < length; i++) {
-                homePhone += ((Integer) rand.nextInt(DIGIT_QUANTITY)).toString();
+                phoneNumber.append((Integer) rand.nextInt(DIGIT_QUANTITY));
             }
         }
-        this.homePhone = homePhone;
+        this.homePhone = phoneNumber.toString();
     }
 
     private void setEMail() {
@@ -239,17 +239,17 @@ public class RandomContact {
     }
 
     private void setMobilePhone() {
-        String mobilePhone;
+        StringBuilder mobilePhone;
         if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
-            mobilePhone = EMPTY_STRING;
+            mobilePhone = new StringBuilder(EMPTY_STRING);
         } else {
-            mobilePhone = "+";
+            mobilePhone = new StringBuilder("+");
             int length = rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
             for (int i = 0; i < length; i++) {
-                mobilePhone += ((Integer) rand.nextInt(DIGIT_QUANTITY)).toString();
+                mobilePhone.append((Integer) rand.nextInt(DIGIT_QUANTITY));
             }
         }
-        this.mobilePhone = mobilePhone;
+        this.mobilePhone = mobilePhone.toString();
     }
 
     private void setPersonalWebsite() {
@@ -289,16 +289,13 @@ public class RandomContact {
     }
 
     private void setPostCode() {
-        String postCode;
-        if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
-            postCode = EMPTY_STRING;
-        } else {
-            postCode = EMPTY_STRING;
+        StringBuilder postCode = new StringBuilder(EMPTY_STRING);
+        if (rand.nextInt(HUNDRED_PERCENT) >= PROBABILITY_OF_EMPTY_STRING) {
             for (int i = 0; i < POST_CODE_DIGIT_QUANTITY; i++) {
-                postCode += ((Integer) rand.nextInt(DIGIT_QUANTITY)).toString();
+                postCode.append((Integer) rand.nextInt(DIGIT_QUANTITY));
             }
         }
-        this.postCode = postCode;
+        this.postCode = postCode.toString();
     }
 
     private void setState() {
@@ -320,12 +317,12 @@ public class RandomContact {
     }
 
     private String wordImitationInLowerCase() {
-        String word = EMPTY_STRING;
+        StringBuilder word = new StringBuilder(EMPTY_STRING);
         int length = rand.nextInt(STRINGS_MAX_LENGTH - STRINGS_MIN_LENGTH) + STRINGS_MIN_LENGTH;
         for (int i = 0; i < length; i++) {
-            word += randomLowerLetter();
+            word.append(randomLowerLetter());
         }
-        return word;
+        return word.toString();
     }
 
     private String getInitialLetter(String word) {

@@ -75,7 +75,7 @@ public class WeatherForecastParser {
     private final String EMPTY_STRING = "";
 
     private Town town;
-    private List<WeatherForecast> weatherForecasts = new ArrayList<WeatherForecast>();
+    private List<WeatherForecast> weatherForecasts = new ArrayList<>();
 
     public boolean parse(String xmlData) {
         WeatherForecast weatherForecast = null;
@@ -198,7 +198,6 @@ public class WeatherForecastParser {
                 weatherForecast.setWeekday(xpp.getAttributeValue(i));
             }
         }
-        weatherForecast.setDate(weatherForecast.getDay(), weatherForecast.getMonth(), weatherForecast.getYear());
         return weatherForecast;
     }
 

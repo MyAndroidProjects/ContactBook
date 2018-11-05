@@ -12,7 +12,7 @@ public class AlphabetList {
     public static List<Character> alphabet;
 
     static {
-        alphabet = new ArrayList<Character>();
+        alphabet = new ArrayList<>();
         for (char c = 'A'; c <= 'Z'; c++) {
             alphabet.add(c);
         }

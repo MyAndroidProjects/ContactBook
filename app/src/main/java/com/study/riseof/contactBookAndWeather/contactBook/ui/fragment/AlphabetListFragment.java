@@ -24,7 +24,7 @@ public class AlphabetListFragment extends Fragment {
     private static List<String> buttonName;
 
     static {
-        buttonName = new ArrayList<String>();
+        buttonName = new ArrayList<>();
         buttonName.add("All");
         buttonName.add("__");
         int length = AlphabetList.alphabet.size();

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="town">
+        <item>Неизвестно</item>
+        <item>Новосибирск</item>
+    </string-array>
+
+    <string-array name="tod">
+        <item>Ночь</item>
+        <item>Утро</item>
+        <item>День</item>
+        <item>Вечер</item>
+    </string-array>
+
+    <string-array name="weekday">
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+    </string-array>
+
+    <string-array name="cloudiness">
+        <item>туман</item>
+        <item>ясно</item>
+        <item>малооблачно</item>
+        <item>облачно</item>
+        <item>пасмурно</item>
+    </string-array>
+
+    <string-array name="precipitation">
+        <item>смешанные</item>
+        <item>дождь</item>
+        <item>ливень</item>
+        <item>снег</item>
+        <item>мокрый снег</item>
+        <item>гроза</item>
+        <item>нет информации</item>
+        <item>без осадков</item>
+    </string-array>
+
+    <string-array name="windDirection">
+        <item>С</item>
+        <item>СВ</item>
+        <item>В</item>
+        <item>ЮВ</item>
+        <item>Ю</item>
+        <item>ЮЗ</item>
+        <item>З</item>
+        <item>СЗ</item>
+    </string-array>
+
+    <string name="coordinates">%1$s%2$sС.Ш. %3$s%4$sВ.Д.</string>
+
+    <string name="pressure">%1$s..%2$s мм.рт.ст.</string>
+    <string name="wind">%1$s-%2$sм/с %3$s</string>
+
+</resources>

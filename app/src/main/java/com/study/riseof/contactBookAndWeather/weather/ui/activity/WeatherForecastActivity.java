@@ -9,7 +9,6 @@ import com.study.riseof.contactBookAndWeather.weather.xmlParse.WeatherForecastPa
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,15 +32,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WeatherForecastActivity extends AppCompatActivity {
+    Town town;
 
-    // ??? два одинаковых enum TownInfo (здесь и в WeatherForecastParser)
-    // делать его публичным в парсере или как быть ???
-
-   Town town;
-
-    //private final String WEATHER_SITE_PATH = "https://xml.meteoservice.ru/export/gismeteo/point/99.xml";
-
-    private final int DEGREE_SYMBOL_CODE = 186;
     private final String EMPTY_STRING = "";
 
     private List<WeatherForecast> weatherForecasts;
@@ -49,10 +41,6 @@ public class WeatherForecastActivity extends AppCompatActivity {
     private WeatherForecastDataLoader weatherForecastDataLoader;
 
     public String weatherSitePath;
-
-    private  String loading;
-    private  String northLatitude;
-    private  String eastLongitude;
 
     @BindView(R.id.weather_forecast_toolbar)
     Toolbar toolbar;
@@ -77,8 +65,6 @@ public class WeatherForecastActivity extends AppCompatActivity {
             Log.d("myLog", "getSupportActionBar() == null");
             throw new ClassCastException("getSupportActionBar() == null");
         }
-        MainActivity.setLanguage(getString(R.string.current_language));
-        getResourceStrings();
         weatherSitePath = getString(R.string.link_meteoservice_ru);
         weatherForecastDataLoader = new WeatherForecastDataLoader();
         weatherForecastDataLoader.execute(weatherSitePath);
@@ -111,12 +97,6 @@ public class WeatherForecastActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getResourceStrings(){
-        loading = getString(R.string.loading);
-        northLatitude = getString(R.string.norse_latitude);
-        eastLongitude = getString(R.string.east_longitude);
-    }
-    
     private void setWeatherForecastRecyclerAdapter() {
         adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -124,19 +104,14 @@ public class WeatherForecastActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private String getTownCoordinates() {
-        return town.getLatitude() + (char) DEGREE_SYMBOL_CODE + northLatitude + " " +
-                town.getLongitude() + (char) DEGREE_SYMBOL_CODE + eastLongitude;
-    }
-
     private void resetTownInfoText() {
-        townNameText.setText(loading);
+        townNameText.setText(getString(R.string.loading));
         townCoordinatesText.setText(EMPTY_STRING);
     }
 
     private void setTownInfoText() {
-        townNameText.setText(town.getName());
-        townCoordinatesText.setText(getTownCoordinates());
+        townNameText.setText(town.getTown(this));
+        townCoordinatesText.setText(town.getCoordinates(this));
     }
 
     private class WeatherForecastDataLoader extends AsyncTask<String, Void, String> {

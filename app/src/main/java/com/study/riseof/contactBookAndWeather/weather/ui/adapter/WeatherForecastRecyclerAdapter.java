@@ -20,9 +20,11 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
 
     private LayoutInflater inflater;
     private List<WeatherForecast> weatherForecastList;
+    private Context context;
 
     public WeatherForecastRecyclerAdapter(Context context, List<WeatherForecast> weatherForecastList) {
         this.weatherForecastList = weatherForecastList;
+        this.context = context;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -36,17 +38,17 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         final WeatherForecast weatherForecast = weatherForecastList.get(position);
-        holder.forecastWeekdayValue.setText(weatherForecast.getWeekday());
-        holder.forecastDateValue.setText(weatherForecast.getDate());
-        holder.forecastTodValue.setText(weatherForecast.getTod());
-        holder.forecastTimeValue.setText(weatherForecast.getTime());
-        holder.forecastTemperatureValue.setText(weatherForecast.getTemperature());
-        holder.forecastHeatValue.setText(weatherForecast.getHeat());
-        holder.forecastCloudinessValue.setText(weatherForecast.getCloudiness());
-        holder.forecastPrecipitationValue.setText(weatherForecast.getPrecipitation());
-        holder.forecastWindValue.setText(weatherForecast.getWind());
-        holder.forecastPressureValue.setText(weatherForecast.getPressure());
-        holder.forecastRelativeWetValue.setText(weatherForecast.getRelativeWet());
+        holder.forecastWeekdayValue.setText(weatherForecast.getWeekday(context));
+        holder.forecastDateValue.setText(weatherForecast.getDate(context));
+        holder.forecastTodValue.setText(weatherForecast.getTod(context));
+        holder.forecastTimeValue.setText(weatherForecast.getTime(context));
+        holder.forecastTemperatureValue.setText(weatherForecast.getTemperature(context));
+        holder.forecastHeatValue.setText(weatherForecast.getHeat(context));
+        holder.forecastCloudinessValue.setText(weatherForecast.getCloudiness(context));
+        holder.forecastPrecipitationValue.setText(weatherForecast.getPrecipitation(context));
+        holder.forecastWindValue.setText(weatherForecast.getWind(context));
+        holder.forecastPressureValue.setText(weatherForecast.getPressure(context));
+        holder.forecastRelativeWetValue.setText(weatherForecast.getRelativeWet(context));
 
     }
 
