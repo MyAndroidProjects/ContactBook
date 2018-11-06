@@ -28,8 +28,8 @@ public class ButtonPanelFragment extends BaseFragment {
   //  private final int EMPTY_INDEX = -1;
 //    private final String EMPTY_STRING = "";
 
-    private int selectedContactId = EMPTY_INDEX;
-    private String selectedLetter = EMPTY_STRING;
+  //  private int selectedContactId = EMPTY_INDEX;
+   // private String selectedLetter = EMPTY_STRING;
 
     @Nullable
     @BindView(R.id.button_edit)
@@ -48,9 +48,13 @@ public class ButtonPanelFragment extends BaseFragment {
     private ContactBaseManager contactBaseManager;
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_button_panel;
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /*View*/ view = inflater.inflate(R.layout.fragment_button_panel, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        super.onCreateView(inflater, container, savedInstanceState);
         contactBaseManager = new ContactBaseManager(getContext());
         if (getArguments() != null) {
             Bundle args = getArguments();
@@ -120,7 +124,7 @@ public class ButtonPanelFragment extends BaseFragment {
     }
 
     public void setSelectedContactId(int id) {
-        selectedContactId = id;
+        this.selectedContactId = id;
     }
 
     public void setSelectedLetter(String selectedLetter) {

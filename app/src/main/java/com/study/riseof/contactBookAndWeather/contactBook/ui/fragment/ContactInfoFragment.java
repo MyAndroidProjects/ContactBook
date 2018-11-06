@@ -54,13 +54,16 @@ public class ContactInfoFragment extends BaseFragment {
   //  private final int EMPTY_INDEX = -1;
 
     private ContactBaseManager contactBaseManager;
-    private int selectedContactId;
+  //  private int selectedContactId;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_contact_info;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-   //     super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.fragment_contact_info, container, false);
-        unbinder = ButterKnife.bind(this, view);
+       super.onCreateView(inflater, container, savedInstanceState);
         contactBaseManager = new ContactBaseManager(getContext());
         Bundle args = getArguments();
         if (args != null) {

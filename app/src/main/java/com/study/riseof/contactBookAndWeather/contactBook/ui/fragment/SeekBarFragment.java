@@ -30,7 +30,7 @@ public class SeekBarFragment extends BaseFragment {
 
     @BindView(R.id.window_height_seek_bar)
     SeekBar windowHeightBar;
-
+/*
     // onAttach(Context) не вызовется до API 23 версии
     // вместо этого будет вызван onAttach(Activity), который устарел с 23 API
     // поэтому в каждом методе вызовем onAttachToContext(Context context)
@@ -57,12 +57,25 @@ public class SeekBarFragment extends BaseFragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement SeekBarProgressListener");
         }
+    }*/
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_seek_bar;
     }
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_seek_bar, container, false);
-        unbinder = ButterKnife.bind(this, view);
+      //  view = inflater.inflate(R.layout.fragment_seek_bar, container, false);
+      //  unbinder = ButterKnife.bind(this, view);
+        try {
+            seekBarListener = (SeekBarProgressListener) getContext();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getContext().toString() + " must implement SeekBarProgressListener");
+        }
+        super.onCreateView(inflater, container, savedInstanceState);
         windowHeightBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

@@ -34,7 +34,7 @@ public class ContactListFragment extends BaseFragment {
     private ContactListAdapter contactAdapter;
  //   private View view;
     private ContactListClickListener contactClickListener;
-    private String selectedLetter = EMPTY_STRING;
+  //  private String selectedLetter = EMPTY_STRING;
 
     @BindView(R.id.contact_list_view)
     ListView contactListView;
@@ -64,10 +64,13 @@ public class ContactListFragment extends BaseFragment {
     }
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_contact_list;
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      //  super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.fragment_contact_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        super.onCreateView(inflater, container, savedInstanceState);
         contactBaseManager = new ContactBaseManager(getContext());
         if (getArguments() != null) {
             Bundle args = getArguments();

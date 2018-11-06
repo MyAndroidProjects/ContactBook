@@ -46,9 +46,15 @@ public class AlphabetListFragment extends BaseFragment {
     private int fragmentWidth;
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_alphabet_list;
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_alphabet_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
+      //  view = inflater.inflate(R.layout.fragment_alphabet_list, container, false);
+      //  unbinder = ButterKnife.bind(this, view);
+        super.onCreateView(inflater, container, savedInstanceState);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         AlphabetRecyclerViewAdapter adapter = new AlphabetRecyclerViewAdapter(getContext(), buttonName);
