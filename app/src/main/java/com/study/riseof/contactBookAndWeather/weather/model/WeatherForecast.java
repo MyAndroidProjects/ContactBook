@@ -1,9 +1,7 @@
 package com.study.riseof.contactBookAndWeather.weather.model;
 
 
-
 import java.util.GregorianCalendar;
-
 
 public class WeatherForecast {
     private GregorianCalendar calendar;

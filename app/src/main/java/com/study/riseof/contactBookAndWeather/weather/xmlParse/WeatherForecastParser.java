@@ -180,6 +180,7 @@ public class WeatherForecastParser {
 
     private WeatherForecast startTagForecast(XmlPullParser xpp) {
         WeatherForecast weatherForecast = new WeatherForecast();
+        final int monthOffset = -1;
         int day = 0;
         int month = 0;
         int year = 0;
@@ -203,7 +204,7 @@ public class WeatherForecastParser {
                 weatherForecast.setWeekday(xpp.getAttributeValue(i));
             }*/
         }
-        weatherForecast.setDate(year, month, day, hour, minute);
+        weatherForecast.setDate(year, month + monthOffset, day, hour, minute);
         return weatherForecast;
     }
 

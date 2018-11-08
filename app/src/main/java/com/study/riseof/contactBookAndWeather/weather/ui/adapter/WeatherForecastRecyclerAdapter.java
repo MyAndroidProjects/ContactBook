@@ -25,9 +25,8 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     private SimpleDateFormat formatDate;
     private SimpleDateFormat formatWeekday;
     private SimpleDateFormat formatTime;
-    private final int  PRECIPITATION_OFFSET = -3;
-    private final int  CLOUDINESS_OFFSET = 1;
-
+    private final int PRECIPITATION_OFFSET = -3;
+    private final int CLOUDINESS_OFFSET = 1;
 
 
     public WeatherForecastRecyclerAdapter(Context context, List<WeatherForecast> weatherForecastList) {
@@ -57,8 +56,8 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
         holder.forecastTemperatureValue.setText(
                 String.format(context.getString(R.string.temperature), weatherForecast.getMinTemperature(), weatherForecast.getMaxTemperature()));
         holder.forecastHeatValue.setText(String.format(context.getString(R.string.temperature), weatherForecast.getMinHeat(), weatherForecast.getMaxHeat()));
-        holder.forecastCloudinessValue.setText(context.getResources().getStringArray(R.array.cloudiness)[weatherForecast.getCloudinessIndex()+CLOUDINESS_OFFSET]);
-        holder.forecastPrecipitationValue.setText(context.getResources().getStringArray(R.array.precipitation)[weatherForecast.getPrecipitationIndex()+PRECIPITATION_OFFSET]);
+        holder.forecastCloudinessValue.setText(context.getResources().getStringArray(R.array.cloudiness)[weatherForecast.getCloudinessIndex() + CLOUDINESS_OFFSET]);
+        holder.forecastPrecipitationValue.setText(context.getResources().getStringArray(R.array.precipitation)[weatherForecast.getPrecipitationIndex() + PRECIPITATION_OFFSET]);
         holder.forecastWindValue.setText(
                 String.format(context.getString(R.string.wind), weatherForecast.getMinWindSpeed(), weatherForecast.getMaxWindSpeed(),
                         context.getResources().getStringArray(R.array.windDirection)[weatherForecast.getWindDirectionIndex()])
