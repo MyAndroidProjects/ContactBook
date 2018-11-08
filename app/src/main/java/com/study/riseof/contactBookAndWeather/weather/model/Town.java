@@ -1,8 +1,5 @@
 package com.study.riseof.contactBookAndWeather.weather.model;
 
-import android.content.Context;
-
-import com.study.riseof.contactBookAndWeather.R;
 
 public class Town {
     private int townArrayIndex;

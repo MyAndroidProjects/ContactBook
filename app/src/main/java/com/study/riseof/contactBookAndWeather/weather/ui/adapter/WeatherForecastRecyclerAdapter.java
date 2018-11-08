@@ -12,7 +12,6 @@ import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;

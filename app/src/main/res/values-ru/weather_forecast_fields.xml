@@ -12,16 +12,6 @@
         <item>Вечер</item>
     </string-array>
 
-    <string-array name="weekday">
-        <item>Воскресенье</item>
-        <item>Понедельник</item>
-        <item>Вторник</item>
-        <item>Среда</item>
-        <item>Четверг</item>
-        <item>Пятница</item>
-        <item>Суббота</item>
-    </string-array>
-
     <string-array name="cloudiness">
         <item>туман</item>
         <item>ясно</item>

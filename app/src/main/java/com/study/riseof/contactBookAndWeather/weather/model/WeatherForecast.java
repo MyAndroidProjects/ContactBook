@@ -1,10 +1,7 @@
 package com.study.riseof.contactBookAndWeather.weather.model;
 
-import android.content.Context;
 
-import com.study.riseof.contactBookAndWeather.R;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
