@@ -52,13 +52,13 @@
         <item>NW</item>
     </string-array>
 
-    <string name="coordinates">%1$s%2$sN %3$s%4$sE</string>
+    <string name="coordinates">%1$s&#176;N %2$s&#176;E</string>
 
     <string name="time" translatable="false">%1$s:00</string>
     <string name="date" translatable="false">%1$s.%2$s.%3$s</string>
-    <string name="pressure">%1$s..%2$s mmHG</string>
-    <string name="temperature" translatable="false">%1$s..%2$s,%3$sC</string>
-    <string name="wind">%1$s-%2$sm/s %3$s</string>
-    <string name="relativeWet" translatable="false">%1$s-%2$s %%</string>
+    <string name="pressure">%1$d..%2$d mmHG</string>
+    <string name="temperature" translatable="false">%1$d..%2$d,&#176;C</string>
+    <string name="wind">%1$d-%2$d m/s, %3$s</string>
+    <string name="relativeWet" translatable="false">%1$d-%2$d %%</string>
 
 </resources>

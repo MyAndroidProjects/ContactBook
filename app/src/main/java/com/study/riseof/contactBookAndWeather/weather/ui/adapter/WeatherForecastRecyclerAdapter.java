@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,11 +23,21 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     private LayoutInflater inflater;
     private List<WeatherForecast> weatherForecastList;
     private Context context;
+    private SimpleDateFormat formatDate;
+    private SimpleDateFormat formatWeekday;
+    private SimpleDateFormat formatTime;
+    private final int  PRECIPITATION_OFFSET = -3;
+    private final int  CLOUDINESS_OFFSET = 1;
+
+
 
     public WeatherForecastRecyclerAdapter(Context context, List<WeatherForecast> weatherForecastList) {
         this.weatherForecastList = weatherForecastList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
+        formatDate = new SimpleDateFormat("yyyy.MM.dd");
+        formatWeekday = new SimpleDateFormat("EEEE");
+        formatTime = new SimpleDateFormat("HH:mm");
     }
 
     @NonNull
@@ -38,18 +50,22 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         final WeatherForecast weatherForecast = weatherForecastList.get(position);
-        holder.forecastWeekdayValue.setText(weatherForecast.getWeekday(context));
-        holder.forecastDateValue.setText(weatherForecast.getDate(context));
-        holder.forecastTodValue.setText(weatherForecast.getTod(context));
-        holder.forecastTimeValue.setText(weatherForecast.getTime(context));
-        holder.forecastTemperatureValue.setText(weatherForecast.getTemperature(context));
-        holder.forecastHeatValue.setText(weatherForecast.getHeat(context));
-        holder.forecastCloudinessValue.setText(weatherForecast.getCloudiness(context));
-        holder.forecastPrecipitationValue.setText(weatherForecast.getPrecipitation(context));
-        holder.forecastWindValue.setText(weatherForecast.getWind(context));
-        holder.forecastPressureValue.setText(weatherForecast.getPressure(context));
-        holder.forecastRelativeWetValue.setText(weatherForecast.getRelativeWet(context));
 
+        holder.forecastWeekdayValue.setText(formatWeekday.format(weatherForecast.getCalendar().getTime()));
+        holder.forecastDateValue.setText(formatDate.format(weatherForecast.getCalendar().getTime()));
+        holder.forecastTodValue.setText(context.getResources().getStringArray(R.array.tod)[weatherForecast.getTodIndex()]);
+        holder.forecastTimeValue.setText(formatTime.format(weatherForecast.getCalendar().getTime()));
+        holder.forecastTemperatureValue.setText(
+                String.format(context.getString(R.string.temperature), weatherForecast.getMinTemperature(), weatherForecast.getMaxTemperature()));
+        holder.forecastHeatValue.setText(String.format(context.getString(R.string.temperature), weatherForecast.getMinHeat(), weatherForecast.getMaxHeat()));
+        holder.forecastCloudinessValue.setText(context.getResources().getStringArray(R.array.cloudiness)[weatherForecast.getCloudinessIndex()+CLOUDINESS_OFFSET]);
+        holder.forecastPrecipitationValue.setText(context.getResources().getStringArray(R.array.precipitation)[weatherForecast.getPrecipitationIndex()+PRECIPITATION_OFFSET]);
+        holder.forecastWindValue.setText(
+                String.format(context.getString(R.string.wind), weatherForecast.getMinWindSpeed(), weatherForecast.getMaxWindSpeed(),
+                        context.getResources().getStringArray(R.array.windDirection)[weatherForecast.getWindDirectionIndex()])
+        );
+        holder.forecastPressureValue.setText(String.format(context.getString(R.string.pressure), weatherForecast.getMinPressure(), weatherForecast.getMaxPressure()));
+        holder.forecastRelativeWetValue.setText(String.format(context.getString(R.string.relativeWet), weatherForecast.getMinRelativeWet(), weatherForecast.getMaxRelativeWet()));
     }
 
     @Override

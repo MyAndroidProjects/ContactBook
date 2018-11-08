@@ -180,24 +180,30 @@ public class WeatherForecastParser {
 
     private WeatherForecast startTagForecast(XmlPullParser xpp) {
         WeatherForecast weatherForecast = new WeatherForecast();
+        int day = 0;
+        int month = 0;
+        int year = 0;
+        int hour = 0;
+        int minute = 0;
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.DAY.name)) {
-                weatherForecast.setDay(xpp.getAttributeValue(i));
+                day = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.MONTH.name)) {
-                weatherForecast.setMonth(xpp.getAttributeValue(i));
+                month = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.YEAR.name)) {
-                weatherForecast.setYear(xpp.getAttributeValue(i));
+                year = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.HOUR.name)) {
-                weatherForecast.setHour(xpp.getAttributeValue(i));
+                hour = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.TOD.name)) {
                 weatherForecast.setTod(xpp.getAttributeValue(i));
-            } else if (xpp.getAttributeName(i).equals(AttributeName.PREDICT.name)) {
+            } /*else if (xpp.getAttributeName(i).equals(AttributeName.PREDICT.name)) {
                 weatherForecast.setPredict(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.WEEKDAY.name)) {
                 weatherForecast.setWeekday(xpp.getAttributeValue(i));
-            }
+            }*/
         }
+        weatherForecast.setDate(year, month, day, hour, minute);
         return weatherForecast;
     }
 

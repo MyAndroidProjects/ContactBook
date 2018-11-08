@@ -3,7 +3,6 @@ package com.study.riseof.contactBookAndWeather;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.study.riseof.contactBookAndWeather.weather.ui.activity.WeatherForecastActivity;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.activity.ContactsMainActivity;

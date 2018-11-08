@@ -2,7 +2,6 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseMa
 import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class ContactInfoFragment extends BaseFragment {
    // private Unbinder unbinder;

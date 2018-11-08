@@ -6,25 +6,25 @@ public class Contact {
     private final int INITIAL_LETTER_INDEX = 0;
 
     private int id;
-    private String firstName;
-    private String firstNameInitialLetter;
-    private String secondName;
-    private String secondNameInitialLetter;
-    private String patronymic;
-    private String patronymicInitialLetter;
-    private String lastName;
-    private String lastNameInitialLetter;
-    private String mobilePhone;
-    private String homePhone;
-    private String personalWebsite;
-    private String eMail;
-    private String flat;
-    private String house;
-    private String street;
-    private String city;
-    private String state;
-    private String country;
-    private String postCode;
+    private final String firstName;
+    private final String firstNameInitialLetter;
+    private final String secondName;
+    private final String secondNameInitialLetter;
+    private final String patronymic;
+    private final String patronymicInitialLetter;
+    private final String lastName;
+    private final String lastNameInitialLetter;
+    private final String mobilePhone;
+    private final String homePhone;
+    private final String personalWebsite;
+    private final String eMail;
+    private final String flat;
+    private final String house;
+    private final String street;
+    private final String city;
+    private final String state;
+    private final String country;
+    private final String postCode;
 
     public Contact() {
         this.firstName = EMPTY_STRING;

@@ -52,9 +52,9 @@
         <item>СЗ</item>
     </string-array>
 
-    <string name="coordinates">%1$s%2$sС.Ш. %3$s%4$sВ.Д.</string>
+    <string name="coordinates">%1$s&#176;С.Ш. %2$s&#176;В.Д.</string>
 
-    <string name="pressure">%1$s..%2$s мм.рт.ст.</string>
-    <string name="wind">%1$s-%2$sм/с %3$s</string>
+    <string name="pressure">%1$d..%2$d мм.рт.ст.</string>
+    <string name="wind">%1$d-%2$d м/с, %3$s</string>
 
 </resources>

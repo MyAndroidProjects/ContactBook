@@ -1,11 +1,6 @@
 package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +10,6 @@ import android.widget.SeekBar;
 import com.study.riseof.contactBookAndWeather.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class SeekBarFragment extends BaseFragment {
 

@@ -6,7 +6,6 @@ import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.AlphabetRec
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class AlphabetListFragment extends BaseFragment {
     private static List<String> buttonName;

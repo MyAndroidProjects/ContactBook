@@ -1,6 +1,5 @@
 package com.study.riseof.contactBookAndWeather.weather.ui.activity;
 
-import com.study.riseof.contactBookAndWeather.MainActivity;
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.model.Town;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
@@ -110,8 +109,8 @@ public class WeatherForecastActivity extends AppCompatActivity {
     }
 
     private void setTownInfoText() {
-        townNameText.setText(town.getTown(this));
-        townCoordinatesText.setText(town.getCoordinates(this));
+        townNameText.setText(getResources().getStringArray(R.array.town)[town.getTownArrayIndex()]);
+        townCoordinatesText.setText(String.format(getString(R.string.coordinates),town.getLatitude(), town.getLongitude()));
     }
 
     private class WeatherForecastDataLoader extends AsyncTask<String, Void, String> {

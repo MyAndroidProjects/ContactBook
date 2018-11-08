@@ -5,10 +5,9 @@ import android.content.Context;
 import com.study.riseof.contactBookAndWeather.R;
 
 public class Town {
-    private int DEGREE_SYMBOL_CODE = 186;
     private int townArrayIndex;
-    private String latitude;
-    private String longitude;
+    private final String latitude;
+    private final String longitude;
 
     private enum TownList {
         UNKNOWN("", 0),
@@ -34,14 +33,15 @@ public class Town {
         }
     }
 
-    public String getCoordinates(Context context) {
-        return String.format(context.getString(R.string.coordinates),
-                latitude, ((char) DEGREE_SYMBOL_CODE),
-                longitude, ((char) DEGREE_SYMBOL_CODE));
+    public int getTownArrayIndex() {
+        return townArrayIndex;
     }
 
-    public String getTown(Context context) {
-        return context.getResources().getStringArray(R.array.town)[townArrayIndex];
+    public String getLatitude() {
+        return latitude;
     }
 
+    public String getLongitude() {
+        return longitude;
+    }
 }
