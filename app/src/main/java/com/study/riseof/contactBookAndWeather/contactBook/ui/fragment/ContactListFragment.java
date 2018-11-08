@@ -1,9 +1,5 @@
 package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -11,54 +7,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
-import android.widget.AdapterView;
-
-import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.ContactListAdapter;
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
 import com.study.riseof.contactBookAndWeather.contactBook.model.AbbreviatedContact;
+import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.ContactListAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnItemClick;
 
 public class ContactListFragment extends BaseFragment {
-  //  private final String EMPTY_STRING = "";
-
- //   private Unbinder unbinder;
     private ContactBaseManager contactBaseManager;
     private ArrayList<AbbreviatedContact> contacts = new ArrayList<>();
     private ContactListAdapter contactAdapter;
- //   private View view;
     private ContactListClickListener contactClickListener;
-  //  private String selectedLetter = EMPTY_STRING;
+    private String selectedLetter = EMPTY_STRING;
 
     @BindView(R.id.contact_list_view)
     ListView contactListView;
-
-    @TargetApi(23)
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        onAttachToContext(context);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            onAttachToContext(activity);
-        }
-    }
-
-    protected void onAttachToContext(Context context) {
-        try {
-            contactClickListener = (ContactListClickListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement ContactListClickListener");
-        }
-    }
 
     @Override
     protected int getLayoutId() {
@@ -76,22 +43,7 @@ public class ContactListFragment extends BaseFragment {
             selectedLetter = EMPTY_STRING;
         }
         setContactArrayAdapter();
-        // ??? как лучше ставить обработчик, ниже два варианта:
-        AdapterView.OnItemClickListener abbreviatedContactListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                AbbreviatedContact abbreviatedContact = (AbbreviatedContact) parent.getItemAtPosition(position);
-                contactClickListener.onContactItemClick(abbreviatedContact.getItemId());
-            }
-        };
-        contactListView.setOnItemClickListener(abbreviatedContactListener);
-        // ??? и второй вариант:
-        /*  contactListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            AbbreviatedContact abbreviatedContact = (AbbreviatedContact)parent.getItemAtPosition(position);
-            }
-        });*/
+        setContactClickListener((ContactListClickListener) getActivity());
         return view;
     }
 
@@ -102,13 +54,15 @@ public class ContactListFragment extends BaseFragment {
             showContactsByFirstLetter(selectedLetter);
         }
     }
-/*
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+
+    @OnItemClick(R.id.contact_list_view)
+    public void OnItemSelected(int position) {
+        AbbreviatedContact abbreviatedContact = contactAdapter.getItem(position);
+        if (abbreviatedContact != null && contactClickListener != null) {
+            contactClickListener.onContactItemClick(abbreviatedContact.getItemId());
+        }
     }
-*/
+
     public void showContactsByFirstLetter(String letter) {
         this.selectedLetter = letter;
         ArrayList<AbbreviatedContact> selectedContacts = contactBaseManager.getAbbrContactListByFirstLetter(letter);
@@ -125,6 +79,10 @@ public class ContactListFragment extends BaseFragment {
             contactAdapter = new ContactListAdapter(getContext(), R.layout.item_list_view_contact, contacts);
         }
         contactListView.setAdapter(contactAdapter);
+    }
+
+    public void setContactClickListener(ContactListClickListener contactClickListener) {
+        this.contactClickListener = contactClickListener;
     }
 
     public interface ContactListClickListener {
