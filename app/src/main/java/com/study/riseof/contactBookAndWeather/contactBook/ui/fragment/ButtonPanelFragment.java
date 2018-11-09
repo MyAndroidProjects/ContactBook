@@ -105,12 +105,4 @@ public class ButtonPanelFragment extends BaseFragment {
             }
         }
     }
-
-    public void setSelectedContactId(int id) {
-        this.selectedContactId = id;
-    }
-
-    public void setSelectedLetter(String selectedLetter) {
-        this.selectedLetter = selectedLetter;
-    }
 }

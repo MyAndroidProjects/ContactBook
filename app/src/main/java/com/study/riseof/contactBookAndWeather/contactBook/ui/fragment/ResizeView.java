@@ -12,7 +12,6 @@ import com.study.riseof.contactBookAndWeather.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class ResizeView extends FrameLayout {
 

@@ -142,6 +142,8 @@ public class ContactsMainActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.frame_contact_info, contactInfoFragment);
         fragmentTransaction.add(R.id.frame_button_panel, buttonPanelFragment);
         fragmentTransaction.commit();
+
+        contactListFragment.setContactClickListener(this);
     }
 
     @Override

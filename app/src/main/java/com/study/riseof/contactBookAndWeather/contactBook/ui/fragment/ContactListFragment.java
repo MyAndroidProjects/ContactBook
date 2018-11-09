@@ -43,7 +43,6 @@ public class ContactListFragment extends BaseFragment {
             selectedLetter = EMPTY_STRING;
         }
         setContactArrayAdapter();
-        setContactClickListener((ContactListClickListener) getActivity());
         return view;
     }
 

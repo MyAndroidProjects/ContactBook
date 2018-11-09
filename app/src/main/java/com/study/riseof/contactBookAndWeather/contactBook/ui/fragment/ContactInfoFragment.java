@@ -14,8 +14,6 @@ import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 import butterknife.BindView;
 
 public class ContactInfoFragment extends BaseFragment {
-   // private Unbinder unbinder;
-
     @BindView(R.id.text_first_name)
     TextView firstNameText;
     @BindView(R.id.text_second_name)
@@ -47,11 +45,7 @@ public class ContactInfoFragment extends BaseFragment {
     @BindView(R.id.text_post_code)
     TextView postCodeText;
 
-  //  private final String EMPTY_STRING = "";
-  //  private final int EMPTY_INDEX = -1;
-
     private ContactBaseManager contactBaseManager;
-  //  private int selectedContactId;
 
     @Override
     protected int getLayoutId() {
@@ -78,13 +72,7 @@ public class ContactInfoFragment extends BaseFragment {
             setContactInfoById(selectedContactId);
         }
     }
-/*
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-*/
+
     public void setContactInfoById(int id) {
         setContactInfoText(contactBaseManager.getContactById(id));
     }

@@ -32,13 +32,8 @@ public class AlphabetListFragment extends BaseFragment {
         }
     }
 
-  //  private Unbinder unbinder;
-
     @BindView(R.id.recycler_view_alphabet)
     RecyclerView recyclerView;
-
-    private RecyclerView.LayoutManager layoutManager;
-  //  private View view;
 
     private int fragmentWidth;
 
@@ -49,10 +44,8 @@ public class AlphabetListFragment extends BaseFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      //  view = inflater.inflate(R.layout.fragment_alphabet_list, container, false);
-      //  unbinder = ButterKnife.bind(this, view);
         super.onCreateView(inflater, container, savedInstanceState);
-        layoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         AlphabetRecyclerViewAdapter adapter = new AlphabetRecyclerViewAdapter(getContext(), buttonName);
         recyclerView.setAdapter(adapter);
@@ -67,11 +60,4 @@ public class AlphabetListFragment extends BaseFragment {
         });
         return view;
     }
-
- /*   @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-    */
 }

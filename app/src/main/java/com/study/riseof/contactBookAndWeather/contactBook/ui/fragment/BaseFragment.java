@@ -12,15 +12,23 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
-    protected Unbinder unbinder;
     protected final int EMPTY_INDEX = -1;
     protected final String EMPTY_STRING = "";
-    protected View view;
 
+    protected Unbinder unbinder;
+    protected View view;
     protected int selectedContactId = EMPTY_INDEX;
     protected String selectedLetter = EMPTY_STRING;
 
     protected abstract int getLayoutId();
+
+    public void setSelectedContactId(int id) {
+        this.selectedContactId = id;
+    }
+
+    public void setSelectedLetter(String selectedLetter) {
+        this.selectedLetter = selectedLetter;
+    }
 
     @Nullable
     @Override

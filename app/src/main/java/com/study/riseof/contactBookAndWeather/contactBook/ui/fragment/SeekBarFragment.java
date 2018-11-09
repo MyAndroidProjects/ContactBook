@@ -12,57 +12,22 @@ import com.study.riseof.contactBookAndWeather.R;
 import butterknife.BindView;
 
 public class SeekBarFragment extends BaseFragment {
-
     private final float PADDING_PART_OF_FRAGMENT = 0.1f;
 
-//    private View view;
-//    private Unbinder unbinder;
     private SeekBarProgressListener seekBarListener;
     private int fragmentHeight;
 
 
     @BindView(R.id.window_height_seek_bar)
     SeekBar windowHeightBar;
-/*
-    // onAttach(Context) не вызовется до API 23 версии
-    // вместо этого будет вызван onAttach(Activity), который устарел с 23 API
-    // поэтому в каждом методе вызовем onAttachToContext(Context context)
-    // в котором пропишем код при прикреплении к activity
-    @TargetApi(23)
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        onAttachToContext(context);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            onAttachToContext(activity);
-        }
-    }
-
-    protected void onAttachToContext(Context context) {
-        try {
-            seekBarListener = (SeekBarProgressListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement SeekBarProgressListener");
-        }
-    }*/
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_seek_bar;
     }
 
-
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      //  view = inflater.inflate(R.layout.fragment_seek_bar, container, false);
-      //  unbinder = ButterKnife.bind(this, view);
         try {
             seekBarListener = (SeekBarProgressListener) getContext();
         } catch (ClassCastException e) {
@@ -96,14 +61,6 @@ public class SeekBarFragment extends BaseFragment {
         });
         return view;
     }
-
-/*
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-*/
 
     public interface SeekBarProgressListener {
         void changeSeekBarProgress(int progress);
