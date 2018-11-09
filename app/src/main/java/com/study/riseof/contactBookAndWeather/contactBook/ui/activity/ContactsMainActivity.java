@@ -5,28 +5,29 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.SeekBarFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.AlphabetRecyclerViewAdapter;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.dialogFragment.ContactDeleteDialog;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.AlphabetListFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.ButtonPanelFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.ContactInfoFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.ContactListFragment;
+import com.study.riseof.contactBookAndWeather.contactBook.ui.view.ResizeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ContactsMainActivity extends AppCompatActivity
-        implements SeekBarFragment.SeekBarProgressListener,
-        AlphabetRecyclerViewAdapter.AdapterLetterClickListener,
+        implements AlphabetRecyclerViewAdapter.AdapterLetterClickListener,
         ContactListFragment.ContactListClickListener,
-        ContactDeleteDialog.DialogClickButtonPositiveListener {
+        ContactDeleteDialog.DialogClickButtonPositiveListener,
+        ResizeView.SeekBarProgressListener {
 
     private final String EMPTY_STRING = "";
     private final int EMPTY_INDEX = -1;
@@ -45,6 +46,8 @@ public class ContactsMainActivity extends AppCompatActivity
     FrameLayout contactInfoFrame;
     @BindView(R.id.contact_toolbar)
     Toolbar toolbar;
+    @BindView(R.id.resize_view)
+    ResizeView resizeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +56,9 @@ public class ContactsMainActivity extends AppCompatActivity
         //  ContactsBaseSQLiteHelper contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
         //this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
         ButterKnife.bind(this);
+        resizeView.setSeekBarListener(this);
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -66,7 +70,11 @@ public class ContactsMainActivity extends AppCompatActivity
         } else {
             selectedLetter = getIntent().getStringExtra("selectedLetter");
         }
+        Log.d("myLog", "ContactsMainActivity = " + selectedContactId + " Id");
+        Log.d("myLog", "ContactsMainActivity = " + selectedLetter + " Letter");
         addFragments();
+        Log.d("myLog", "ContactsMainActivity addFragments = " + selectedContactId + " Id");
+        Log.d("myLog", "ContactsMainActivity addFragments = " + selectedLetter + " Letter");
     }
 
     @Override

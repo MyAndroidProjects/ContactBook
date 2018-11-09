@@ -25,20 +25,19 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     private final String WEEKDAY_FORMAT = "EEEE";
     private final String TIME_FORMAT = "HH:mm";
 
-    private LayoutInflater inflater;
-    private List<WeatherForecast> weatherForecastList;
-    private Context context;
-    private SimpleDateFormat formatDate;
-    private SimpleDateFormat formatWeekday;
-    private SimpleDateFormat formatTime;
+    private final LayoutInflater inflater;
+    private final List<WeatherForecast> weatherForecastList;
+    private final Context context;
+
+    private final SimpleDateFormat formatDate = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+    private final SimpleDateFormat formatWeekday = new SimpleDateFormat(WEEKDAY_FORMAT, Locale.getDefault());
+    private final SimpleDateFormat formatTime = new SimpleDateFormat(TIME_FORMAT, Locale.getDefault());
 
     public WeatherForecastRecyclerAdapter(Context context, List<WeatherForecast> weatherForecastList) {
         this.weatherForecastList = weatherForecastList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        formatDate = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-        formatWeekday = new SimpleDateFormat(WEEKDAY_FORMAT, Locale.getDefault());
-        formatTime = new SimpleDateFormat(TIME_FORMAT, Locale.getDefault());
+
     }
 
     @NonNull

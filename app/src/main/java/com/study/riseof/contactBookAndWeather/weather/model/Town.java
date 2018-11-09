@@ -12,8 +12,8 @@ public class Town {
         UNKNOWN("", R.string.town_unknown),
         NOVOSIBIRSK("99", R.string.town_novosibirsk);
 
-        String index;
-        int townId;
+        final String index;
+        final int townId;
 
         SelectedTown(String index, int townId) {
             this.index = index;

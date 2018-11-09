@@ -14,12 +14,12 @@ import android.widget.Toast;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.dialogFragment.ContactDeleteDialog;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.activity.EditContactActivity;
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ButtonPanelFragment extends BaseFragment {
+    private final String TEL = "tel:";
 
     @Nullable
     @BindView(R.id.button_edit)
@@ -35,7 +35,7 @@ public class ButtonPanelFragment extends BaseFragment {
     Button buttonCall;
 
     private ContactDeleteDialog contactDeleteDialog;
-    private ContactBaseManager contactBaseManager;
+
 
     @Override
     protected int getLayoutId() {
@@ -45,23 +45,13 @@ public class ButtonPanelFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        contactBaseManager = new ContactBaseManager(getContext());
-        if (getArguments() != null) {
-            Bundle args = getArguments();
-            selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
-            selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
-        } else {
-            selectedContactId = EMPTY_INDEX;
-            selectedLetter = EMPTY_STRING;
-        }
-
         return view;
     }
 
     @OnClick(R.id.button_edit)
     public void onClickEditContact() {
         if (selectedContactId == EMPTY_INDEX) {
-            Toast.makeText(getContext(), "No selected contact", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.no_selected_contact), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(getContext(), EditContactActivity.class);
             intent.putExtra("selectedContactId", selectedContactId);
@@ -73,8 +63,9 @@ public class ButtonPanelFragment extends BaseFragment {
     @OnClick(R.id.button_delete)
     public void onClickDeleteContact() {
         if (selectedContactId == EMPTY_INDEX) {
-            Toast.makeText(getContext(), "No selected contact", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.no_selected_contact), Toast.LENGTH_SHORT).show();
         } else {
+            // TODO перенести вызов диалога в activity, а здесь сделать событие о нажатии delete button и подписать на это activity
             contactDeleteDialog = new ContactDeleteDialog();
             Bundle args = new Bundle();
             args.putInt("selectedContactId", selectedContactId);
@@ -94,14 +85,14 @@ public class ButtonPanelFragment extends BaseFragment {
     @OnClick(R.id.button_call)
     public void onClickCallContact() {
         if (selectedContactId == EMPTY_INDEX) {
-            Toast.makeText(getContext(), "No phone number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.no_phone_number), Toast.LENGTH_SHORT).show();
         } else {
             String phoneNumber = contactBaseManager.getMobileNumberById(selectedContactId);
-            if (phoneNumber.equals("+79139533750")) {
-                String toDial = "tel:" + phoneNumber;
+            if (phoneNumber.equals(PHONE_TO_CALL)) {
+                String toDial = TEL + phoneNumber;
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(toDial)));
             } else {
-                Toast.makeText(getContext(), "Phone number is not correct", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.phone_number_is_not_correct), Toast.LENGTH_SHORT).show();
             }
         }
     }

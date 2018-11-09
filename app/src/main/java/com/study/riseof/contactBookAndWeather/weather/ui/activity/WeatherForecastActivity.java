@@ -31,15 +31,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WeatherForecastActivity extends AppCompatActivity {
-    Town town;
+    private Town town;
 
     private final String EMPTY_STRING = "";
 
     private List<WeatherForecast> weatherForecasts;
-    private WeatherForecastRecyclerAdapter adapter;
     private WeatherForecastDataLoader weatherForecastDataLoader;
 
-    public String weatherSitePath;
+    private String weatherSitePath;
 
     @BindView(R.id.weather_forecast_toolbar)
     Toolbar toolbar;
@@ -97,7 +96,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
     }
 
     private void setWeatherForecastRecyclerAdapter() {
-        adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
+        WeatherForecastRecyclerAdapter adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

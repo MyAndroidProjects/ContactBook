@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
+import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.contactBook.model.AbbreviatedContact;
 import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
@@ -42,13 +43,13 @@ public class ContactBaseManager {
         }
     }
 
-    private ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
-    private SQLiteDatabase database;
-    private Context context;
-
     private final String EMPTY_STRING = "";
     private final String BUTTON_ALL = "All";
     private final String BUTTON_SPACE = "__";
+
+    private ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
+    private SQLiteDatabase database;
+    private final Context context;
 
     public ContactBaseManager(Context context) {
         this.context = context;
@@ -59,9 +60,9 @@ public class ContactBaseManager {
         database = contactsBaseSQLiteHelper.getWritableDatabase();
         int delCount = database.delete(ContactsBaseSQLiteHelper.TABLE_CONTACTS, ContactsBaseSQLiteHelper.COLUMN_ID + " = " + id, null);
         if (delCount > 0) {
-            Toast.makeText(context, "Contact is delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.contact_is_delete), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Nothing is delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.nothing_is_delete), Toast.LENGTH_SHORT).show();
         }
         database.close();
     }
@@ -202,7 +203,7 @@ public class ContactBaseManager {
         database = contactsBaseSQLiteHelper.getWritableDatabase();
         database.update(ContactsBaseSQLiteHelper.TABLE_CONTACTS,
                 getContentValuesFromNewContact(contact), ContactsBaseSQLiteHelper.COLUMN_ID + " = " + selectedId, null);
-        Toast.makeText(context, "Contact is saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.contact_is_saved), Toast.LENGTH_SHORT).show();
         database.close();
     }
 
@@ -210,7 +211,7 @@ public class ContactBaseManager {
         database = contactsBaseSQLiteHelper.getWritableDatabase();
         long rowID = database.insert(ContactsBaseSQLiteHelper.TABLE_CONTACTS, null, getContentValuesFromNewContact(contact));
         int id = (int) rowID;
-        Toast.makeText(context, "Contact is added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.contact_is_added), Toast.LENGTH_SHORT).show();
         database.close();
         return id;
     }

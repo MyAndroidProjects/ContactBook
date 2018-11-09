@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
 import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
 import butterknife.BindView;
@@ -45,8 +44,6 @@ public class ContactInfoFragment extends BaseFragment {
     @BindView(R.id.text_post_code)
     TextView postCodeText;
 
-    private ContactBaseManager contactBaseManager;
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_contact_info;
@@ -54,14 +51,7 @@ public class ContactInfoFragment extends BaseFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       super.onCreateView(inflater, container, savedInstanceState);
-        contactBaseManager = new ContactBaseManager(getContext());
-        Bundle args = getArguments();
-        if (args != null) {
-            selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
-        } else {
-            selectedContactId = EMPTY_INDEX;
-        }
+        super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
 

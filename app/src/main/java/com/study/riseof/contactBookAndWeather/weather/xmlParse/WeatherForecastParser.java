@@ -31,7 +31,7 @@ public class WeatherForecastParser {
 
         final private String name;
 
-        static public TagName getTagNameByValue(String searchingTagName) {
+        static TagName getTagNameByValue(String searchingTagName) {
             for (TagName tagName : TagName.values()) {
                 if (tagName.name.equals(searchingTagName)) {
                     return tagName;
@@ -75,7 +75,7 @@ public class WeatherForecastParser {
     private final String EMPTY_STRING = "";
 
     private Town town;
-    private List<WeatherForecast> weatherForecasts = new ArrayList<>();
+    private final List<WeatherForecast> weatherForecasts = new ArrayList<>();
 
     public boolean parse(String xmlData) {
         WeatherForecast weatherForecast = null;

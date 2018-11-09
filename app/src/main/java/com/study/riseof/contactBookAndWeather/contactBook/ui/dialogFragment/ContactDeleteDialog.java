@@ -54,7 +54,7 @@ public class ContactDeleteDialog extends DialogFragment {
         }
     }
 
-    protected void onAttachToContext(Context context) {
+    private void onAttachToContext(Context context) {
         try {
             dialogClickButtonPositiveListener = (DialogClickButtonPositiveListener) context;
         } catch (ClassCastException e) {
@@ -100,54 +100,15 @@ public class ContactDeleteDialog extends DialogFragment {
         getDialog().dismiss();
     }
 
+    // todo подписать activity (см ButtonPanelFragment)
+    public void setDialogClickButtonPositiveListener(DialogClickButtonPositiveListener dialogClickButtonPositiveListener) {
+        this.dialogClickButtonPositiveListener = dialogClickButtonPositiveListener;
+    }
+
+
     public interface DialogClickButtonPositiveListener {
         void dialogClickButtonPositive();
     }
 
-/*
-   // определение диалога через AlertDialog.Builder,
-   // не забыть слушателя implements DialogInterface.OnClickListener
 
-    private String dialogText="";
-    private final String POSITIVE_BUTTON_TEXT="Yes";
-    private final String NEGATIVE_BUTTON_TEXT="No";
-    private final String NEUTRAL_BUTTON_TEXT="Cancel";
-
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        selectedContactId = getArguments().getInt("selectedContactId");
-        dialogText = "Удалить\n"+selectedContactId+" ?";
-        AlertDialog.Builder adb = new AlertDialog.Builder(getActivity())
-                .setTitle("Title!").setPositiveButton(TITLE_TEXT, null)
-                .setPositiveButton(POSITIVE_BUTTON_TEXT,this)
-                .setNegativeButton(NEGATIVE_BUTTON_TEXT, this)
-                .setCancelable(false)
-                .setMessage(dialogText);
-        return adb.create();
-    }
-
-    public void onClick(DialogInterface dialog, int which) {
-        int i = 0;
-        switch (which) {
-            case Dialog.BUTTON_POSITIVE:
-                // do
-                break;
-            case Dialog.BUTTON_NEGATIVE:
-                getDialog().dismiss();
-                break;
-            case Dialog.BUTTON_NEUTRAL:
-                // do
-                break;
-        }
-    }
-
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        Log.d("myLog", "Dialog: onDismiss");
-    }
-
-    public void onCancel(DialogInterface dialog) {
-        super.onCancel(dialog);
-        Log.d("myLog", "Dialog: onCancel");
-    }
-*/
 }

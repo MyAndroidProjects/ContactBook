@@ -3,6 +3,7 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.study.riseof.contactBookAndWeather.R;
@@ -71,9 +72,11 @@ public class EditContactActivity extends AppCompatActivity {
         } else {
             selectedLetter = getIntent().getStringExtra("selectedLetter");
         }
+        Log.d("myLog", "EditContactActivity = "+selectedContactId+" Id");
+        Log.d("myLog", "EditContactActivity = "+selectedLetter+" Letter");
     }
 
-    public void selectContactInfoById(int selectedContactId) {
+    private void selectContactInfoById(int selectedContactId) {
         setContactEditText(contactBaseManager.getContactById(selectedContactId));
     }
 

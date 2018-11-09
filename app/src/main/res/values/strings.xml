@@ -60,6 +60,15 @@
     <string name="dialog_delete_button_positive">yes</string>
     <string name="dialog_delete_button_negative">no</string>
 
+    <!-- contact toast message -->
+    <string name="no_selected_contact">No selected contact</string>
+    <string name="no_phone_number">No phone number</string>
+    <string name="phone_number_is_not_correct">Phone number is not correct</string>
+    <string name="contact_is_delete">Contact is delete</string>
+    <string name="nothing_is_delete">Nothing is delete</string>
+    <string name="contact_is_saved">Contact is saved</string>
+    <string name="contact_is_added">Contact is added</string>
+
     <!-- labels forecast -->
     <string name="label_forecast_temperature">Temperature:</string>
     <string name="label_forecast_heat">Feels like:</string>

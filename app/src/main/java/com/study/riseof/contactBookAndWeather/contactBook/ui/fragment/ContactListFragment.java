@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
 import com.study.riseof.contactBookAndWeather.contactBook.model.AbbreviatedContact;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.ContactListAdapter;
 
@@ -18,11 +17,9 @@ import butterknife.BindView;
 import butterknife.OnItemClick;
 
 public class ContactListFragment extends BaseFragment {
-    private ContactBaseManager contactBaseManager;
     private ArrayList<AbbreviatedContact> contacts = new ArrayList<>();
     private ContactListAdapter contactAdapter;
     private ContactListClickListener contactClickListener;
-    private String selectedLetter = EMPTY_STRING;
 
     @BindView(R.id.contact_list_view)
     ListView contactListView;
@@ -35,13 +32,6 @@ public class ContactListFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        contactBaseManager = new ContactBaseManager(getContext());
-        if (getArguments() != null) {
-            Bundle args = getArguments();
-            selectedLetter = args.getString("selectedLetter", EMPTY_STRING);
-        } else {
-            selectedLetter = EMPTY_STRING;
-        }
         setContactArrayAdapter();
         return view;
     }
@@ -69,11 +59,11 @@ public class ContactListFragment extends BaseFragment {
         setContactArrayAdapter();
     }
 
-    public void setContacts(ArrayList<AbbreviatedContact> contacts) {
+    private void setContacts(ArrayList<AbbreviatedContact> contacts) {
         this.contacts = contacts;
     }
 
-    public void setContactArrayAdapter() {
+    private void setContactArrayAdapter() {
         if (getContext() != null) {
             contactAdapter = new ContactListAdapter(getContext(), R.layout.item_list_view_contact, contacts);
         }

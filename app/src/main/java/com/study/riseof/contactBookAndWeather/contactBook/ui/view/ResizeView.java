@@ -1,17 +1,20 @@
-package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
+package com.study.riseof.contactBookAndWeather.contactBook.ui.view;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 
 import com.study.riseof.contactBookAndWeather.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class SeekBarFragment extends BaseFragment {
+public class ResizeView extends FrameLayout {
+
     private final float PADDING_PART_OF_FRAGMENT = 0.1f;
 
     private SeekBarProgressListener seekBarListener;
@@ -21,19 +24,21 @@ public class SeekBarFragment extends BaseFragment {
     @BindView(R.id.window_height_seek_bar)
     SeekBar windowHeightBar;
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_seek_bar;
+    public ResizeView(@NonNull Context context) {
+        super(context);
+        init();
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        try {
-            seekBarListener = (SeekBarProgressListener) getContext();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(getContext().toString() + " must implement SeekBarProgressListener");
-        }
-        super.onCreateView(inflater, container, savedInstanceState);
+    public ResizeView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+
+    protected void init() {
+        inflate(getContext(), R.layout.view_seek_bar, this);
+        ButterKnife.bind(this);
+
         windowHeightBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -49,17 +54,20 @@ public class SeekBarFragment extends BaseFragment {
                 seekBarListener.changeSeekBarProgress(seekBar.getProgress());
             }
         });
-        view.post(new Runnable() {
+        this.post(new Runnable() {
             @Override
             public void run() {
-                fragmentHeight = view.getHeight();
+                fragmentHeight = getHeight();
                 ViewGroup.LayoutParams lp = windowHeightBar.getLayoutParams();
                 lp.width = fragmentHeight; //public LayoutParams(int width, int height)
                 windowHeightBar.setPadding((int) (fragmentHeight * PADDING_PART_OF_FRAGMENT), 0, (int) (fragmentHeight * PADDING_PART_OF_FRAGMENT), 0);
                 seekBarListener.changeSeekBarProgress(windowHeightBar.getProgress());
             }
         });
-        return view;
+    }
+
+    public void setSeekBarListener(SeekBarProgressListener seekBarListener) {
+        this.seekBarListener = seekBarListener;
     }
 
     public interface SeekBarProgressListener {
