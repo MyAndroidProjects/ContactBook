@@ -1,37 +1,39 @@
 package com.study.riseof.contactBookAndWeather.weather.model;
 
 
+import com.study.riseof.contactBookAndWeather.R;
+
 public class Town {
-    private int townArrayIndex;
+    private int townId;
     private final String latitude;
     private final String longitude;
 
-    private enum TownList {
-        UNKNOWN("", 0),
-        NOVOSIBIRSK("99", 1);
+    private enum SelectedTown {
+        UNKNOWN("", R.string.town_unknown),
+        NOVOSIBIRSK("99", R.string.town_novosibirsk);
 
         String index;
-        int arrayIndex;
+        int townId;
 
-        TownList(String index, int arrayIndex) {
+        SelectedTown(String index, int townId) {
             this.index = index;
-            this.arrayIndex = arrayIndex;
+            this.townId = townId;
         }
     }
 
     public Town(String townIndex, String latitude, String longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.townArrayIndex = 0;
-        for (TownList val : TownList.values()) {
+        this.townId = 0;
+        for (SelectedTown val : SelectedTown.values()) {
             if (townIndex.equals(val.index)) {
-                this.townArrayIndex = val.arrayIndex;
+                this.townId = val.townId;
             }
         }
     }
 
-    public int getTownArrayIndex() {
-        return townArrayIndex;
+    public int getTownId() {
+        return townId;
     }
 
     public String getLatitude() {

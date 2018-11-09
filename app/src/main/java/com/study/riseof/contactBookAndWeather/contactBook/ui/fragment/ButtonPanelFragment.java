@@ -21,13 +21,6 @@ import butterknife.OnClick;
 
 public class ButtonPanelFragment extends BaseFragment {
 
-  //  private Unbinder unbinder;
-  //  private final int EMPTY_INDEX = -1;
-//    private final String EMPTY_STRING = "";
-
-  //  private int selectedContactId = EMPTY_INDEX;
-   // private String selectedLetter = EMPTY_STRING;
-
     @Nullable
     @BindView(R.id.button_edit)
     Button buttonEdit;
@@ -65,15 +58,8 @@ public class ButtonPanelFragment extends BaseFragment {
         return view;
     }
 
- /*   @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-*/
     @OnClick(R.id.button_edit)
     public void onClickEditContact() {
-        //  Log.d("myLog", "onClickEditContact id "+selectedContactId+" letter "+selectedLetter);
         if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), "No selected contact", Toast.LENGTH_SHORT).show();
         } else {

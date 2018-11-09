@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="town">
-        <item>Unknown</item>
-        <item>Novosibirsk</item>
-    </string-array>
+
+    <string name="town_unknown">Unknown</string>
+    <string name="town_novosibirsk">Novosibirsk</string>
 
     <string-array name="tod">
         <item>Night</item>

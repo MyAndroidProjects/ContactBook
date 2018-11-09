@@ -13,6 +13,7 @@ import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,9 +34,9 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
         this.weatherForecastList = weatherForecastList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        formatDate = new SimpleDateFormat("yyyy.MM.dd");
-        formatWeekday = new SimpleDateFormat("EEEE");
-        formatTime = new SimpleDateFormat("HH:mm");
+        formatDate = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
+        formatWeekday = new SimpleDateFormat("EEEE", Locale.getDefault());
+        formatTime = new SimpleDateFormat("HH:mm", Locale.getDefault());
     }
 
     @NonNull

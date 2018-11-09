@@ -109,7 +109,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
     }
 
     private void setTownInfoText() {
-        townNameText.setText(getResources().getStringArray(R.array.town)[town.getTownArrayIndex()]);
+        townNameText.setText(getString(town.getTownId()));
         townCoordinatesText.setText(String.format(getString(R.string.coordinates),town.getLatitude(), town.getLongitude()));
     }
 
