@@ -19,6 +19,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<WeatherForecastRecyclerAdapter.Holder> {
+    private final int PRECIPITATION_OFFSET = -3;
+    private final int CLOUDINESS_OFFSET = 1;
+    private final String DATE_FORMAT = "yyyy.MM.dd";
+    private final String WEEKDAY_FORMAT = "EEEE";
+    private final String TIME_FORMAT = "HH:mm";
 
     private LayoutInflater inflater;
     private List<WeatherForecast> weatherForecastList;
@@ -26,17 +31,14 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
     private SimpleDateFormat formatDate;
     private SimpleDateFormat formatWeekday;
     private SimpleDateFormat formatTime;
-    private final int PRECIPITATION_OFFSET = -3;
-    private final int CLOUDINESS_OFFSET = 1;
-
 
     public WeatherForecastRecyclerAdapter(Context context, List<WeatherForecast> weatherForecastList) {
         this.weatherForecastList = weatherForecastList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        formatDate = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
-        formatWeekday = new SimpleDateFormat("EEEE", Locale.getDefault());
-        formatTime = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        formatDate = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+        formatWeekday = new SimpleDateFormat(WEEKDAY_FORMAT, Locale.getDefault());
+        formatTime = new SimpleDateFormat(TIME_FORMAT, Locale.getDefault());
     }
 
     @NonNull
