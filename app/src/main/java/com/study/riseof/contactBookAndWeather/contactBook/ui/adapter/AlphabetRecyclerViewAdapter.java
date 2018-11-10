@@ -37,13 +37,6 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
             animatorSets[i] = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.animator_pressed_letter);
         }
 
-        //Todo: setAdapterLetterClickListener
-        try {
-            adapterLetterClickListener = (AdapterLetterClickListener) context;
-        } catch (ClassCastException e) {
-            Log.d("myLog", context.toString() + " must implement AdapterLetterClickListener");
-            throw new ClassCastException(context.toString() + " must implement AdapterLetterClickListener");
-        }
     }
 
     @NonNull
@@ -101,7 +94,6 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
         }
     }
 
-    //Todo: setAdapterLetterClickListener
     public void setAdapterLetterClickListener(AdapterLetterClickListener adapterLetterClickListener) {
         this.adapterLetterClickListener = adapterLetterClickListener;
     }

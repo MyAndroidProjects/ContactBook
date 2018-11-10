@@ -38,32 +38,7 @@ public class ContactDeleteDialog extends DialogFragment {
     @BindView(R.id.dialog_delete_text_name)
     TextView dialogTextContactName;
 
-    @TargetApi(23)
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        onAttachToContext(context);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            onAttachToContext(activity);
-        }
-    }
-
-    private void onAttachToContext(Context context) {
-        try {
-            dialogClickButtonPositiveListener = (DialogClickButtonPositiveListener) context;
-        } catch (ClassCastException e) {
-            //           Log.d("myLog",context.toString() + " must implement DialogClickButtonPositiveListener");
-            throw new ClassCastException(context.toString() + " must implement DialogClickButtonPositiveListener");
-        }
-    }
-
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_fragment_contact_delete, container);
         unbinder = ButterKnife.bind(this, view);
         if (getArguments() != null) {
@@ -100,7 +75,6 @@ public class ContactDeleteDialog extends DialogFragment {
         getDialog().dismiss();
     }
 
-    // todo подписать activity (см ButtonPanelFragment)
     public void setDialogClickButtonPositiveListener(DialogClickButtonPositiveListener dialogClickButtonPositiveListener) {
         this.dialogClickButtonPositiveListener = dialogClickButtonPositiveListener;
     }

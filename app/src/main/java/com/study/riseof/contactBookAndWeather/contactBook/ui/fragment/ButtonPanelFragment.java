@@ -18,7 +18,7 @@ import com.study.riseof.contactBookAndWeather.R;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ButtonPanelFragment extends BaseFragment {
+public class ButtonPanelFragment extends BaseFragment implements ContactDeleteDialog.DialogClickButtonPositiveListener {
     private final String TEL = "tel:";
 
     @Nullable
@@ -35,7 +35,7 @@ public class ButtonPanelFragment extends BaseFragment {
     Button buttonCall;
 
     private ContactDeleteDialog contactDeleteDialog;
-
+    private DeleteContactListener deleteContactListener;
 
     @Override
     protected int getLayoutId() {
@@ -65,12 +65,12 @@ public class ButtonPanelFragment extends BaseFragment {
         if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), getString(R.string.no_selected_contact), Toast.LENGTH_SHORT).show();
         } else {
-            // TODO перенести вызов диалога в activity, а здесь сделать событие о нажатии delete button и подписать на это activity
             contactDeleteDialog = new ContactDeleteDialog();
             Bundle args = new Bundle();
             args.putInt("selectedContactId", selectedContactId);
             args.putString("selectedLetter", selectedLetter);
             contactDeleteDialog.setArguments(args);
+            contactDeleteDialog.setDialogClickButtonPositiveListener(this);
             contactDeleteDialog.show(getFragmentManager(), "contactDeleteDialog");
         }
     }
@@ -95,5 +95,18 @@ public class ButtonPanelFragment extends BaseFragment {
                 Toast.makeText(getContext(), getString(R.string.phone_number_is_not_correct), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void dialogClickButtonPositive() {
+        deleteContactListener.contactWasDeleted();
+    }
+
+    public void setDeleteContactListener(DeleteContactListener deleteContactListener){
+        this.deleteContactListener = deleteContactListener;
+    }
+
+    public interface DeleteContactListener{
+        void contactWasDeleted();
     }
 }

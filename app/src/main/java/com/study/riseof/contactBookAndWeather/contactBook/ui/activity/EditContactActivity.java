@@ -2,8 +2,6 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.study.riseof.contactBookAndWeather.R;
@@ -11,18 +9,10 @@ import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseMa
 import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditContactActivity extends AppCompatActivity {
-    private final String EMPTY_STRING = "";
-    private final String POINT = ".";
-    private final int INITIAL_LETTER_INDEX = 0;
-    private final int EMPTY_INDEX = -1;
-
+public class EditContactActivity extends BaseContactActivity {
     private ContactBaseManager contactBaseManager;
-    private int selectedContactId = EMPTY_INDEX;
-    private String selectedLetter = EMPTY_STRING;
 
     @BindView(R.id.edit_text_first_name)
     TextView firstNameText;
@@ -56,28 +46,23 @@ public class EditContactActivity extends AppCompatActivity {
     TextView postCodeText;
 
     @Override
+    int getActivityLayoutId() {
+        return R.layout.activity_edit_contact;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_contact);
-        ButterKnife.bind(this);
         contactBaseManager = new ContactBaseManager(this);
-        selectedContactId = getIntent().getIntExtra("selectedContactId", EMPTY_INDEX);
+        setText();
+    }
+
+    private void setText() {
         if (selectedContactId == EMPTY_INDEX) {
             setEmptyStringsToText();
         } else {
-            selectContactInfoById(selectedContactId);
+            setContactEditText(contactBaseManager.getContactById(selectedContactId));
         }
-        if (getIntent().getStringExtra("selectedLetter") == null) {
-            selectedLetter = EMPTY_STRING;
-        } else {
-            selectedLetter = getIntent().getStringExtra("selectedLetter");
-        }
-        Log.d("myLog", "EditContactActivity = "+selectedContactId+" Id");
-        Log.d("myLog", "EditContactActivity = "+selectedLetter+" Letter");
-    }
-
-    private void selectContactInfoById(int selectedContactId) {
-        setContactEditText(contactBaseManager.getContactById(selectedContactId));
     }
 
     private void setContactEditText(Contact contact) {
@@ -123,10 +108,7 @@ public class EditContactActivity extends AppCompatActivity {
 
     @OnClick(R.id.edit_button_close)
     public void onClickButtonClose() {
-        Intent intent = new Intent(this, ContactsMainActivity.class);
-        intent.putExtra("selectedContactId", selectedContactId);
-        intent.putExtra("selectedLetter", selectedLetter);
-        startActivity(intent);
+        startContactsMainActivity();
     }
 
     @OnClick(R.id.edit_button_save_contact)
@@ -137,6 +119,10 @@ public class EditContactActivity extends AppCompatActivity {
     @OnClick(R.id.edit_button_ok)
     public void onClickButtonOk() {
         saveContactToContactBase(selectedContactId);
+        startContactsMainActivity();
+    }
+
+    private void startContactsMainActivity(){
         Intent intent = new Intent(this, ContactsMainActivity.class);
         intent.putExtra("selectedContactId", selectedContactId);
         intent.putExtra("selectedLetter", selectedLetter);
