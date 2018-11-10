@@ -20,7 +20,6 @@ public class ResizeView extends FrameLayout {
     private SeekBarProgressListener seekBarListener;
     private int fragmentHeight;
 
-
     @BindView(R.id.window_height_seek_bar)
     SeekBar windowHeightBar;
 

@@ -59,6 +59,8 @@
     <!-- dialog delete contact -->
     <string name="dialog_delete_button_positive">да</string>
     <string name="dialog_delete_button_negative">нет</string>
+    <string name="dialog_title_text">Внимание!</string>
+    <string name="dialog_message">Удалить\n%1$s ?</string>
 
     <!-- contact toast message -->
     <string name="no_selected_contact">Контакт не выбран</string>

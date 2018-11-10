@@ -2,9 +2,9 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -38,6 +38,7 @@ public class ContactsMainActivity extends BaseContactActivity
     FrameLayout contactInfoFrame;
     @BindView(R.id.contact_toolbar)
     Toolbar toolbar;
+    @Nullable
     @BindView(R.id.resize_view)
     ResizeView resizeView;
 
@@ -54,14 +55,14 @@ public class ContactsMainActivity extends BaseContactActivity
         setListeners();
     }
 
-     private void setActionBar(){
-         setSupportActionBar(toolbar);
-         if (getSupportActionBar() != null) {
-             getSupportActionBar().setHomeButtonEnabled(true);
-             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-             getSupportActionBar().setDisplayShowTitleEnabled(false);
-         }
-     }
+    private void setActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class ContactsMainActivity extends BaseContactActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_contacts_add_contact:
+                selectedContactId = EMPTY_INDEX;
                 startEditContactActivity();
                 return true;
             case R.id.menu_item_contacts_quit:
@@ -122,11 +124,19 @@ public class ContactsMainActivity extends BaseContactActivity
         fragmentTransaction.commit();
     }
 
-    private void setListeners(){
-        alphabetListFragment.setLetterClickListener(this);
-        contactListFragment.setContactClickListener(this);
-        buttonPanelFragment.setDeleteContactListener(this);
-        resizeView.setSeekBarListener(this);
+    private void setListeners() {
+        if (alphabetListFragment != null) {
+            alphabetListFragment.setLetterClickListener(this);
+        }
+        if (contactListFragment != null) {
+            contactListFragment.setContactClickListener(this);
+        }
+        if (buttonPanelFragment != null) {
+            buttonPanelFragment.setDeleteContactListener(this);
+        }
+        if (resizeView != null) {
+            resizeView.setSeekBarListener(this);
+        }
     }
 
     private void startEditContactActivity() {
@@ -137,7 +147,7 @@ public class ContactsMainActivity extends BaseContactActivity
     }
 
 
-    private void deleteBase(){
+    private void deleteBase() {
         // На случай необходимости удалить базу
         ContactsBaseSQLiteHelper contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
         this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);

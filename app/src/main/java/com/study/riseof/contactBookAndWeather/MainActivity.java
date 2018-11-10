@@ -12,11 +12,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
- /*   @BindView(R.id.animation_link_to_weather)
-    FrameLayout linkToWeatherMainFrame;
-    @BindView(R.id.image_contact_book)
-    ImageView imageContactBook;*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

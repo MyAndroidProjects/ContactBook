@@ -97,12 +97,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!--
     <style name="style_dialog_message_text.contact_name">
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:paddingTop">0dp</item>
         <item name="android:paddingBottom">@dimen/size_medium</item>
     </style>
-
+-->
     <style name="style_contact_button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textColor">@color/contactButtonText</item>
         <item name="android:layout_marginTop">@dimen/size_xsmall</item>
@@ -216,8 +217,8 @@
         <item name="android:linksClickable">true</item>
         <item name="android:background">@color/weatherLinkToMeteoserviceBackground</item>
         <item name="android:textColor">@color/weatherForecastItemText</item>
-        <item name="android:paddingLeft">@dimen/size_medium</item>
-        <item name="android:paddingRight">@dimen/size_medium</item>
+        <item name="android:paddingLeft">@dimen/size_small</item>
+        <item name="android:paddingRight">@dimen/size_small</item>
         <item name="android:paddingTop">@dimen/size_xsmall</item>
         <item name="android:paddingBottom">@dimen/size_small</item>
     </style>

@@ -1,9 +1,6 @@
 package com.study.riseof.contactBookAndWeather.contactBook.ui.dialogFragment;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -22,38 +19,41 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class ContactDeleteDialog extends DialogFragment {
-    private final String EMPTY_STRING = "";
     private final int EMPTY_INDEX = -1;
-    private final String TITLE_TEXT = "Caution!";
-    private final String MESSAGE_TEXT = "Delete\n";
 
     private Unbinder unbinder;
     private int selectedContactId = EMPTY_INDEX;
-    private String messageName = EMPTY_STRING;
-
+    private Context context;
     private DialogClickButtonPositiveListener dialogClickButtonPositiveListener;
 
     @BindView(R.id.dialog_delete_text_message)
     TextView dialogTextMessage;
-    @BindView(R.id.dialog_delete_text_name)
-    TextView dialogTextContactName;
 
-     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_fragment_contact_delete, container);
         unbinder = ButterKnife.bind(this, view);
+        getArgumentsFromBundle();
+        setDialogTextFields();
+        return view;
+    }
+
+    private void setDialogTextFields() {
+        context = getContext();
+        if (context != null) {
+            getDialog().setTitle(context.getString(R.string.dialog_title_text));
+            ContactBaseManager contactBaseManager = new ContactBaseManager(context);
+            AbbreviatedContact abbreviatedContact = contactBaseManager.getAbbrContactById(selectedContactId);
+            String messageName = String.format(context.getString(R.string.dialog_message), abbreviatedContact.getContactName());
+            dialogTextMessage.setText(messageName);
+        }
+    }
+
+    private void getArgumentsFromBundle() {
         if (getArguments() != null) {
             selectedContactId = getArguments().getInt("selectedContactId", EMPTY_INDEX);
         } else {
             selectedContactId = EMPTY_INDEX;
         }
-        ContactBaseManager contactBaseManager = new ContactBaseManager(getContext());
-        AbbreviatedContact abbreviatedContact = contactBaseManager.getAbbrContactById(selectedContactId);
-        getDialog().setTitle(TITLE_TEXT);
-        getDialog().setCancelable(false); //не работает
-        dialogTextMessage.setText(MESSAGE_TEXT);
-        messageName = abbreviatedContact.getContactName() + " ?";
-        dialogTextContactName.setText(messageName);
-        return view;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ContactDeleteDialog extends DialogFragment {
 
     @OnClick(R.id.dialog_delete_button_positive)
     public void onClickButtonPositive() {
-        ContactBaseManager contactBaseManager = new ContactBaseManager(getContext());
+        ContactBaseManager contactBaseManager = new ContactBaseManager(context);
         contactBaseManager.deleteContactFromBase(selectedContactId);
         dialogClickButtonPositiveListener.dialogClickButtonPositive();
         getDialog().dismiss();
@@ -79,10 +79,7 @@ public class ContactDeleteDialog extends DialogFragment {
         this.dialogClickButtonPositiveListener = dialogClickButtonPositiveListener;
     }
 
-
     public interface DialogClickButtonPositiveListener {
         void dialogClickButtonPositive();
     }
-
-
 }

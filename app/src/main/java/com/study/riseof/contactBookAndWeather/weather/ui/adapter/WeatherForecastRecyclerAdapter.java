@@ -62,8 +62,7 @@ public class WeatherForecastRecyclerAdapter extends RecyclerView.Adapter<Weather
         holder.forecastPrecipitationValue.setText(context.getResources().getStringArray(R.array.precipitation)[weatherForecast.getPrecipitationIndex() + PRECIPITATION_OFFSET]);
         holder.forecastWindValue.setText(
                 String.format(context.getString(R.string.wind), weatherForecast.getMinWindSpeed(), weatherForecast.getMaxWindSpeed(),
-                        context.getResources().getStringArray(R.array.windDirection)[weatherForecast.getWindDirectionIndex()])
-        );
+                        context.getResources().getStringArray(R.array.windDirection)[weatherForecast.getWindDirectionIndex()]));
         holder.forecastPressureValue.setText(String.format(context.getString(R.string.pressure), weatherForecast.getMinPressure(), weatherForecast.getMaxPressure()));
         holder.forecastRelativeWetValue.setText(String.format(context.getString(R.string.relativeWet), weatherForecast.getMinRelativeWet(), weatherForecast.getMaxRelativeWet()));
     }

@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 
 public class AlphabetListFragment extends BaseFragment implements AlphabetRecyclerViewAdapter.AdapterLetterClickListener {
-    private static List<String> buttonName;
+    private static final List<String> buttonName;
 
     static {
         buttonName = new ArrayList<>();
@@ -46,12 +46,20 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        initRecyclerView();
+        resizeView();
+        return view;
+    }
+
+    private void initRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         AlphabetRecyclerViewAdapter adapter = new AlphabetRecyclerViewAdapter(getContext(), buttonName);
         adapter.setAdapterLetterClickListener(this);
         recyclerView.setAdapter(adapter);
+    }
 
+    private void resizeView() {
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -60,20 +68,19 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
                 lp.height = fragmentWidth; //public LayoutParams(int width, int height)
             }
         });
-        return view;
     }
+
 
     @Override
     public void adapterLetterClick(String letter) {
         letterClick.onLetterClick(letter);
     }
 
-    public void setLetterClickListener(LetterClick letterClick){
+    public void setLetterClickListener(LetterClick letterClick) {
         this.letterClick = letterClick;
     }
 
-
-    public interface LetterClick{
+    public interface LetterClick {
         void onLetterClick(String letter);
     }
 }

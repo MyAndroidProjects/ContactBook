@@ -48,15 +48,30 @@ public class ButtonPanelFragment extends BaseFragment implements ContactDeleteDi
         return view;
     }
 
+    private void startEditContactActivity() {
+        Intent intent = new Intent(getContext(), EditContactActivity.class);
+        intent.putExtra("selectedContactId", selectedContactId);
+        intent.putExtra("selectedLetter", selectedLetter);
+        startActivity(intent);
+    }
+
+    private void startDeleteDialog() {
+        contactDeleteDialog = new ContactDeleteDialog();
+        Bundle args = new Bundle();
+        args.putInt("selectedContactId", selectedContactId);
+        args.putString("selectedLetter", selectedLetter);
+        contactDeleteDialog.setArguments(args);
+        contactDeleteDialog.setDialogClickButtonPositiveListener(this);
+        contactDeleteDialog.show(getFragmentManager(), "contactDeleteDialog");
+    }
+
+
     @OnClick(R.id.button_edit)
     public void onClickEditContact() {
         if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), getString(R.string.no_selected_contact), Toast.LENGTH_SHORT).show();
         } else {
-            Intent intent = new Intent(getContext(), EditContactActivity.class);
-            intent.putExtra("selectedContactId", selectedContactId);
-            intent.putExtra("selectedLetter", selectedLetter);
-            startActivity(intent);
+            startEditContactActivity();
         }
     }
 
@@ -65,21 +80,14 @@ public class ButtonPanelFragment extends BaseFragment implements ContactDeleteDi
         if (selectedContactId == EMPTY_INDEX) {
             Toast.makeText(getContext(), getString(R.string.no_selected_contact), Toast.LENGTH_SHORT).show();
         } else {
-            contactDeleteDialog = new ContactDeleteDialog();
-            Bundle args = new Bundle();
-            args.putInt("selectedContactId", selectedContactId);
-            args.putString("selectedLetter", selectedLetter);
-            contactDeleteDialog.setArguments(args);
-            contactDeleteDialog.setDialogClickButtonPositiveListener(this);
-            contactDeleteDialog.show(getFragmentManager(), "contactDeleteDialog");
+            startDeleteDialog();
         }
     }
 
     @OnClick(R.id.button_add)
     public void onClickAddContact() {
-        Intent intent = new Intent(getContext(), EditContactActivity.class);
-        intent.putExtra("selectedLetter", selectedLetter);
-        startActivity(intent);
+        selectedContactId = EMPTY_INDEX;
+        startEditContactActivity();
     }
 
     @OnClick(R.id.button_call)
@@ -102,11 +110,11 @@ public class ButtonPanelFragment extends BaseFragment implements ContactDeleteDi
         deleteContactListener.contactWasDeleted();
     }
 
-    public void setDeleteContactListener(DeleteContactListener deleteContactListener){
+    public void setDeleteContactListener(DeleteContactListener deleteContactListener) {
         this.deleteContactListener = deleteContactListener;
     }
 
-    public interface DeleteContactListener{
+    public interface DeleteContactListener {
         void contactWasDeleted();
     }
 }

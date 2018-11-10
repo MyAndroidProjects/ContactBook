@@ -36,7 +36,7 @@ public class ContactBaseManager {
         COUNTRY(18),
         POST_CODE(19);
 
-        int tableIndex;
+        final int tableIndex;
 
         BaseColumn(int tableIndex) {
             this.tableIndex = tableIndex;
@@ -47,7 +47,7 @@ public class ContactBaseManager {
     private final String BUTTON_ALL = "All";
     private final String BUTTON_SPACE = "__";
 
-    private ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
+    private final ContactsBaseSQLiteHelper contactsBaseSQLiteHelper;
     private SQLiteDatabase database;
     private final Context context;
 

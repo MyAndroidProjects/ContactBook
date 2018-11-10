@@ -18,12 +18,12 @@ public abstract class BaseFragment extends Fragment {
     protected final String EMPTY_STRING = "";
     protected final String PHONE_TO_CALL = "+79139533750";
 
-
     protected Unbinder unbinder;
     protected View view;
     protected int selectedContactId = EMPTY_INDEX;
     protected String selectedLetter = EMPTY_STRING;
     protected ContactBaseManager contactBaseManager;
+
     protected abstract int getLayoutId();
 
     public void setSelectedContactId(int id) {
@@ -40,6 +40,11 @@ public abstract class BaseFragment extends Fragment {
         view = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, view);
         contactBaseManager = new ContactBaseManager(getContext());
+        getBundleArgs();
+        return view;
+    }
+
+    protected void getBundleArgs() {
         if (this.getArguments() != null) {
             Bundle args = getArguments();
             selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
@@ -48,7 +53,6 @@ public abstract class BaseFragment extends Fragment {
             selectedContactId = EMPTY_INDEX;
             selectedLetter = EMPTY_STRING;
         }
-        return view;
     }
 
     @Override

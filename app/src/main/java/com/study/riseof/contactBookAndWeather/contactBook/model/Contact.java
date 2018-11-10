@@ -2,8 +2,6 @@ package com.study.riseof.contactBookAndWeather.contactBook.model;
 
 public class Contact {
     private final String EMPTY_STRING = "";
-    private final String POINT = ".";
-    private final int INITIAL_LETTER_INDEX = 0;
 
     private int id;
     private final String firstName;
