@@ -3,44 +3,38 @@ package com.study.riseof.contactBookAndWeather.weather.model;
 
 import com.study.riseof.contactBookAndWeather.R;
 
-public class Town {
-    private int townId;
-    private final String latitude;
-    private final String longitude;
+public enum Town {
 
-    private enum SelectedTown {
-        UNKNOWN("", R.string.town_unknown),
-        NOVOSIBIRSK("99", R.string.town_novosibirsk);
+    UNKNOWN("", R.string.town_unknown, 0, 0),
+    NOVOSIBIRSK("99", R.string.town_novosibirsk, 55, 83);
 
-        final String index;
-        final int townId;
+    final String index;
+    final int townNameId;
+    final int latitude;
+    final int longitude;
 
-        SelectedTown(String index, int townId) {
-            this.index = index;
-            this.townId = townId;
-        }
-    }
-
-    public Town(String townIndex, String latitude, String longitude) {
+    Town(String index, int townNameId, int latitude, int longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.townId = 0;
-        for (SelectedTown val : SelectedTown.values()) {
-            if (townIndex.equals(val.index)) {
-                this.townId = val.townId;
-            }
-        }
+        this.index = index;
+        this.townNameId = townNameId;
     }
 
-    public int getTownId() {
-        return townId;
-    }
-
-    public String getLatitude() {
+    public int getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {
+    public int getLongitude() {
         return longitude;
     }
+
+    public int getTownNameId() {
+        return townNameId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
 }
+
+

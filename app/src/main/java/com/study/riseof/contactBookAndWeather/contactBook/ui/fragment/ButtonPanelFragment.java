@@ -62,7 +62,10 @@ public class ButtonPanelFragment extends BaseFragment implements ContactDeleteDi
         args.putString("selectedLetter", selectedLetter);
         contactDeleteDialog.setArguments(args);
         contactDeleteDialog.setDialogClickButtonPositiveListener(this);
-        contactDeleteDialog.show(getFragmentManager(), "contactDeleteDialog");
+        if (getFragmentManager() != null) {
+            contactDeleteDialog.show(getFragmentManager(), "contactDeleteDialog");
+        }
+
     }
 
 

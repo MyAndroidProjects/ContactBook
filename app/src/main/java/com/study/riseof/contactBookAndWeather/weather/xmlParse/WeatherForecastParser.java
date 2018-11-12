@@ -98,7 +98,7 @@ public class WeatherForecastParser {
                             case REPORT:
                                 break;
                             case TOWN:
-                                startTagTown(xpp);
+                                //startTagTown(xpp);
                                 break;
                             case FORECAST:
                                 weatherForecast = startTagForecast(xpp);
@@ -157,8 +157,26 @@ public class WeatherForecastParser {
         return true;
     }
 
-    private void startTagTown(XmlPullParser xpp) {
+ /*   private void startTagTown(XmlPullParser xpp) {
+*//*
+        // для enum Town
+        String townIndex = EMPTY_STRING;
         int attributeCount = xpp.getAttributeCount();
+        for (int i = 0; i < attributeCount; i++) {
+            if (xpp.getAttributeName(i).equals(AttributeName.INDEX.name)) {
+                townIndex = xpp.getAttributeValue(i);
+            }
+        }
+        for (Town val : Town.values()){
+            if(townIndex.equals(val.getIndex())){
+                this.town = val;
+                return;
+            }
+        }
+*//*
+
+        *//*     // для class Town(townIndex, latitude, longitude)
+  int attributeCount = xpp.getAttributeCount();
         String townIndex = EMPTY_STRING;
         String latitude = EMPTY_STRING;
         String longitude = EMPTY_STRING;
@@ -171,9 +189,9 @@ public class WeatherForecastParser {
                 longitude = xpp.getAttributeValue(i);
             }
         }
-        town = new Town(townIndex, latitude, longitude);
+        town = new Town(townIndex, latitude, longitude);*//*
     }
-
+*/
     public Town getTown() {
         return town;
     }

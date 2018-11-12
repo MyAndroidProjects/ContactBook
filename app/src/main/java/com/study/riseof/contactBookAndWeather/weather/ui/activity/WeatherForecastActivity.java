@@ -54,15 +54,9 @@ public class WeatherForecastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        } else {
-            Log.d("myLog", "getSupportActionBar() == null");
-            throw new ClassCastException("getSupportActionBar() == null");
-        }
+        town = Town.NOVOSIBIRSK;
+        setActionBar();
+
         weatherSitePath = getString(R.string.link_meteoservice_ru);
         weatherForecastDataLoader = new WeatherForecastDataLoader();
         weatherForecastDataLoader.execute(weatherSitePath);
@@ -95,6 +89,18 @@ public class WeatherForecastActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setActionBar(){
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        } else {
+            Log.d("myLog", "getSupportActionBar() == null");
+            throw new ClassCastException("getSupportActionBar() == null");
+        }
+    }
+
     private void setWeatherForecastRecyclerAdapter() {
         WeatherForecastRecyclerAdapter adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -108,7 +114,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
     }
 
     private void setTownInfoText() {
-        townNameText.setText(getString(town.getTownId()));
+        townNameText.setText(getString(town.getTownNameId()));
         townCoordinatesText.setText(String.format(getString(R.string.coordinates),town.getLatitude(), town.getLongitude()));
     }
 
@@ -141,7 +147,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
             super.onPostExecute(xmlData);
             weatherForecastParser = new WeatherForecastParser();
             if (xmlData != null && weatherForecastParser.parse(xmlData)) {
-                town = weatherForecastParser.getTown();
+               // town = weatherForecastParser.getTown();
                 weatherForecasts = weatherForecastParser.getWeatherForecasts();
                 setWeatherForecastRecyclerAdapter();
                 setTownInfoText();

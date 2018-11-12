@@ -41,7 +41,7 @@
         <item>NW</item>
     </string-array>
 
-    <string name="coordinates">%1$s&#176;N %2$s&#176;E</string>
+    <string name="coordinates">%1$d&#176;N %2$d&#176;E</string>
 
     <string name="pressure">%1$d..%2$d mmHG</string>
     <string name="temperature" translatable="false">%1$d..%2$d,&#176;C</string>
