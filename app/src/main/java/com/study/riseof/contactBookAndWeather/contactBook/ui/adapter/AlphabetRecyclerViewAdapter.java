@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,9 @@ import butterknife.ButterKnife;
 
 public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRecyclerViewAdapter.Holder> {
 
-    private LayoutInflater inflater;
-    private List<String> letters;
-    private AnimatorSet[] animatorSets;
+    private final LayoutInflater inflater;
+    private final List<String> letters;
+    private final AnimatorSet[] animatorSets;
     private AdapterLetterClickListener adapterLetterClickListener;
     private View currentView = null;
     private int selectedPosition = -1;
@@ -37,12 +36,6 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
             animatorSets[i] = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.animator_pressed_letter);
         }
 
-        try {
-            adapterLetterClickListener = (AdapterLetterClickListener) context;
-        } catch (ClassCastException e) {
-            Log.d("myLog", context.toString() + " must implement AdapterLetterClickListener");
-            throw new ClassCastException(context.toString() + " must implement AdapterLetterClickListener");
-        }
     }
 
     @NonNull
@@ -100,6 +93,9 @@ public class AlphabetRecyclerViewAdapter extends RecyclerView.Adapter<AlphabetRe
         }
     }
 
+    public void setAdapterLetterClickListener(AdapterLetterClickListener adapterLetterClickListener) {
+        this.adapterLetterClickListener = adapterLetterClickListener;
+    }
     public interface AdapterLetterClickListener {
         void adapterLetterClick(String letter);
     }

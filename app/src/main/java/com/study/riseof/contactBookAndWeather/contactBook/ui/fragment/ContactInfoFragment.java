@@ -2,23 +2,17 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.database.ContactBaseManager;
 import com.study.riseof.contactBookAndWeather.contactBook.model.Contact;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class ContactInfoFragment extends BaseFragment {
-   // private Unbinder unbinder;
-
     @BindView(R.id.text_first_name)
     TextView firstNameText;
     @BindView(R.id.text_second_name)
@@ -50,24 +44,14 @@ public class ContactInfoFragment extends BaseFragment {
     @BindView(R.id.text_post_code)
     TextView postCodeText;
 
-  //  private final String EMPTY_STRING = "";
-  //  private final int EMPTY_INDEX = -1;
-
-    private ContactBaseManager contactBaseManager;
-    private int selectedContactId;
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_contact_info;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-   //     super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.fragment_contact_info, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        contactBaseManager = new ContactBaseManager(getContext());
-        Bundle args = getArguments();
-        if (args != null) {
-            selectedContactId = args.getInt("selectedContactId", EMPTY_INDEX);
-        } else {
-            selectedContactId = EMPTY_INDEX;
-        }
+        super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
 
@@ -78,13 +62,7 @@ public class ContactInfoFragment extends BaseFragment {
             setContactInfoById(selectedContactId);
         }
     }
-/*
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-*/
+
     public void setContactInfoById(int id) {
         setContactInfoText(contactBaseManager.getContactById(id));
     }

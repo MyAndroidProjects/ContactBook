@@ -1,6 +1,5 @@
 package com.study.riseof.contactBookAndWeather.weather.ui.activity;
 
-import com.study.riseof.contactBookAndWeather.MainActivity;
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.model.Town;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
@@ -32,15 +31,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WeatherForecastActivity extends AppCompatActivity {
-    Town town;
+    private Town town;
 
     private final String EMPTY_STRING = "";
 
     private List<WeatherForecast> weatherForecasts;
-    private WeatherForecastRecyclerAdapter adapter;
     private WeatherForecastDataLoader weatherForecastDataLoader;
 
-    public String weatherSitePath;
+    private String weatherSitePath;
 
     @BindView(R.id.weather_forecast_toolbar)
     Toolbar toolbar;
@@ -56,15 +54,9 @@ public class WeatherForecastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        } else {
-            Log.d("myLog", "getSupportActionBar() == null");
-            throw new ClassCastException("getSupportActionBar() == null");
-        }
+        town = Town.NOVOSIBIRSK;
+        setActionBar();
+
         weatherSitePath = getString(R.string.link_meteoservice_ru);
         weatherForecastDataLoader = new WeatherForecastDataLoader();
         weatherForecastDataLoader.execute(weatherSitePath);
@@ -97,8 +89,20 @@ public class WeatherForecastActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setActionBar(){
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        } else {
+            Log.d("myLog", "getSupportActionBar() == null");
+            throw new ClassCastException("getSupportActionBar() == null");
+        }
+    }
+
     private void setWeatherForecastRecyclerAdapter() {
-        adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
+        WeatherForecastRecyclerAdapter adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -110,8 +114,8 @@ public class WeatherForecastActivity extends AppCompatActivity {
     }
 
     private void setTownInfoText() {
-        townNameText.setText(town.getTown(this));
-        townCoordinatesText.setText(town.getCoordinates(this));
+        townNameText.setText(getString(town.getTownNameId()));
+        townCoordinatesText.setText(String.format(getString(R.string.coordinates),town.getLatitude(), town.getLongitude()));
     }
 
     private class WeatherForecastDataLoader extends AsyncTask<String, Void, String> {
@@ -143,7 +147,7 @@ public class WeatherForecastActivity extends AppCompatActivity {
             super.onPostExecute(xmlData);
             weatherForecastParser = new WeatherForecastParser();
             if (xmlData != null && weatherForecastParser.parse(xmlData)) {
-                town = weatherForecastParser.getTown();
+               // town = weatherForecastParser.getTown();
                 weatherForecasts = weatherForecastParser.getWeatherForecasts();
                 setWeatherForecastRecyclerAdapter();
                 setTownInfoText();

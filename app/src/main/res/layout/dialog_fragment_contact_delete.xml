@@ -13,10 +13,6 @@
         <TextView
             android:id="@+id/dialog_delete_text_message"
             style="@style/style_dialog_message_text" />
-
-        <TextView
-            android:id="@+id/dialog_delete_text_name"
-            style="@style/style_dialog_message_text.contact_name" />
     </LinearLayout>
 
     <LinearLayout

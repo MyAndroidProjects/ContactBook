@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="town">
-        <item>Неизвестно</item>
-        <item>Новосибирск</item>
-    </string-array>
+
+    <string name="town_unknown">Неизвестно</string>
+    <string name="town_novosibirsk">Новосибирск</string>
 
     <string-array name="tod">
         <item>Ночь</item>
         <item>Утро</item>
         <item>День</item>
         <item>Вечер</item>
-    </string-array>
-
-    <string-array name="weekday">
-        <item>Воскресенье</item>
-        <item>Понедельник</item>
-        <item>Вторник</item>
-        <item>Среда</item>
-        <item>Четверг</item>
-        <item>Пятница</item>
-        <item>Суббота</item>
     </string-array>
 
     <string-array name="cloudiness">
@@ -52,9 +41,9 @@
         <item>СЗ</item>
     </string-array>
 
-    <string name="coordinates">%1$s%2$sС.Ш. %3$s%4$sВ.Д.</string>
+    <string name="coordinates">%1$d&#176;С.Ш. %2$d&#176;В.Д.</string>
 
-    <string name="pressure">%1$s..%2$s мм.рт.ст.</string>
-    <string name="wind">%1$s-%2$sм/с %3$s</string>
+    <string name="pressure">%1$d..%2$d мм.рт.ст.</string>
+    <string name="wind">%1$d-%2$d м/с, %3$s</string>
 
 </resources>

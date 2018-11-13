@@ -6,7 +6,6 @@ import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.AlphabetRec
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,11 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
-public class AlphabetListFragment extends BaseFragment {
-    private static List<String> buttonName;
+public class AlphabetListFragment extends BaseFragment implements AlphabetRecyclerViewAdapter.AdapterLetterClickListener {
+    private static final List<String> buttonName;
 
     static {
         buttonName = new ArrayList<>();
@@ -35,25 +32,34 @@ public class AlphabetListFragment extends BaseFragment {
         }
     }
 
-  //  private Unbinder unbinder;
-
     @BindView(R.id.recycler_view_alphabet)
     RecyclerView recyclerView;
 
-    private RecyclerView.LayoutManager layoutManager;
-  //  private View view;
-
     private int fragmentWidth;
+    private LetterClick letterClick;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_alphabet_list;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_alphabet_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        layoutManager = new LinearLayoutManager(getContext());
+        super.onCreateView(inflater, container, savedInstanceState);
+        initRecyclerView();
+        resizeView();
+        return view;
+    }
+
+    private void initRecyclerView() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         AlphabetRecyclerViewAdapter adapter = new AlphabetRecyclerViewAdapter(getContext(), buttonName);
+        adapter.setAdapterLetterClickListener(this);
         recyclerView.setAdapter(adapter);
+    }
 
+    private void resizeView() {
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -62,13 +68,19 @@ public class AlphabetListFragment extends BaseFragment {
                 lp.height = fragmentWidth; //public LayoutParams(int width, int height)
             }
         });
-        return view;
     }
 
- /*   @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+
+    @Override
+    public void adapterLetterClick(String letter) {
+        letterClick.onLetterClick(letter);
     }
-    */
+
+    public void setLetterClickListener(LetterClick letterClick) {
+        this.letterClick = letterClick;
+    }
+
+    public interface LetterClick {
+        void onLetterClick(String letter);
+    }
 }

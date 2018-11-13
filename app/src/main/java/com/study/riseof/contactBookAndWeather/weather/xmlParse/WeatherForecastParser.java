@@ -31,7 +31,7 @@ public class WeatherForecastParser {
 
         final private String name;
 
-        static public TagName getTagNameByValue(String searchingTagName) {
+        static TagName getTagNameByValue(String searchingTagName) {
             for (TagName tagName : TagName.values()) {
                 if (tagName.name.equals(searchingTagName)) {
                     return tagName;
@@ -75,7 +75,7 @@ public class WeatherForecastParser {
     private final String EMPTY_STRING = "";
 
     private Town town;
-    private List<WeatherForecast> weatherForecasts = new ArrayList<>();
+    private final List<WeatherForecast> weatherForecasts = new ArrayList<>();
 
     public boolean parse(String xmlData) {
         WeatherForecast weatherForecast = null;
@@ -98,7 +98,7 @@ public class WeatherForecastParser {
                             case REPORT:
                                 break;
                             case TOWN:
-                                startTagTown(xpp);
+                                //startTagTown(xpp);
                                 break;
                             case FORECAST:
                                 weatherForecast = startTagForecast(xpp);
@@ -157,8 +157,26 @@ public class WeatherForecastParser {
         return true;
     }
 
-    private void startTagTown(XmlPullParser xpp) {
+ /*   private void startTagTown(XmlPullParser xpp) {
+*//*
+        // для enum Town
+        String townIndex = EMPTY_STRING;
         int attributeCount = xpp.getAttributeCount();
+        for (int i = 0; i < attributeCount; i++) {
+            if (xpp.getAttributeName(i).equals(AttributeName.INDEX.name)) {
+                townIndex = xpp.getAttributeValue(i);
+            }
+        }
+        for (Town val : Town.values()){
+            if(townIndex.equals(val.getIndex())){
+                this.town = val;
+                return;
+            }
+        }
+*//*
+
+        *//*     // для class Town(townIndex, latitude, longitude)
+  int attributeCount = xpp.getAttributeCount();
         String townIndex = EMPTY_STRING;
         String latitude = EMPTY_STRING;
         String longitude = EMPTY_STRING;
@@ -171,33 +189,40 @@ public class WeatherForecastParser {
                 longitude = xpp.getAttributeValue(i);
             }
         }
-        town = new Town(townIndex, latitude, longitude);
+        town = new Town(townIndex, latitude, longitude);*//*
     }
-
+*/
     public Town getTown() {
         return town;
     }
 
     private WeatherForecast startTagForecast(XmlPullParser xpp) {
         WeatherForecast weatherForecast = new WeatherForecast();
+        final int monthOffset = -1;
+        int day = 0;
+        int month = 0;
+        int year = 0;
+        int hour = 0;
+        int minute = 0;
         int attributeCount = xpp.getAttributeCount();
         for (int i = 0; i < attributeCount; i++) {
             if (xpp.getAttributeName(i).equals(AttributeName.DAY.name)) {
-                weatherForecast.setDay(xpp.getAttributeValue(i));
+                day = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.MONTH.name)) {
-                weatherForecast.setMonth(xpp.getAttributeValue(i));
+                month = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.YEAR.name)) {
-                weatherForecast.setYear(xpp.getAttributeValue(i));
+                year = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.HOUR.name)) {
-                weatherForecast.setHour(xpp.getAttributeValue(i));
+                hour = Integer.valueOf(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.TOD.name)) {
                 weatherForecast.setTod(xpp.getAttributeValue(i));
-            } else if (xpp.getAttributeName(i).equals(AttributeName.PREDICT.name)) {
+            } /*else if (xpp.getAttributeName(i).equals(AttributeName.PREDICT.name)) {
                 weatherForecast.setPredict(xpp.getAttributeValue(i));
             } else if (xpp.getAttributeName(i).equals(AttributeName.WEEKDAY.name)) {
                 weatherForecast.setWeekday(xpp.getAttributeValue(i));
-            }
+            }*/
         }
+        weatherForecast.setDate(year, month + monthOffset, day, hour, minute);
         return weatherForecast;
     }
 

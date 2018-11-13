@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.study.riseof.contactBookAndWeather.contactBook.model.RandomContact;
 
-class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
+public class ContactsBaseSQLiteHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "database_contacts.db";
     public static final int VERSION = 1; // версия базы данных

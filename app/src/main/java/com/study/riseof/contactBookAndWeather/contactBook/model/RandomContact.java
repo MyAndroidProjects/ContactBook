@@ -43,6 +43,11 @@ public class RandomContact {
     private final int PHONE_NUMBER_MIN_LENGTH = 7;
     private final int PHONE_NUMBER_MAX_LENGTH = 11;
     private final String EMPTY_STRING = "";
+    private final String POINT = ".";
+    private final String WWW = "www.";
+    private final String AT = "@";
+    private final String PLUS = "+";
+    private final String COM = ".com";
     private final int PROBABILITY_OF_EMPTY_STRING = 25;
     private final int HUNDRED_PERCENT = 100;
     private final int INITIAL_LETTER_INDEX = 0;
@@ -67,7 +72,7 @@ public class RandomContact {
     private String patronymicInitialLetter;
     private String lastNameInitialLetter;
 
-    private Random rand = new Random();
+    private final Random rand = new Random();
 
     public RandomContact() {
         setCity();
@@ -216,7 +221,7 @@ public class RandomContact {
         if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
             phoneNumber = new StringBuilder(EMPTY_STRING);
         } else {
-            phoneNumber = new StringBuilder("+");
+            phoneNumber = new StringBuilder(PLUS);
             int length = rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
             for (int i = 0; i < length; i++) {
                 phoneNumber.append((Integer) rand.nextInt(DIGIT_QUANTITY));
@@ -231,9 +236,9 @@ public class RandomContact {
             eMail = EMPTY_STRING;
         } else {
             eMail = wordImitationInLowerCase();
-            eMail += "@";
+            eMail += AT;
             eMail += wordImitationInLowerCase();
-            eMail += ".com";
+            eMail += COM;
         }
         this.eMail = eMail;
     }
@@ -243,7 +248,7 @@ public class RandomContact {
         if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
             mobilePhone = new StringBuilder(EMPTY_STRING);
         } else {
-            mobilePhone = new StringBuilder("+");
+            mobilePhone = new StringBuilder(PLUS);
             int length = rand.nextInt(PHONE_NUMBER_MAX_LENGTH - PHONE_NUMBER_MIN_LENGTH) + PHONE_NUMBER_MIN_LENGTH;
             for (int i = 0; i < length; i++) {
                 mobilePhone.append((Integer) rand.nextInt(DIGIT_QUANTITY));
@@ -257,9 +262,9 @@ public class RandomContact {
         if (rand.nextInt(HUNDRED_PERCENT) < PROBABILITY_OF_EMPTY_STRING) {
             personalWebsite = EMPTY_STRING;
         } else {
-            personalWebsite = "www.";
+            personalWebsite = WWW;
             personalWebsite += wordImitationInLowerCase();
-            personalWebsite += ".com";
+            personalWebsite += COM;
         }
         this.personalWebsite = personalWebsite;
     }
@@ -327,7 +332,7 @@ public class RandomContact {
 
     private String getInitialLetter(String word) {
         String letter;
-        if (word.equals("")) {
+        if (word.equals(EMPTY_STRING)) {
             letter = EMPTY_STRING;
         } else {
             letter = String.valueOf(word.charAt(INITIAL_LETTER_INDEX));
@@ -337,40 +342,40 @@ public class RandomContact {
 
     private void setFirstNameInitialLetter() {
         String letter = getInitialLetter(firstName);
-        if (letter.equals("")) {
+        if (letter.equals(EMPTY_STRING)) {
             letter = EMPTY_STRING;
         } else {
-            letter += ".";
+            letter += POINT;
         }
         this.firstNameInitialLetter = letter;
     }
 
     private void setSecondNameInitialLetter() {
         String letter = getInitialLetter(secondName);
-        if (letter.equals("")) {
+        if (letter.equals(EMPTY_STRING)) {
             letter = EMPTY_STRING;
         } else {
-            letter += ".";
+            letter += POINT;
         }
         this.secondNameInitialLetter = letter;
     }
 
     private void setPatronymicInitialLetter() {
         String letter = getInitialLetter(patronymic);
-        if (letter.equals("")) {
+        if (letter.equals(EMPTY_STRING)) {
             letter = EMPTY_STRING;
         } else {
-            letter += ".";
+            letter += POINT;
         }
         this.patronymicInitialLetter = letter;
     }
 
     private void setLastNameInitialLetter() {
         String letter = getInitialLetter(lastName);
-        if (letter.equals("")) {
+        if (letter.equals(EMPTY_STRING)) {
             letter = EMPTY_STRING;
         } else {
-            letter += ".";
+            letter += POINT;
         }
         this.lastNameInitialLetter = letter;
     }

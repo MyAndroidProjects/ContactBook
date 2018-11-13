@@ -18,9 +18,9 @@ import butterknife.ButterKnife;
 
 public class ContactListAdapter extends ArrayAdapter<AbbreviatedContact> {
 
-    private LayoutInflater inflater;
-    private int layout;
-    private List<AbbreviatedContact> contacts;
+    private final LayoutInflater inflater;
+    private final int layout;
+    private final List<AbbreviatedContact> contacts;
 
     public ContactListAdapter(@NonNull Context context, int layout, @NonNull List<AbbreviatedContact> contacts) {
         super(context, layout, contacts);

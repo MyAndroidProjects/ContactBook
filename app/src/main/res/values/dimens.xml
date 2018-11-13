@@ -17,7 +17,10 @@
     <dimen name="size_xlarge">32dp</dimen>
     <dimen name="size_xxlarge">40dp</dimen>
     <dimen name="size_xxxlarge">48dp</dimen>
+    <dimen name="size_xxxxlarge">72dp</dimen>
 
     <dimen name="fragment_button_panel_padding_right">@dimen/size_xlarge</dimen>
+    <dimen name="town_card_min_width">240dp</dimen>
+    <dimen name="forecast_card_min_width">288dp</dimen>
 
 </resources>

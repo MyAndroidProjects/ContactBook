@@ -2,8 +2,8 @@ package com.study.riseof.contactBookAndWeather.contactBook.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,33 +11,26 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.SeekBarFragment;
-import com.study.riseof.contactBookAndWeather.contactBook.ui.adapter.AlphabetRecyclerViewAdapter;
-import com.study.riseof.contactBookAndWeather.contactBook.ui.dialogFragment.ContactDeleteDialog;
+import com.study.riseof.contactBookAndWeather.contactBook.database.ContactsBaseSQLiteHelper;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.AlphabetListFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.ButtonPanelFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.ContactInfoFragment;
 import com.study.riseof.contactBookAndWeather.contactBook.ui.fragment.ContactListFragment;
+import com.study.riseof.contactBookAndWeather.contactBook.ui.view.ResizeView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class ContactsMainActivity extends AppCompatActivity
-        implements SeekBarFragment.SeekBarProgressListener,
-        AlphabetRecyclerViewAdapter.AdapterLetterClickListener,
+public class ContactsMainActivity extends BaseContactActivity
+        implements AlphabetListFragment.LetterClick,
         ContactListFragment.ContactListClickListener,
-        ContactDeleteDialog.DialogClickButtonPositiveListener {
-
-    private final String EMPTY_STRING = "";
-    private final int EMPTY_INDEX = -1;
+        ButtonPanelFragment.DeleteContactListener,
+        ResizeView.SeekBarProgressListener {
 
     private ContactListFragment contactListFragment;
     private ContactInfoFragment contactInfoFragment;
     private ButtonPanelFragment buttonPanelFragment;
     private AlphabetListFragment alphabetListFragment;
-    private int selectedContactId = EMPTY_INDEX;
-    private String selectedLetter = EMPTY_STRING;
-    private int maxSeekBar;
+
 
     @BindView(R.id.frame_contact_list)
     FrameLayout contactListFrame;
@@ -45,54 +38,40 @@ public class ContactsMainActivity extends AppCompatActivity
     FrameLayout contactInfoFrame;
     @BindView(R.id.contact_toolbar)
     Toolbar toolbar;
+    @Nullable
+    @BindView(R.id.resize_view)
+    ResizeView resizeView;
+
+    @Override
+    int getActivityLayoutId() {
+        return R.layout.activity_contacts_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts_main);
-        //  ContactsBaseSQLiteHelper contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
-        //this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
-        ButterKnife.bind(this);
+        setActionBar();
+        addFragments();
+        setListeners();
+    }
+
+    private void setActionBar() {
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        maxSeekBar = getResources().getInteger(R.integer.seek_bar_maximum);
-        selectedContactId = getIntent().getIntExtra("selectedContactId", EMPTY_INDEX);
-        if (getIntent().getStringExtra("selectedLetter") == null) {
-            selectedLetter = EMPTY_STRING;
-        } else {
-            selectedLetter = getIntent().getStringExtra("selectedLetter");
-        }
-        addFragments();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //   ContactsBaseSQLiteHelper contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
-        //  this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("selectedContactId", selectedContactId);
-        outState.putString("selectedLetter", selectedLetter);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        selectedContactId = savedInstanceState.getInt("selectedContactId", EMPTY_INDEX);
-        selectedLetter = savedInstanceState.getString("selectedLetter", EMPTY_STRING);
         if (selectedContactId != EMPTY_INDEX) {
             onContactItemClick(selectedContactId);
         }
         if (!selectedLetter.equals(EMPTY_STRING)) {
-            adapterLetterClick(selectedLetter);
+            onLetterClick(selectedLetter);
         }
     }
 
@@ -107,6 +86,7 @@ public class ContactsMainActivity extends AppCompatActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_contacts_add_contact:
+                selectedContactId = EMPTY_INDEX;
                 startEditContactActivity();
                 return true;
             case R.id.menu_item_contacts_quit:
@@ -144,28 +124,19 @@ public class ContactsMainActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void changeSeekBarProgress(int progress) {
-        LinearLayout.LayoutParams paramsContactListFrame = (LinearLayout.LayoutParams) contactListFrame.getLayoutParams();
-        LinearLayout.LayoutParams paramsContactInfoFrame = (LinearLayout.LayoutParams) contactInfoFrame.getLayoutParams();
-        paramsContactListFrame.weight = (maxSeekBar - progress);
-        paramsContactInfoFrame.weight = progress;
-        contactListFrame.setLayoutParams(paramsContactListFrame);
-        contactInfoFrame.setLayoutParams(paramsContactInfoFrame);
-    }
-
-    @Override
-    public void adapterLetterClick(String letter) {
-        selectedLetter = letter;
-        contactListFragment.showContactsByFirstLetter(selectedLetter);
-        buttonPanelFragment.setSelectedLetter(letter);
-    }
-
-    @Override
-    public void onContactItemClick(int id) {
-        selectedContactId = id;
-        contactInfoFragment.setContactInfoById(selectedContactId);
-        buttonPanelFragment.setSelectedContactId(selectedContactId);
+    private void setListeners() {
+        if (alphabetListFragment != null) {
+            alphabetListFragment.setLetterClickListener(this);
+        }
+        if (contactListFragment != null) {
+            contactListFragment.setContactClickListener(this);
+        }
+        if (buttonPanelFragment != null) {
+            buttonPanelFragment.setDeleteContactListener(this);
+        }
+        if (resizeView != null) {
+            resizeView.setSeekBarListener(this);
+        }
     }
 
     private void startEditContactActivity() {
@@ -175,8 +146,40 @@ public class ContactsMainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+
+    private void deleteBase() {
+        // На случай необходимости удалить базу
+        ContactsBaseSQLiteHelper contactsBaseSQLiteHelper = new ContactsBaseSQLiteHelper(this);
+        this.deleteDatabase(ContactsBaseSQLiteHelper.DATABASE_NAME);
+    }
+
     @Override
-    public void dialogClickButtonPositive() {
+    public void changeSeekBarProgress(int progress) {
+        LinearLayout.LayoutParams paramsContactListFrame = (LinearLayout.LayoutParams) contactListFrame.getLayoutParams();
+        LinearLayout.LayoutParams paramsContactInfoFrame = (LinearLayout.LayoutParams) contactInfoFrame.getLayoutParams();
+        paramsContactListFrame.weight = (getResources().getInteger(R.integer.seek_bar_maximum) - progress);
+        paramsContactInfoFrame.weight = progress;
+        contactListFrame.setLayoutParams(paramsContactListFrame);
+        contactInfoFrame.setLayoutParams(paramsContactInfoFrame);
+    }
+
+    @Override
+    public void onContactItemClick(int id) {
+        selectedContactId = id;
+        contactInfoFragment.setContactInfoById(selectedContactId);
+        buttonPanelFragment.setSelectedContactId(selectedContactId);
+    }
+
+    @Override
+    public void onLetterClick(String letter) {
+        selectedLetter = letter;
+        contactListFragment.showContactsByFirstLetter(selectedLetter);
+        buttonPanelFragment.setSelectedLetter(letter);
+    }
+
+
+    @Override
+    public void contactWasDeleted() {
         contactListFragment.showContactsByFirstLetter(selectedLetter);
         contactInfoFragment.setEmptyStringsToText();
         selectedContactId = EMPTY_INDEX;
