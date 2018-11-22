@@ -157,8 +157,8 @@ public class WeatherForecastParser {
         return true;
     }
 
- /*   private void startTagTown(XmlPullParser xpp) {
-*//*
+    /*   private void startTagTown(XmlPullParser xpp) {
+     *//*
         // для enum Town
         String townIndex = EMPTY_STRING;
         int attributeCount = xpp.getAttributeCount();
@@ -175,7 +175,7 @@ public class WeatherForecastParser {
         }
 *//*
 
-        *//*     // для class Town(townIndex, latitude, longitude)
+     *//*     // для class Town(townIndex, latitude, longitude)
   int attributeCount = xpp.getAttributeCount();
         String townIndex = EMPTY_STRING;
         String latitude = EMPTY_STRING;

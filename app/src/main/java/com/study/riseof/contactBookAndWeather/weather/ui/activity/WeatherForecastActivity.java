@@ -1,14 +1,12 @@
 package com.study.riseof.contactBookAndWeather.weather.ui.activity;
 
 import com.study.riseof.contactBookAndWeather.R;
-import com.study.riseof.contactBookAndWeather.weather.model.Town;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
+import com.study.riseof.contactBookAndWeather.weather.presenter.MVPContract;
+import com.study.riseof.contactBookAndWeather.weather.presenter.WeatherForecastPresenter;
 import com.study.riseof.contactBookAndWeather.weather.ui.adapter.WeatherForecastRecyclerAdapter;
-import com.study.riseof.contactBookAndWeather.weather.xmlParse.WeatherForecastParser;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,27 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherForecastActivity extends AppCompatActivity {
-    private Town town;
+public class WeatherForecastActivity extends AppCompatActivity implements MVPContract.WeatherView {
 
-    private final String EMPTY_STRING = "";
-
-    private List<WeatherForecast> weatherForecasts;
-    private WeatherForecastDataLoader weatherForecastDataLoader;
-
-    private String weatherSitePath;
+    private MVPContract.WeatherPresenter presenter;
 
     @BindView(R.id.weather_forecast_toolbar)
     Toolbar toolbar;
@@ -54,18 +39,26 @@ public class WeatherForecastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
         ButterKnife.bind(this);
-        town = Town.NOVOSIBIRSK;
         setActionBar();
+        setPresenter();
+    }
 
-        weatherSitePath = getString(R.string.link_meteoservice_ru);
-        weatherForecastDataLoader = new WeatherForecastDataLoader();
-        weatherForecastDataLoader.execute(weatherSitePath);
+    private void setPresenter() {
+        presenter = WeatherForecastPresenter.getInstance();
+        presenter.attachView(this);
+        presenter.setContext(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.viewIsAvailable();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        weatherForecastDataLoader.cancel(true);
+        presenter.onDestroy();
     }
 
     @Override
@@ -79,17 +72,16 @@ public class WeatherForecastActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_update_forecast:
-                weatherForecastDataLoader = new WeatherForecastDataLoader();
-                weatherForecastDataLoader.execute(weatherSitePath);
+                presenter.onMenuButtonUpdate();
                 return true;
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                presenter.onMenuButtonHome();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void setActionBar(){
+    private void setActionBar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -101,86 +93,17 @@ public class WeatherForecastActivity extends AppCompatActivity {
         }
     }
 
-    private void setWeatherForecastRecyclerAdapter() {
+    @Override
+    public void setWeatherForecastRecyclerAdapter(List<WeatherForecast> weatherForecasts) {
         WeatherForecastRecyclerAdapter adapter = new WeatherForecastRecyclerAdapter(this, weatherForecasts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
-    private void resetTownInfoText() {
-        townNameText.setText(getString(R.string.loading));
-        townCoordinatesText.setText(EMPTY_STRING);
-    }
-
-    private void setTownInfoText() {
-        townNameText.setText(getString(town.getTownNameId()));
-        townCoordinatesText.setText(String.format(getString(R.string.coordinates),town.getLatitude(), town.getLongitude()));
-    }
-
-    private class WeatherForecastDataLoader extends AsyncTask<String, Void, String> {
-
-        private WeatherForecastParser weatherForecastParser;
-
-        @Override
-        protected void onPreExecute() {
-            resetTownInfoText();
-        }
-
-        @Override
-        protected String doInBackground(String... urlPaths) {
-            String dataXml = "";
-            int index = 0;
-            try {
-                if (isCancelled()) {
-                    return null;
-                }
-                dataXml = downloadXml(urlPaths[index]);
-            } catch (IOException ex) {
-                Log.e("myTag", "downloadXML: IO Exception reading data: " + ex.getMessage());
-            }
-            return dataXml;
-        }
-
-        @Override
-        protected void onPostExecute(String xmlData) {
-            super.onPostExecute(xmlData);
-            weatherForecastParser = new WeatherForecastParser();
-            if (xmlData != null && weatherForecastParser.parse(xmlData)) {
-               // town = weatherForecastParser.getTown();
-                weatherForecasts = weatherForecastParser.getWeatherForecasts();
-                setWeatherForecastRecyclerAdapter();
-                setTownInfoText();
-            }
-        }
-
-        private String downloadXml(String urlPath) throws IOException {
-            StringBuilder xmlResult = new StringBuilder();
-            BufferedReader reader = null;
-            try {
-                URL url = new URL(urlPath);
-                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (isCancelled()) {
-                        return null;
-                    }
-                    xmlResult.append(line);
-                }
-                return xmlResult.toString();
-            } catch (MalformedURLException ex) {
-                Log.e("myTag", "downloadXML: Invalid URL " + ex.getMessage());
-            } catch (IOException ex) {
-                Log.e("myTag", "downloadXML: IO Exception reading data: " + ex.getMessage());
-            } catch (SecurityException ex) {
-                Log.e("myTag", "downloadXML: Security Exception.  Needs permission? " + ex.getMessage());
-            } finally {
-                if (reader != null) {
-                    reader.close();
-                }
-            }
-            return null;
-        }
+    @Override
+    public void setTownInfoText(String name, String coordinates) {
+        townNameText.setText(name);
+        townCoordinatesText.setText(coordinates);
     }
 }
