@@ -1,4 +1,4 @@
-package com.study.riseof.contactBookAndWeather.weather.xmlParse;
+package com.study.riseof.contactBookAndWeather.weather.network;
 
 import android.util.Log;
 

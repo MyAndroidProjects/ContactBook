@@ -7,12 +7,12 @@ import android.support.v4.app.NavUtils;
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.model.Town;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
-import com.study.riseof.contactBookAndWeather.weather.xmlParse.WeatherForecastDataLoader;
-import com.study.riseof.contactBookAndWeather.weather.xmlParse.WeatherForecastParser;
+import com.study.riseof.contactBookAndWeather.weather.network.WeatherForecastDataLoader;
+import com.study.riseof.contactBookAndWeather.weather.network.WeatherForecastParser;
 
 import java.util.List;
 
-public class WeatherForecastPresenter implements MVPContract.WeatherPresenter, WeatherForecastDataLoader.StopExecuteListener {
+public class WeatherForecastPresenter implements WeatherForecastContract.WeatherPresenter, WeatherForecastDataLoader.StopExecuteListener {
 
     private static WeatherForecastPresenter instance;
 
@@ -22,7 +22,7 @@ public class WeatherForecastPresenter implements MVPContract.WeatherPresenter, W
     private WeatherForecastDataLoader weatherForecastDataLoader;
 
     private Context context;
-    private MVPContract.WeatherView weatherView;
+    private WeatherForecastContract.WeatherView weatherView;
 
     private WeatherForecastPresenter() {
     }
@@ -42,13 +42,13 @@ public class WeatherForecastPresenter implements MVPContract.WeatherPresenter, W
 
     private void forecastDataLoading() {
         weatherForecastDataLoader = new WeatherForecastDataLoader();
-        MVPContract.WeatherDataLoader dataLoader = weatherForecastDataLoader;
+        WeatherForecastContract.WeatherDataLoader dataLoader = weatherForecastDataLoader;
         weatherForecastDataLoader.setStopExecuteListener(this);
         dataLoader.startExecute(weatherSitePath);
     }
 
     @Override
-    public void attachView(MVPContract.WeatherView weatherView) {
+    public void attachView(WeatherForecastContract.WeatherView weatherView) {
         this.weatherView = weatherView;
     }
 
@@ -82,7 +82,7 @@ public class WeatherForecastPresenter implements MVPContract.WeatherPresenter, W
     }
 
     @Override
-    public void onDestroy() {
+    public void onActivityDestroy() {
         deAttachView();
         weatherForecastDataLoader.cancel(true);
         weatherForecastDataLoader = null;

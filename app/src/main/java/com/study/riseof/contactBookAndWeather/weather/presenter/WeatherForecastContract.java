@@ -6,7 +6,7 @@ import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
 
 import java.util.List;
 
-public interface MVPContract {
+public interface WeatherForecastContract {
     interface WeatherView {
         void setWeatherForecastRecyclerAdapter(List<WeatherForecast> weatherForecasts);
 
@@ -26,7 +26,7 @@ public interface MVPContract {
 
         void onMenuButtonHome();
 
-        void onDestroy();
+        void onActivityDestroy();
     }
 
     interface WeatherDataLoader {

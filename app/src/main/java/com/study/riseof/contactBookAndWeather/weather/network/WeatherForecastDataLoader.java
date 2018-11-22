@@ -1,9 +1,9 @@
-package com.study.riseof.contactBookAndWeather.weather.xmlParse;
+package com.study.riseof.contactBookAndWeather.weather.network;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.study.riseof.contactBookAndWeather.weather.presenter.MVPContract;
+import com.study.riseof.contactBookAndWeather.weather.presenter.WeatherForecastContract;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class WeatherForecastDataLoader extends AsyncTask<String, Void, String> implements MVPContract.WeatherDataLoader {
+public class WeatherForecastDataLoader extends AsyncTask<String, Void, String> implements WeatherForecastContract.WeatherDataLoader {
 
     private StopExecuteListener stopExecuteListener;
 

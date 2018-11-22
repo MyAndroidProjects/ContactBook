@@ -2,7 +2,7 @@ package com.study.riseof.contactBookAndWeather.weather.ui.activity;
 
 import com.study.riseof.contactBookAndWeather.R;
 import com.study.riseof.contactBookAndWeather.weather.model.WeatherForecast;
-import com.study.riseof.contactBookAndWeather.weather.presenter.MVPContract;
+import com.study.riseof.contactBookAndWeather.weather.presenter.WeatherForecastContract;
 import com.study.riseof.contactBookAndWeather.weather.presenter.WeatherForecastPresenter;
 import com.study.riseof.contactBookAndWeather.weather.ui.adapter.WeatherForecastRecyclerAdapter;
 
@@ -21,9 +21,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherForecastActivity extends AppCompatActivity implements MVPContract.WeatherView {
+public class WeatherForecastActivity extends AppCompatActivity implements WeatherForecastContract.WeatherView {
 
-    private MVPContract.WeatherPresenter presenter;
+    private WeatherForecastContract.WeatherPresenter presenter;
 
     @BindView(R.id.weather_forecast_toolbar)
     Toolbar toolbar;
@@ -58,7 +58,7 @@ public class WeatherForecastActivity extends AppCompatActivity implements MVPCon
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
+        presenter.onActivityDestroy();
     }
 
     @Override
