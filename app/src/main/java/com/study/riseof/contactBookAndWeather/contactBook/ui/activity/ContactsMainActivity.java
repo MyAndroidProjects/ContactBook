@@ -21,7 +21,7 @@ import com.study.riseof.contactBookAndWeather.contactBook.ui.view.ResizeView;
 import butterknife.BindView;
 
 public class ContactsMainActivity extends BaseContactActivity
-        implements AlphabetListFragment.LetterClick,
+        implements AlphabetListFragment.LetterClickListener,
         ContactListFragment.ContactListClickListener,
         ButtonPanelFragment.DeleteContactListener,
         ResizeView.SeekBarProgressListener {
