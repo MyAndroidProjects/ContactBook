@@ -36,7 +36,7 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
     RecyclerView recyclerView;
 
     private int fragmentWidth;
-    private LetterClick letterClick;
+    private LetterClickListener letterClickListener;
 
     @Override
     protected int getLayoutId() {
@@ -73,14 +73,14 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
 
     @Override
     public void adapterLetterClick(String letter) {
-        letterClick.onLetterClick(letter);
+        letterClickListener.onLetterClick(letter);
     }
 
-    public void setLetterClickListener(LetterClick letterClick) {
-        this.letterClick = letterClick;
+    public void setLetterClickListener(LetterClickListener letterClickListener) {
+        this.letterClickListener = letterClickListener;
     }
 
-    public interface LetterClick {
+    public interface LetterClickListener {
         void onLetterClick(String letter);
     }
 }
