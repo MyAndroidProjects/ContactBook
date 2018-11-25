@@ -4,8 +4,10 @@
     android:id="@+id/weather_forecast_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_xsmall"
     android:layout_marginLeft="@dimen/size_small"
     android:layout_marginRight="@dimen/size_small"
+    android:layout_marginTop="@dimen/size_xsmall"
     card_view:cardBackgroundColor="@color/weatherForecastPrimaryBackground"
     card_view:cardCornerRadius="@dimen/size_small"
     card_view:cardElevation="@dimen/size_small">

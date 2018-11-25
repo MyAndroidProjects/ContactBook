@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frame_view_alphabet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/contactPrimaryBackground"
->
+    android:background="@color/contactPrimaryBackground">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_alphabet"
