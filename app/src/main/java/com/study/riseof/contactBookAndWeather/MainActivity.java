@@ -25,17 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-       //
-    //    scaleType = animationView.getScaleType();
         animationDrawable =(AnimationDrawable) animationView.getBackground();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-     //   animationView.setBackgroundResource(R.drawable.anim_weather_forecast_link);
-      //  animationView.setScaleType(scaleType);
-
         animationDrawable.start();
     }
 
