@@ -34,11 +34,13 @@
 
             <TextView
                 android:id="@+id/town_name"
-                style="@style/style_forecast_town" />
+                style="@style/style_forecast_town"
+                android:textAlignment="gravity"/>
 
             <TextView
                 android:id="@+id/town_coordinates"
-                style="@style/style_forecast_town.coordinates" />
+                style="@style/style_forecast_town.coordinates"
+                android:textAlignment="gravity"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

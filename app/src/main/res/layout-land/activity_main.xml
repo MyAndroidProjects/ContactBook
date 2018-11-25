@@ -17,16 +17,23 @@
         android:scaleType="centerInside"
         android:src="@drawable/book" />
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/animation_link_to_weather"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="@integer/frame_link_to_weather_main_horizontal_weight"
-        android:background="@color/mainActivityWeatherAnimationBackground"
-        android:scaleType="centerInside"
-        android:src="@drawable/anim_weather_forecast_link"
-        android:contentDescription="@string/weather_changing_animation" />
+        android:layout_weight="@integer/frame_link_to_weather_main_vertical_weight"
+        android:background="@color/mainActivityWeatherAnimationBackground">
+
+        <ImageView
+            android:id="@+id/animation_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/anim_weather_forecast_link"
+            android:contentDescription="@string/weather_changing_animation"
+            android:scaleType="centerInside" />
+    </FrameLayout>
 </LinearLayout>
 
 

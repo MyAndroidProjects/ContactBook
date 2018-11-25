@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,9 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
 
     @BindView(R.id.recycler_view_alphabet)
     RecyclerView recyclerView;
+    @BindView(R.id.frame_view_alphabet)
+    FrameLayout frameAlphabet;
 
-    private int fragmentWidth;
     private LetterClickListener letterClickListener;
 
     @Override
@@ -47,11 +49,20 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         initRecyclerView();
-        resizeView();
         return view;
     }
 
     private void initRecyclerView() {
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                setRecyclerViewWidth();
+                setRecyclerViewAdapter();
+            }
+        });
+    }
+
+    private void setRecyclerViewAdapter() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         AlphabetRecyclerViewAdapter adapter = new AlphabetRecyclerViewAdapter(getContext(), buttonName);
@@ -59,17 +70,11 @@ public class AlphabetListFragment extends BaseFragment implements AlphabetRecycl
         recyclerView.setAdapter(adapter);
     }
 
-    private void resizeView() {
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-                fragmentWidth = view.getWidth();
-                ViewGroup.LayoutParams lp = recyclerView.getLayoutParams();
-                lp.height = fragmentWidth; //public LayoutParams(int width, int height)
-            }
-        });
+    private void setRecyclerViewWidth() {
+        int fragmentWidth = frameAlphabet.getWidth();
+        ViewGroup.LayoutParams lp = recyclerView.getLayoutParams();
+        lp.height = fragmentWidth; //public LayoutParams(int width, int height)
     }
-
 
     @Override
     public void adapterLetterClick(String letter) {
