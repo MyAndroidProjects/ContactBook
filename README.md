@@ -9,6 +9,9 @@
   * [Контакты](#contacts)
   * [Прогноз погоды](#forecast)
 * [Screenshots](#screenshots)
+  * [Приложение](#screenshots)
+  * [Контакты](#contacts_screenshots)
+  * [Прогноз погоды](#forecast_screenshots)
 
 ### <a name="about"></a>Что сделано. 
 Приложение состоит из двух частей: книги контактов и прогноза погоды. Отступы, размеры и общее оформление, за исключением цветовой палитры) соответствует принципам Material Design, шрифты брались из com.android.support:design:28.0.0. Приложение выполнено практически без сторонних библиотек (использована только Butter Knife).
@@ -31,4 +34,9 @@
 Англоязычная версия отличается от русскоязычной текстом и цветовой гаммой.  Эта часть приложения выполнена  используя ***паттерн MVP***. 
 На главном экране toolbar с кнопками "назад" и "обновить" ![toolbar_ru](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/pictures/w_toolbar_ru.png) ![toolbar](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/pictures/w_toolbar.png). Оформление выполнено при помощи card view. При запуске activity, а также при нажатии кнопки "обновить" с сайта meteoservise.ru в фоновом потоке скачивается (class WeatherForecastDataLoader extends AsyncTask) xml-файл c прогнозом погоды в Новосибирске на ближайшие 24 часа и затем парсится (используется XmlPullParserFactory). Прогноз погоды разбит на четыре временных точки - с интервалом в 6 часов, каждый такой подпрогноз отображается на card view, являющейся элементом recycler view.
 
-### <a name="screenshots"></a>Скриншоты.
+### <a name="screenshots"></a>Screenshots.
+![screen_main_app](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/main_app.png)  ![screen_main_app_land](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/main_app_land.png)
+
+<a name="contacts_screenshots"></a>
+![screen_contact1](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact1.png) ![screen_contact2](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact2.png) ![screen_contact3](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact3.png) ![screen_contact4](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact4.png) ![screen_contact5](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact5_land.png) ![screen_contact8](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact8_land.png) ![screen_contact7](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact7_land.png) ![screen_contact6](https://github.com/MyAndroidProjects/ContactBookAndWeatherForecast/blob/develop/screenshots/screen_contact6_land.png) 
+<a name="forecast_screenshots"></a>
